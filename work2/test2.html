@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title></title>
+    <style type="text/css">
+        .raceShow {
+            background-color: red; /* #ffffff*/
+            border: solid 1px #ccc;
+            position: fixed;
+            display: none;
+            width: 800px;
+            height: 600px;
+            padding: 5px;
+
+            top: 40px;
+
+            left: 64px;
+
+        }
+    </style>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //弹出层
+            $("#btnShowDiv").click(function (event) {
+                $("#racePop").show(300);
+            });
+            //隐藏层
+            $("#aClose").click(function (event) {
+                $("#racePop").hide(300);
+            });
+        });
+    </script>
+</head>
+<body>
+<input type="button" value="弹出层" id="btnShowDiv" />
+<div id="racePop" class="raceShow">
+    <div class="div" style="width: 100%; height: 100%; overflow-y: auto;">
+        <a id="aClose" style="cursor:pointer;">[关闭]</a>
+        <h1>Hello World!</h1>
+    </div>
+</div>
+</body>
+</html>

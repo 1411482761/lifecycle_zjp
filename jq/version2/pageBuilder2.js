@@ -3,36 +3,37 @@ class PageBuilder2{
         this.conf=config;
         this.pageNum=1;
         this.pageSize=3;
+        this.sortButton=""; //标记用于排序的按钮
+        this.conditionArr=[];
+        this.sortName="";
+        this.label=Math.random();
         this.dataMap=this._getDataMap();
         this.flag=0;//识别升序降序,0为升序,1为降序
         this.idArray=this._getIdArray();
         this.formElement=this._buildForm();
         this.titleMap=this._buildTitleMap();
-        this.bodyDivElement=
-        this.divElement=$("<div></div>");
-        this.tableBody=this._buildTable();
-        this.formElement.append(this.divElement).append($("<input type='submit' value='提交选择'/>"));
-        this.conditionElement=this._buildCondition();
-        this.formElement.append(this.conditionElement);
-        $("body").append(this.formElement).append(this.tableBody);
+        this.bodyDiv=$("<div label='"+this.label+"' align='center'></div>");//用于控制本对象,区别于其他对象
+        $("body").append(this.bodyDiv);
+        this.divElement=$("<div label='"+this.label+"'></div>");//用于追加条件选择框
+        this.formElement.append(this.divElement).append($("<br/><input type='button' name='submit' value='提交选择'/>"));
+        this.divElement.append(this._buildCondition());
+        this.bodyDiv.append(this.formElement).append(this._buildPageButton());
         this._fetch();
-        this._buildPageButton();
-    }
-    _buildBodyDiv(){
-        var n=Math.random()*10000;
-        var str='<div ></div>'
+        this._bindFunction();
     }
     _bindFunction(){
-
-        $(form).on("click","#prev",this._prevPage.bind(this));
-        $(form).on("click","#getPage",this._byPageNum.bind(this));
-        this.formElement.on("click","#next",this._nextPage.bind(this));
-        this.formElement.on("change",".create",this._createCondition.bind(this));
-        //$(form).on("click","[data-sortable]",this._doOrder.bind(this));
+        this.bodyDiv.on("click","#prev",this._prevPage.bind(this));
+        this.bodyDiv.on("click","#getPage",this._byPageNum.bind(this));
+        this.bodyDiv.on("click","#next",this._nextPage.bind(this));
+        this.bodyDiv.on("change",".create",this._createCondition.bind(this));
+        this.bodyDiv.on("click","[data-sortable='1']",this._doOrderByButton.bind(this));
+        this.bodyDiv.on("click","input[name='submit']",this._formSubmit.bind(this));
+        this.bodyDiv.on("change","input[name='choose']",this._refreshConditionMap.bind(this));
+        this.bodyDiv.on("change","input[name='standard']",this._refreshConditionMap.bind(this));
     }
     //创建一个form表单
     _buildForm(){
-        var formId=Math.random()*100000;
+        var formId=Math.random();
         var str='<form id="'+formId+'" action="#"></form>';
         return $(str);
     }
@@ -45,16 +46,50 @@ class PageBuilder2{
            var rowData=rowArr[i];
            var key=i+1+"";
            if(rowData.order){
-               var str='<input type="button" name="'+rowData.name+'" data-sortable="1" value="'+rowData.describe+'">';
+               var str='<input type="button" name="'+rowData.name+'" back="'+rowData.describe  //back属性用于排序时button上value的值复原
+                   +'" data-sortable="1" value="'+rowData.describe+'">';
                myMap[key]=$(str);//可排序
                console.log(myMap[key]);
            }else{
-               var str='<input type="button" name="'+rowData.name+'" data-sortable="0" value="'+rowData.describe+'" />';
+               var str='<input type="button" name="'+rowData.name+'" back="'+rowData.describe+
+                   '" data-sortable="0" value="'+rowData.describe+'" />';
                myMap[key]=$(str);//不可排序
            }
        }
         return myMap;
     }
+
+    //生成一个查询条件框
+    _buildCondition(){
+        var map=this.titleMap;
+        var str='<select name="condition" class="create"><option value="0">--选择--</option>';
+        for(var i=1;i<=Object.keys(map).length;i++){
+            str+='<option value="'+map[i].attr("name")+'">'+map[i].val()+'</option>';
+        }
+        str+="</select>";
+        str+='<select name="choose">\n' +
+            '        <option value="0"> --选择-- </option>\n' +
+            '        <option value=">"> > </option>\n' +
+            '        <option value="="> = </option>\n' +
+            '        <option value="<"> < </option>\n' +
+            '    </select>\n' +
+            '    <input name="standard" /><br/>';
+        return ($(str));
+    }
+    //当选择一项查询条件后生成新的查询输入框
+    _createCondition(){
+        //移除原来所有的选择框class属性
+        $("div[label='"+this.label+"'] select").removeAttr("class");
+        var dom=this._buildCondition();
+        this.divElement.append(dom);
+    }
+    //生成table
+    _buildTable(){
+        var dom= $('<table id="table" name="table" label="'+this.label+'" align="center" border="1" cellspacing="0"></table>') ;
+        dom.append(this._buildTitleLine());
+        return dom;
+    }
+    //生成标题栏
     _buildTitleLine(){
         var map=this.titleMap;
         var len=Object.keys(map).length;
@@ -66,40 +101,12 @@ class PageBuilder2{
         }
         return dom;
     }
-    //生成一个查询条件框
-    _buildCondition(){
-        var map=this.titleMap;
-        var str='<select name="condition" class="create">';
-        for(var i=1;i<=Object.keys(map).length;i++){
-            str+='<option value="'+map[i].attr("name")+'">'+map[i].val()+'</option>';
-        }
-        str+="</select>";
-        str+='<select name="choose">\n' +
-            '        <option value=">"> > </option>\n' +
-            '        <option value="="> = </option>\n' +
-            '        <option value="<"> < </option>\n' +
-            '    </select>\n' +
-            '    <input name="" >';
-        this.divElement.append($(str));
-    }
-    //当选择一项查询条件后生成新的查询输入框
-    _createCondition(){
-        //先判断改变的是不是最下面一行条件输入框
-        var dom=this._buildCondition();
-        this.formElement.append(dom);
-    }
-    //生成table
-    _buildTable(){
-        var dom= $('<table id="table" name="table" align="center" border="1" cellspacing="0"></table>') ;
-        dom.append(this._buildTitleLine());
-        return dom;
-    }
     //生成翻页工具
     _buildPageButton(){
-        var dom=$('<input type="button" name="prev" id="prev" value="上一页">' +
+        var dom=$('<div><input type="button" name="prev" id="prev" value="上一页">' +
             '<input type="text" id="page" name="page" value="1">' +
             '<input type="button" value="查询" name="getPage"  id="getPage">' +
-            '<input type="button" id="next" name="next" value="下一页">') ;
+            '<input type="button" id="next" name="next" value="下一页"></div><br/><br/><br/><br/>') ;
         return dom;
     }
 
@@ -122,29 +129,34 @@ class PageBuilder2{
             }
         });
         return myMap;
-
     }
     //获取id数组
-    _getIdArray(searchCondition,orderCondition,sequenceType)//参数一是输入框中查询条件,参数二是排序条件
-    {
+    _getIdArray(){
         var result =[];
+        var param={"sortName":this.sortName,"condition":this.conditionArr,"sortType":this.flag};
         $.ajax({
             url: "http://localhost:63342/jq/idArray.js",
             type: "POST",
             async:false,
-            data: "orderCondition=" + orderCondition + "&searchCondition=" + searchCondition+"&sequenceType="+sequenceType,
+            data:"param="+param,
             success: function (data) {
                 var jsonStr = eval('(' + data + ')');
-                //将json数据中的id放入arr数组中
-                /* for (var i in jsonStr) {
-                     arr.push(i);
-                 }*/
                 result= jsonStr.ids;
             }
         });
         return result;
     }
-
+    //刷新conditionMap中数据
+    _refreshConditionMap(){
+        var len=$("div[label='"+this.label+"']").children("select[name='choose']").length;
+        for(var i=0;i<len;i++){
+            var v1=this.divElement.children("select[name='condition']").eq(i).val();
+            var v2=this.divElement.children("select[name='choose']").eq(i).val();
+            var v3=this.divElement.children("select[name='standard']").eq(i).val();
+            var map={"condition":v1,"choose":v2,"standard":v3};
+            this.conditionArr.put(map);
+        }
+    }
     //根据arr数组获取数据
     _fetch(){
         var arr=this.idArray;
@@ -153,7 +165,6 @@ class PageBuilder2{
         var map=this.dataMap;
         var str="" ;
         var conf=this.conf;
-        // console.log("str1====="+str1);
         var total = conf.columns.length;
         var index=(pageNum-1)*pageSize;
         for (var i = 0; i <pageSize; i++) {//每页展示三条数据
@@ -172,32 +183,27 @@ class PageBuilder2{
             }
             str += "</tr>";
         }
-        $("table").empty().append(this._buildTitleLine()).append($(str));
-        //this.tableBody.html(this._buildTable(this.conf)+str);
+        $("table[label='"+this.label+"'] ").remove();//先删除table节点,重新生成新table
+        var table=this._buildTable();
+        table.append($(str));
+        this.formElement.after(table);
     }
-
-
-
     //上一页
     _prevPage(){
         if (this.pageNum==1){
-            // alert("已经是第一页了");
         } else{
             var pageNum=--this.pageNum;
-            // alert(pageNum+"pre");
-            $("#page").val(pageNum);
+            $("div[label='"+this.label+"'] input[name='page']").val(pageNum);
             this._fetch();
         }
 
     }
     //根据输入页码查询
     _byPageNum(){
-        var pageNum=$("#page").val();
-        var temp = Math.ceil(Object.keys(this.map).length * 1.0 / this.pageSize);
+        var pageNum=$("div[label='"+this.label+"'] #page").val();
+        var temp = Math.ceil(this.idArray.length * 1.0 / this.pageSize);
         if(pageNum>temp){
-            // alert("xxxxxx");
         }else{
-            // alert(pageNum+"page");
             this.pageNum=pageNum;
             this._fetch();
         }
@@ -205,23 +211,90 @@ class PageBuilder2{
     }
     //下一页
     _nextPage(){
-        alert("下一页")
-        var temp = Math.ceil(Object.keys(this.map).length * 1.0 / this.pageSize);
+        var temp = Math.ceil(this.idArray.length * 1.0 / this.pageSize);
         if(this.pageNum==temp){
-            // alert("已经是最后一页了");
         }else{
             var pageNum=++this.pageNum;
-            // alert(pageNum+"next");
-            $("#page").val(pageNum);
+            $("div[label='"+this.label+"'] input[name='page']").val(pageNum);
             this._fetch();
         }
     }
-    //生成翻页工具
-    _buildPageButton(){
-        var str=  '<input type="button" name="prev" id="prev" value="上一页">' +
-            '<input type="text" id="page" name="page" value="1">' +
-            '<input type="button" value="查询" name="getPage"  id="getPage">' +
-            '<input type="button" id="next" name="next" value="下一页">';
-        this.tableBody.after($(str));
+    //表单提交
+    _formSubmit(){
+        var result=[1,6,9,4,5];
+        $.post(
+            'url',
+            $("div[label='"+this.label+"'] form").serialize(),//data
+            function(response){
+                //成功或者失败操作
+            },'json');
+
+        /* var param={"sortName":this.sortName,"condition":this.conditionArr,"sortType":this.flag};
+          $.ajax({
+              url:"",//请求路径为获取数组的路径
+              type:"post",
+              async:false,
+              data:$("div[label='"+this.label+"'] form").serialize(),
+              success:function(data){
+                  var jsonStr = eval('(' + data + ')');
+                  result= jsonStr.ids;
+              }
+          });*/
+        this.idArray=result;
+        this.pageNum=1;
+        $("div[label='"+this.label+"'] input[name='page']").val(1);
+        this._fetch();
     }
+    _doOrderByButton(event){
+        var target=event.target;
+        var result=[12,11,10,9,8,7,6,5,4,3,2,1];
+        var len=Object.keys(this.titleMap).length;
+        //如果排序按钮改变,将其他的排序取消了
+       if(this.sortButton!=target.name) {
+            for(var i=1;i<=len;i++){
+                if(target.name!=this.titleMap[i].attr("name")){
+                    this.titleMap[i].val(this.titleMap[i].attr("back"));
+                    this.flag=0;
+                }
+            }
+        }
+        //flag为0是默认排序,为1时升序,为2时降序
+        if(this.flag==0){
+            for(var i=1;i<=len;i++){
+                if(target.name==this.titleMap[i].attr("name")){
+                    this.titleMap[i].val(this.titleMap[i].attr("back")+"↑");
+                }
+            }
+            this.flag++;
+        }else if(this.flag==1){
+            for(var i=1;i<=len;i++) {
+                if (target.name == this.titleMap[i].attr("name")) {
+                    this.titleMap[i].val(this.titleMap[i].attr("back")+ "↓");
+                }
+            }
+            this.flag++;
+        }else{
+                for(var i=1;i<=len;i++) {
+                    if (target.name == this.titleMap[i].attr("name")) {
+                        this.titleMap[i].val(this.titleMap[i].attr("back"));
+                    }
+                }
+            this.flag=0;
+        }
+        var param={"sortName":this.sortName,"condition":this.conditionArr,"sortType":this.flag};
+          $.ajax({
+            url:"",//请求路径为获取数组的路径
+            type:"post",
+            async:false,
+            data:"param="+param,
+            success:function(data){
+                var jsonStr = eval('(' + data + ')');
+                result= jsonStr.ids;
+            }
+        });
+          this.sortButton=target.name;
+          this.idArray=result;
+          this._fetch();
+    }
+
 }
