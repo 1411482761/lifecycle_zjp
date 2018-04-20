@@ -1,4 +1,4 @@
-const conf = {
+const config = {
     "columns": [
         {"name": "name", "describe": "姓名", "type": "text", "is_required": true},
         {"name": "age", "describe": "年龄", "type": "text", "is_required": false, "is_display": false},

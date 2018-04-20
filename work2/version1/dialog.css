@@ -1,0 +1,14 @@
+#pop {
+    background-color: deepskyblue; /* #ffffff*/
+    border: solid 1px #ccc;
+    position: absolute;
+    display: none;
+    width: 200px;
+    height: 200px;
+    padding: 5px;
+
+    top: 400px;
+
+    left: 21px;
+
+}
