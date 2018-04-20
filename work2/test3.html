@@ -1,16 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <script src="jquery-3.3.1.min.js"></script>
+    <script>
+        $(function () {
+            $("li").click(function(animal){
+                //alert($(this))
+                console.log(animal)
+                var tar=animal.target;
+                var aa=tar.dataset;
+                alert(aa["type"])
+
+            }) ;
+
+        })
+
+    </script>
 </head>
 <body>
-<span>asdasdasd</span>
-<script src="jquery-3.3.1.min.js"></script>
-<script>
-    $(function () {
-        alert($("span").text())
-    })
-</script>
+
+<h1>物种</h1>
+
+<p>点击某个物种来查看其类别：</p>
+
+<ul>
+    <li id="owl"  name="aa" data-type="鸟类">喜鹊</li>
+    <li  id="salmon" data-type="鱼类">金枪鱼</li>
+    <li  id="tarantula" data-type="蜘蛛">蝇虎</li>
+</ul>
+
 </body>
 </html>
+

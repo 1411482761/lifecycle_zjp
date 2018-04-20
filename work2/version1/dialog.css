@@ -3,12 +3,12 @@
     border: solid 1px #ccc;
     position: absolute;
     display: none;
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
     padding: 5px;
 
-    top: 400px;
+    top: 300px;
 
-    left: 21px;
+    left: 31px;
 
 }
