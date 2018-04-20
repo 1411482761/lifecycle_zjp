@@ -2,8 +2,8 @@ $(function(){
     var data=data_json;
     $("body").append($("<h1>参会证</h1><hr/>")).append(_buildinfo());
     var scheduleDiv=$("<div></div>");
-    var popDiv=$("<div class='raceShow'></div>");//弹窗的div
-    $("body").append($("<hr/><strong>日程安排</strong><hr/>")).append(scheduleDiv);
+    var popDiv=$("<div id='racePop' class='raceShow'></div>");//弹窗的div
+    $("body").append($("<hr/><strong>日程安排</strong><hr/>")).append(scheduleDiv).append(popDiv);
     _buildSchedule();
 
     //隐藏层
@@ -13,7 +13,7 @@ $(function(){
     popDiv.on("click","input[type='submit']",hideDialog.bind(this));
     //给所有的a标签绑定事件
     $("a").click(function (event) {
-
+        alert("a标签的绑定事件出发")
         var target=event.target;
         var index=target.name;//数组下标
         var arr=data.schedule;
@@ -24,7 +24,8 @@ $(function(){
             '&nbsp&nbsp&nbsp&nbsp&nbsp'+arr[index]["address"]+'<br/>&nbsp&nbsp&nbsp&nbsp&nbsp'+arr[index]["detail"]+'<br><br>' +
             '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="submit" value="核实" /></form> ';
         popDiv.append($(str));
-        popDiv.show(300);
+        alert("*******8")
+      //  popDiv.show(300);
     });
     //生成参与者个人信息展示
    function _buildinfo() {
