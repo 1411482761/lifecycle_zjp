@@ -6,8 +6,28 @@
     <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
 </head>
 <body>
-    <div ng-app>
+    <div ng-app="myapp" ng-controller="cont">
+        <input ng-model="name">
         <p>{{5+5}}</p>
+        <button ng-click="cli()">请求数据</button>
+        <p>{{data}}</p>
     </div>
+<script>
+    var app=angular.module("myapp",[]);
+    app.controller("cont",function($scope,$http){
+        $scope.cli=function(){
+            $http({
+                method:"post",
+                url:"http://www.runoob.com/try/angularjs/data/sites.php"
+            }).then(function successCallback(response) {
+                    $scope.data=response.data.sites;
+            },function fail(response) {
+                $scope.data="shibai";
+            })
+            //$scope.data=$location.absUrl();
+        };
+
+    });
+</script>
 </body>
 </html>
