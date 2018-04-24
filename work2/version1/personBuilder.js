@@ -2,9 +2,10 @@ $(function(){
     var conf=config;
     var form=$('<form action="http://localhost:63342/work2/version1/apply.html" method="get"></form>');
     var titleArr=_buildTitleArr(conf);
-    $("body").append($("<h1>报名表</h1><hr/>")).append(form);
+    $("body").append($("<h1>报名表</h1><hr />")).append(form);
     _buildFace(titleArr,form);
     form.on("click","input[type='submit']",_submitCheck.bind(this));
+    _addCssStyle();
 });
 //生成报名页面元素数组
  function _buildTitleArr(conf){
@@ -19,10 +20,10 @@ $(function(){
         var type=rowdata["type"];
         var index=$.inArray(type,typeArr);
         if(index>=0){//是input标签
-            var str='<div><span>'+rowdata["describe"]+"</span>"+'<input type="'+type+'" name="'+rowdata["name"]+'"/></div>';
+            var str='<div>'/*<label>'+rowdata["describe"]+"</label>"*/+'<input class="form-control" placeholder="'+rowdata["describe"]+'" type="'+type+'" id="'+rowdata["name"]+'" name="'+rowdata["name"]+'"/></div>';
             myMap["dom"]=$(str);
         }else{ //不是input
-            var str='<div><span>'+rowdata["describe"]+'</span><select name="'+rowdata["name"]+'">';
+            var str='<div>'/*<label>'+rowdata["describe"]+'</label>*/+'<select class="form-control" name="'+rowdata["name"]+'">';
             for(var j=0;j<rowdata["options"].length;j++){
                 var data=rowdata["options"][j];
                 str+='<option value="'+data["value"]+'">'+data["describe"]+'</option>';
@@ -70,6 +71,19 @@ function _submitCheck(){
             return false;
         }
     }
+}
+
+//添加样式
+function _addCssStyle() {
+     //设置标题样式
+     $("h1").attr("class","text-center");
+     //设置照片上传按钮
+    $("input[type='file']").before($('<label for="'+$("input[type='file']").attr("id")+'" class="btn btn-lg btn-block">照片</label>'));
+     //设置提交按钮样式
+    $("input[type='submit']").attr("class","btn btn-lg btn-block");
+    //设置属性名字(姓名,年龄)等字体样式
+
+
 }
 
 

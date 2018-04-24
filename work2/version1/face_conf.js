@@ -9,6 +9,7 @@ const config = {
             "describe": "课程",
             "type": "select",
             "options": [
+                {"describe": "请选择课程", "value": "opt1"},
                 {"describe": "选项1", "value": "opt1"},
                 {"describe": "选项2", "value": "opt2"},
                 {"describe": "选项3", "value": "opt3"}

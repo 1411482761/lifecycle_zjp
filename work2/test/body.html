@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>报名表</h1>
+<hr>
+<form action="http://localhost:63342/work2/version1/apply.html" method="get">
+    <div><span>姓名</span><input type="text" name="name" is_required="true"></div>
+    <div><span>年龄</span><input type="text" name="age" is_required="true"></div>
+    <div><span>手机号</span><input type="text" name="phone" is_required="true"></div>
+    <div><span>照片</span><input type="file" name="pic" is_required="true"></div>
+    <div><span>课程</span>
+        <select name="class" is_required="true">
+            <option value="opt1">选项1</option>
+            <option value="opt2">选项2</option>
+            <option value="opt3">选项3</option>
+        </select></div>
+    <input type="submit" value="报名">
+</form>
+</body>
+</html>

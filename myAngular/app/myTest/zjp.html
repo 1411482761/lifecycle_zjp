@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+    <div ng-app="myapp" ng-controller="cont">
+        每页展示<input ng-model="pageSize" id="size" type="number">条
+        第<input ng-model="pageNum" id="num" type="number">页<br/>
+        <button ng-click="http()">$http请求数据</button>
+        <button ng-click="ajax()">Ajax请求数据</button>
+        <!--<button ng-click="ajax()">Ajax请求数据</button>-->
+
+        <div><p>{{data}}</p></div>
+    </div>
+<script>
+    var app=angular.module("myapp",[]);
+    app.controller("cont",function($scope,$http){
+        $scope.pageSize = 20;
+        $scope.pageNum = 1;
+        $scope.http=function () {
+            $http.post('http://192.168.1.6:14900/servlets/binserv/Fair',
+                '{"id":0,"command":"com.agilecontrol.fair.MiscCmd","params":{"cmd":"SimpleQueryTest","pageSize":' + $scope.pageSize + ',"pageNum": '+ $scope.pageNum +'}}')
+                .then(function (response) {
+                    $scope.data = response.data;
+                }, function (response) {
+                    $scope.data = response.data;
+                });
+        };
+
+        $scope.ajax=function() {
+            $.ajax({
+                url:'http://192.168.1.6:14900/servlets/binserv/Fair',
+                type:"post",
+                contentType:'application/json;charset=UTF-8',
+                data: '{"id":0,"command":"com.agilecontrol.fair.MiscCmd","params":{"cmd":"SimpleQueryTest","pageSize":' + $scope.pageSize + ',"pageNum": '+ $scope.pageNum +'}}',
+                success:function(data){
+                    $scope.data=data;
+                    $scope.$apply();
+                }
+
+            })
+        };
+    });
+
+</script>
+</body>
+</html>

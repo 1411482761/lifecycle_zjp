@@ -1,0 +1,33 @@
+div {
+
+}
+* {
+    padding:5px;
+}
+input {
+
+}
+input[type="file"] {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+input[type="submit"] {
+    position: absolute;
+   /* margin-top: 140px;*/
+    left:0px;
+    bottom: 10px;
+    background: mediumspringgreen;
+    border-style: none;
+}
+label {
+    display: block;
+    width: 300px;
+    border: 1px solid grey;
+
+    /*background: mediumspringgreen;
+    border-style: none;*/
+}
