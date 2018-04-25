@@ -2,7 +2,7 @@ $(function(){
     var conf=config;
     var form=$('<form action="http://localhost:63342/work2/version1/apply.html" method="get"></form>');
     var titleArr=_buildTitleArr(conf);
-    $("body").append($("<h1>报名表</h1><hr />")).append(form);
+    $("body").append($("<div><h1>报名表</h1><hr /></div>")).append(form);
     _buildFace(titleArr,form);
     form.on("click","input[type='submit']",_submitCheck.bind(this));
     _addCssStyle();
@@ -20,7 +20,7 @@ $(function(){
         var type=rowdata["type"];
         var index=$.inArray(type,typeArr);
         if(index>=0){//是input标签
-            var str='<div>'/*<label>'+rowdata["describe"]+"</label>"*/+'<input class="form-control" placeholder="'+rowdata["describe"]+'" type="'+type+'" id="'+rowdata["name"]+'" name="'+rowdata["name"]+'"/></div>';
+            var str='<div name="'+rowdata["name"]+'">'/*<label>'+rowdata["describe"]+"</label>"*/+'<input class="form-control" placeholder="'+rowdata["describe"]+'" type="'+type+'" id="'+rowdata["name"]+'" name="'+rowdata["name"]+'"/></div>';
             myMap["dom"]=$(str);
         }else{ //不是input
             var str='<div>'/*<label>'+rowdata["describe"]+'</label>*/+'<select class="form-control" name="'+rowdata["name"]+'">';
@@ -59,7 +59,7 @@ function _buildFace(titleArr,form){
             form.append(dataMap["dom"]);
         }
     }
-    form.append($('<input type="submit"  value="报名">'));
+    form.append($('<div name="submit"><input type="submit"  value="报名"></div>'));
 }
 //提交表单校验
 function _submitCheck(){
@@ -78,7 +78,7 @@ function _addCssStyle() {
      //设置标题样式
      $("h1").attr("class","text-center");
      //设置照片上传按钮
-    $("input[type='file']").before($('<label for="'+$("input[type='file']").attr("id")+'" class="btn btn-lg btn-block">照片</label>'));
+    $("input[type='file']").before($('<label for="'+$("input[type='file']").attr("id")+'" class="btn btn-lg btn-block"><img src="../picture/1.jpg" class="img-circle"></label>'));
      //设置提交按钮样式
     $("input[type='submit']").attr("class","btn btn-lg btn-block");
     //设置属性名字(姓名,年龄)等字体样式

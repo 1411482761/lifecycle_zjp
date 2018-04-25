@@ -5,29 +5,48 @@ div {
     padding:5px;
 }
 input {
-
+    border:0;outline:none;
+}
+input[type="text"]  {
+    /*border-color: #878787;
+    border-style: solid;*/
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 1px;
+    border-left-width: 0px;
+    outline-width: 0px  ;
+}
+img {
+    width: 80px;
+    height: 80px;
 }
 input[type="file"] {
-    width: 0.1px;
-    height: 0.1px;
+    width: 0px;
+    height: 0px;
     opacity: 0;
     overflow: hidden;
     position: absolute;
     z-index: -1;
 }
 input[type="submit"] {
-    position: absolute;
+    background: #A1FFCD;
+}
+div[name="submit"] {
+
+    position: fixed;
    /* margin-top: 140px;*/
-    left:0px;
-    bottom: 10px;
-    background: mediumspringgreen;
+    left:10px;
+    right:10px;
+    bottom: 20px;
+    background: #A1FFCD;
     border-style: none;
 }
 label {
     display: block;
     width: 300px;
-    border: 1px solid grey;
-
+    border: 1px solid red;
+    color: #8e959b;
+    /*text-decoration:underline;*/
     /*background: mediumspringgreen;
     border-style: none;*/
 }
