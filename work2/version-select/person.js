@@ -20,7 +20,7 @@ function _buildPage(conf,form) {
     _addPhoto(form);
     _addClassToInput(form);
     _addClassToSelect(form);
-    //_addSign();
+    _addSign();
     _addStyleToSubmit(form);
     form.on("click","input[type='submit']",_submitCheck.bind(this));
 }
@@ -102,7 +102,7 @@ function _BuildOptions(conf,form){
             var options=rowArr[i]["options"];
             index++;
             for (var j = 0; j < optionsLen; j++) {
-                var str='<option value="'+options[j]["value"]+'">'+options[j]["describe"]+'</option>';
+                var str='<option value="'+options[j]["value"]+'"> '+options[j]["describe"]+'</option>';
                 select.append($(str));
             }
         }
@@ -190,7 +190,7 @@ function _addClassToSelect(form) {
     var len=selects.length;
     for (var i = 0; i < len; i++) {
         var dom=$(selects[i]);
-        dom.attr("class","form-control tag-select" );
+        dom.attr("class","form-control" );
     }
 }
 
@@ -216,16 +216,11 @@ function _submitCheck(){
     }
 }
 
-/*//给输入框添加标签
+//给输入框添加标签
 function _addSign(){
-      var opt= $("option");
-      var len=opt.length;
-    for (var i = 0; i < len; i++) {
-        //$(opt[i]).html("&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"+$(opt[i]).text());
-        $(opt[i]).html($(opt[i]).text());
-    }
-  /!*  $("input[type='text']").attr("background-image", 'url("../picture/tb.png")');
-    $("input[type='text']").attr("background-repeat","no-repeat");*!/
 
-}*/
+  /*  $("input[type='text']").attr("background-image", 'url("../picture/tb.png")');
+    $("input[type='text']").attr("background-repeat","no-repeat");*/
+
+}
 

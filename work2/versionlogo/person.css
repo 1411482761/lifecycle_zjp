@@ -1,31 +1,32 @@
+div {
+
+}
 * {
     padding:5px;
 }
-
-#div4 select {
+/*input {
+    border:0;outline:none;
+}*/
+select {
     background-image:url('../picture/tb2.png');
     background-repeat:no-repeat;
-    text-align: center;
-    padding: 0 0 0 40px;
 }
-option {
-    text-align: center;
-    align-content: center;
-    margin-left: 40px;
-}
+
 input[type="text"]  {
+    /*border-color: #878787;*/
+ /*   border-style: solid;*/
     border-top-width: 0px;
     border-right-width: 0px;
     border-bottom-width: 1px;
     border-left-width: 0px;
     outline-width: 0px  ;
     margin-right: 5px;
-    padding-left: 40px;
+    padding-left: 35px;
 }
-input[type="text"] {
+/*input[type="text"] {
     background-image: url("../picture/tb.png") ;
     background-repeat:no-repeat;
-}
+}*/
 img {
    position: relative;
     left: -15px;
@@ -44,18 +45,29 @@ input[type="submit"] {
     background: #A1FFCD;
 }
 div[name="submit"] {
+
+   /* position: relative;*/
     margin-top: 50px;
     left:10px;
     right:10px;
     bottom: 20px;
     background: #A1FFCD;
     border-style: none;
+    /*position: fixed;
+    left:10px;
+    right:10px;
+    bottom: 20px;
+    background: #A1FFCD;
+    border-style: none;*/
 }
 label {
     display: block;
     width: 90px;
     border: 1px solid red;
     color: #8e959b;
+    /*text-decoration:underline;*/
+    /*background: mediumspringgreen;
+    border-style: none;*/
 }
 #div3 {
     width: 90px;

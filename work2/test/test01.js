@@ -9,7 +9,12 @@ $(function () {
     o.after($("<br/>"));
     console.log(o);
    // var p=$.toJSON(o);
-    alert(a.length+"lenth");*/
+    alert(a.length+"lenth");*//*
   var arr=$("body").children("div").children("input");
-    alert(arr.length+"===");
+    alert(arr.length+"===");*/
+    var s=$("#op1").text();
+    alert(s);
+    $("#op1").text("qweqwe");
+    var s=$("#op1").text();
+    alert(s);
 })
