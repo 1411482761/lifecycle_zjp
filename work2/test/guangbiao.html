@@ -1,0 +1,62 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Document</title>
+
+</head>
+<body>
+
+<input id="o_input" type="text" value="">
+
+<script type="text/javascript">
+
+    function setTa1CursorPosition(i){
+
+        var oTa2 = o_input;
+
+        if(oTa2.selectionStart||oTa2.selectionStart==0){//非IE浏览器
+
+            oTa2.selectionStart=i;
+
+            oTa2.selectionEnd=i;
+
+            console.log(oTa2.selectionStart)
+
+        }else{//IE
+
+            var range = oTa2.createTextRange();
+
+            range.move("character",i);
+
+            range.select();
+
+        }
+
+    }
+
+    window.onload=function(){
+
+        var o_input=document.getElementById("o_input");
+
+        o_input.onclick=function(){
+
+            o_input.blur();
+
+            setTa1CursorPosition(6);
+
+            o_input.focus();
+
+        }
+
+    }
+
+</script>
+
+</body>
+
+</html>

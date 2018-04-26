@@ -1,10 +1,11 @@
 $(function(){
     var conf=config;
-    var form=$('<form action="http://localhost:63342/work2/version1/apply.html" method="get"></form>');
-    $("body").append($("<h1>报名表</h1><hr />")).append(form);
+    var form=$('<form action="#" method="get"></form>');
+    $("body").append($("<h1 class='text-center'>报名表</h1><hr />")).append(form);
     _buildPage(conf,form);
 
 });
+
 //调用其他方法生成展示页面
 function _buildPage(conf,form) {
     _buildBaseDiv(conf,form);
@@ -16,15 +17,20 @@ function _buildPage(conf,form) {
     _addPlaceholder(conf,form);
     _isDisplay(conf,form);
     _buildSubmitButton(form);
-    _addCssStyle();
+    _addPhoto(form);
+    _addClassToInput(form);
+    _addClassToSelect(form);
+    _addSign();
+    _addStyleToSubmit(form);
     form.on("click","input[type='submit']",_submitCheck.bind(this));
 }
+
 //根据columns长度,生成基层的div
 function _buildBaseDiv(conf,form) {
     var arr=conf.columns;
     var len=arr.length;
     for (var i = 0; i <= len; i++) {  //多一个div用于放置提交按钮
-        var str='<div id="'+i+'"></div>';
+        var str='<div id="div'+i+'"></div>';
         form.append($(str));
     }
 }
@@ -43,31 +49,16 @@ function _buildInfoElement(conf,form){
     }
 }
 
-//判断是否强制要求
-function _isRequired(conf,form) {
-    var arr=conf.columns;
-    var len=arr.length;
-    var inputs=form.children("input");
-    for (var i = 0; i < len; i++) {
-        var rowdata=arr[i];
-        if (rowdata["is_required"]==null){
-            $(inputs[i]).attr("is_required",false);
-        } else if(rowdata["is_required"]){
-            $(inputs[i]).attr("is_required",true);
-        }else{
-            $(inputs[i]).attr("is_required",false);
-        }
-    }
-}
-
 //根据配置文件给每个input中的name属性赋值
 function _buildNameAttr(conf,form) {
     var arr=conf.columns;
     var inputs=form.children("div").children("input");
     var len=inputs.length;
-    for (var i = 0; i < len-1; i++) { //最后一个input 为提交按钮 arr中长度不包含
+    for (var i = 0; i < len-1; i++) { //最后一个input 为提交按钮 arr中长度不包含 -1
         var thisValue=arr[i]["name"];
+        var sign=arr[i]["describe"];
         $(inputs[i]).attr("name",thisValue);
+        $(inputs[i]).attr("sign",sign);
     }
 }
 
@@ -86,8 +77,11 @@ function _addInputTypeAttr(conf,form){
             if(thisType=="select"){
                 var domSelect=$("<select></select>");
                 domSelect.attr("name",$(inputs[i]).attr("name"));
+                domSelect.attr("sign",$(inputs[i]).attr("sign"));
                 domSelect.attr("is_required",$(inputs[i]).attr("is_required"));
+                domSelect.attr("sign",$(inputs[i]).attr("sign"));
                 $(inputs[i]).after(domSelect);
+                domSelect.attr("is_required",$(inputs[i]).attr("is_required"));
                 $(inputs[i]).remove();
             }
         }
@@ -108,7 +102,7 @@ function _BuildOptions(conf,form){
             var options=rowArr[i]["options"];
             index++;
             for (var j = 0; j < optionsLen; j++) {
-                var str='<option value="'+options[j]["value"]+'">'+options[j]["describe"]+'</option>';
+                var str='<option value="'+options[j]["value"]+'"> '+options[j]["describe"]+'</option>';
                 select.append($(str));
             }
         }
@@ -128,6 +122,23 @@ function _addPlaceholder(conf,form) {
         }
     }
 
+}
+
+//判断是否强制要求
+function _isRequired(conf,form) {
+    var arr=conf.columns;
+    var len=arr.length;
+    var inputs=form.children("div").children("input");
+    for (var i = 0; i < len; i++) {
+        var rowdata=arr[i];
+        if (rowdata["is_required"]==null){
+            $(inputs[i]).attr("is_required",true);
+        } else if(rowdata["is_required"]){
+            $(inputs[i]).attr("is_required",true);
+        }else{
+            $(inputs[i]).attr("is_required",false);
+        }
+    }
 }
 
 //判断是否显示
@@ -154,30 +165,68 @@ function _buildSubmitButton(form) {
     submit.attr("type","submit");
     submit.attr("value","报名");
 }
+
+//给照片上传添加图片样式
+function _addPhoto(form){
+    var input=form.children("div").children("input[type='file']")[0];
+    $(input).attr("id",$(input).attr("name"));
+    var str ='<label for="'+$(input).attr("id")+'"  class="btn btn-lg"><img align="center" src="../picture/1.jpg" class="img-circle"></label>';
+    $(input).before($(str));
+}
+
+//给输入框修饰
+function _addClassToInput(form) {
+    var inputs=form.children("div").children("input[type='text']");
+    var len=inputs.length;
+    for (var i = 0; i < len; i++) {
+        var dom=$(inputs[i]);
+        dom.attr("class","form-control col-md-3 col-md-offset-3" );
+    }
+}
+
+//给select下拉框添加样式
+function _addClassToSelect(form) {
+    var selects=form.children("div").children("select");
+    var len=selects.length;
+    for (var i = 0; i < len; i++) {
+        var dom=$(selects[i]);
+        dom.attr("class","form-control" );
+    }
+}
+
+//给提交按钮添加样式
+function _addStyleToSubmit(form) {
+    $(form.children("div").children("input[type='submit']")).attr("class","btn btn-lg btn-block");
+   // $(form.children("div").children("input[type='submit']")).attr("onclick","_submitCheck()");
+    var divs=form.children("div");
+    var len=divs.length;
+    $(divs[len-1]).attr("name","submit");
+
+}
+
 //提交表单校验
 function _submitCheck(){
     var arr=$("[is_required='true']");
     var len=arr.length;
     for (var i = 0; i < len; i++) {
         if($(arr[i]).val().length==0){
-            alert($(arr[i]).prev().text()+"不能为空");
+            alert($(arr[i]).attr("sign")+"不能为空");
             return false;
         }
     }
 }
 
-//添加样式
-function _addCssStyle() {
-    //设置标题样式
-    $("h1").attr("class","text-center");
-    //设置照片上传按钮
-    $("input[type='file']").before($('<label for="'+$("input[type='file']").attr("id")+'" class="btn btn-lg btn-block"><img src="../picture/1.jpg" class="img-circle"></label>'));
-    //设置提交按钮样式
-    $("input[type='submit']").attr("class","btn btn-lg btn-block");
-    //设置属性名字(姓名,年龄)等字体样式
+//给输入框添加标签
+function _addSign(){
+    $("input[name='name']").before($('<span><img src="../picture/tb.png"></span>'));
+    $($("span").children("img")).each(function () {
+        $(this).width("30px");
+        $(this).height("30px");
 
-
+    })
+    /*$("input[name='name']").before($('<img src="../picture/tb.png">'));
+    $("input[name='age']").before($('<img src="../picture/tb.png">'));
+    $("input[name='phone']").before($('<img src="../picture/tb.png">'));*/
+    //$("select").before($('<img src="../picture/tb2.png">'));
 }
-
-
 

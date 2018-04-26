@@ -1,7 +1,7 @@
 const config = {
     "columns": [
         {"name": "name", "describe": "姓名", "type": "text", "is_required": true},
-        {"name": "age", "describe": "年龄", "type": "text", "is_required": false, "is_display": false},
+        {"name": "age", "describe": "年龄", "type": "text", "is_required": false, "is_display": true},
         {"name": "phone", "describe": "手机号", "type": "text"},
         {"name": "pic", "describe": "照片", "type": "file"},
         {
