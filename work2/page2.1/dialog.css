@@ -1,0 +1,21 @@
+#pop {
+    background-color: deepskyblue; /* #ffffff*/
+    border: solid 1px #ccc;
+    position: fixed;
+    display: none;
+    width: 308px;
+    height: 300px;
+    padding: 5px;
+    top: 300px;
+    left: 0px;
+}
+/*a标签去掉下划线*/
+a {
+    text-decoration: none;
+}
+[name="time"] {
+    padding-left: 25px;
+}
+[name="event"] {
+     margin-left: 50px;
+ }
