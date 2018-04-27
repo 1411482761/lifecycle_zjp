@@ -22,30 +22,14 @@ const data_json = {
         "name": "张三",
         "phone": "1300000000",
         "class": "opt1",
-        "pic": "../picture/tx.png"
+        "pic": "../pic/2.jpg"
     },
     "schedule": [
         {
             "date": "2017-05-01",
             "time": "08:00",
             "duration": "8:00~9:00",
-            "event": "早餐",
-            "address": "餐厅",
-            "detail": "二楼"
-        },
-        {
-            "date": "2017-05-01",
-            "time": "08:00",
-            "duration": "8:00~9:00",
-            "event": "早餐",
-            "address": "餐厅",
-            "detail": "二楼"
-        },
-        {
-            "date": "2017-05-01",
-            "time": "08:00",
-            "duration": "8:00~9:00",
-            "event": "早餐",
+            "event": "吃早饭",
             "address": "餐厅",
             "detail": "二楼"
         },
@@ -53,7 +37,7 @@ const data_json = {
             "date": "2018-05-01",
             "time": "08:00",
             "duration": "8:00~9:00",
-            "event": "早餐",
+            "event": "吃早饭",
             "address": "餐厅",
             "detail": "二楼"
         },
@@ -61,7 +45,7 @@ const data_json = {
             "date": "2019-05-01",
             "time": "08:00",
             "duration": "8:00~9:00",
-            "event": "早餐",
+            "event": "吃早饭",
             "address": "餐厅",
             "detail": "二楼"
         },
@@ -77,7 +61,7 @@ const data_json = {
             "date": "2019-05-02",
             "time": "08:00",
             "duration": "8:00~9:00",
-            "event": "早餐",
+            "event": "吃早饭",
             "address": "餐厅",
             "detail": "二楼"
         },
@@ -85,28 +69,28 @@ const data_json = {
             "date": "2019-05-02",
             "time": "09:00",
             "duration": "9:00~10:00",
-            "event": "早餐",
+            "event": "吃早饭",
             "address": "餐厅",
             "detail": "二楼"
         },  {
             "date": "2019-05-03",
             "time": "09:00",
             "duration": "9:00~10:00",
-            "event": "早餐",
+            "event": "吃早饭",
             "address": "餐厅",
             "detail": "二楼"
         },  {
             "date": "2019-05-04",
             "time": "09:00",
             "duration": "9:00~10:00",
-            "event": "早餐",
+            "event": "吃早饭",
             "address": "餐厅",
             "detail": "二楼"
         },  {
             "date": "2019-05-05",
             "time": "09:00",
             "duration": "9:00~10:00",
-            "event": "早餐",
+            "event": "吃早饭",
             "address": "餐厅",
             "detail": "二楼"
         }
