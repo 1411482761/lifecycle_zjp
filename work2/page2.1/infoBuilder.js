@@ -24,7 +24,7 @@ $(function(){
     popDiv.on("click","input[name='exit']",hideDialog.bind(this));
     //给所有的a标签绑定事件
     //将点击的每条事件详细内容填充到div中
-    $("a").click(function (event) {
+    $("div[data-index]").click(function (event) {
         //假如有其他的弹窗,先把原来的清了
         popDiv.empty();
         hideDialog();
@@ -81,18 +81,29 @@ $(function(){
         var len=arr.length;
         var index=0;
         var flag="";
+        var thisDate=new Date();
+        var thisYear=thisDate.getFullYear();
+        var thisMonth=thisDate.getMonth()+1;
+        var thisDate=thisDate.getDate();
        for (var i = 0; i < len; i++) {
            if(flag!=arr[i]["date"]){
                var dom=$("<div></div>");
                flag=arr[i]["date"];
                var date=new Date(arr[i]["date"]);
+               var year=date.getFullYear();
                var month=date.getMonth()+1;
                var day= date.getDate();
                dom.append($('<li>'+month+'月'+day+'日</li><hr>'));
                dom.append($('<ul></ul>'));
+               if(year==thisYear&&month==thisMonth&&day==thisDate){
+                  $(dom.children("li")).attr("style","color: #0dc938");
+                  $(dom.children("li")).append($('<span id="today">☚</span>'));
+               }
            }
            var str='<li><a href="javascript:void(0)" data-index="'+index+'"><span data-index="'+index+'" name="time">'+arr[i]["duration"]+'</span><span data-index="'+index+'"  name="event">'+
                arr[i]["event"]+'</span><span data-index="'+index+'" name="finger">></span></a></li>';
+          /* var str='<li><div data-index="'+index+'"><div data-index="'+index+'" name="time">'+arr[i]["duration"]+'</div><div data-index="'+index+'"  name="event">'+
+               arr[i]["event"]+'</div><div data-index="'+index+'" name="finger">></div></div></li>';*/
            index++;
            dom.children("ul:last-child").append($(str));
            scheduleDiv.append(dom);

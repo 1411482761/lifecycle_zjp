@@ -39,17 +39,18 @@ a:active {
     text-decoration: none;
     color:  #656565; /*鼠标按下的颜色变化*/
 }
-[name="finger"] {
-    margin-right: 10px;
-    float: right;
-}
+
 [name="time"] {
     padding-left: 25px;
 }
 [name="event"] {
-     margin-left: 30px;
+     margin-left: 50px;
  }
-
+[name="finger"] {
+    margin-right: 10px;
+    float: right;
+   /* float: left;*/
+}
 #theme {
 
   /*  border: 1px solid ;
@@ -102,7 +103,9 @@ div>li {
     margin-left: 255px;
     margin-top: -20px;
 }
-
+#today {
+padding-left: 175px;
+}
 #sub{
     background-color: #a1ffcd;
     border: none;
