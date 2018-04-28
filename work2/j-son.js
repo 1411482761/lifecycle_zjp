@@ -1,4 +1,4 @@
-var json = {
+var json_data = {
     "wxuser": {
         "_id": "4",
         "openid": "oJdb50fP1ci-WG5tq1YVX5wKC8Os",
@@ -27,6 +27,7 @@ var json = {
         "mobilephone": "13012345678",
         "name": "张某某",
         "age": "23",
+        "url":"../picture/er.png",
         "s_enroll": "N",
         "s_verify": "Y",
         "s_checkin": "N"
@@ -37,7 +38,7 @@ var json = {
         "meeting_id": "3eda392c-3550-47f9-b405-3e2a53f4c1db",
         "category": "餐饮",
         "subject": "早餐",
-        "content": "明德楼\r\n二楼301室",
+        "content": "明德楼<br>二楼301室",
         "date_begin": "2018-04-08 07:00:00",
         "date_end": "2018-04-08 09:00:00"
     }, {
@@ -46,7 +47,7 @@ var json = {
         "meeting_id": "3eda392c-3550-47f9-b405-3e2a53f4c1db",
         "category": "餐饮",
         "subject": "早餐",
-        "content": "明德楼\r\n二楼301室",
+        "content": "明德楼二楼301室",
         "date_begin": "2018-04-09 07:00:00",
         "date_end": "2018-04-09 09:00:00"
     }, {
@@ -119,8 +120,8 @@ var json = {
         "category": "酒店",
         "subject": "凯悦",
         "content": "酒店地址：\r\nXXXXXXXXXXXX\r\n\r\n房间：\r\n双人标准间\r\n双人大床房\r\n豪华套房",
-        "date_begin": "2018-04-07 12:00:00",
-        "date_end": "2018-04-12 12:00:00"
+        "date_begin": "2018-04-28 12:00:00",
+        "date_end": "2018-04-29 12:00:00"
     }, {
         "_id": "15",
         "uuid": "3b890e83-a832-4fb8-acb9-5e304e8dbc6f",
@@ -128,8 +129,8 @@ var json = {
         "category": "酒店",
         "subject": "洲际",
         "content": "酒店地址：\r\nXXXXXXXXXXXX\r\n\r\n房间：\r\n双人标准间\r\n双人大床房\r\n豪华套房",
-        "date_begin": "2018-04-07 12:00:00",
-        "date_end": "2018-04-12 12:00:00"
+        "date_begin": "2019-04-07 12:00:00",
+        "date_end": "2019-04-12 12:00:00"
     }],
     "checkin": [{
         "_id": "1",
