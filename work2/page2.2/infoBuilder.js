@@ -21,7 +21,7 @@ $(function(){
     function hideDialog(event) {
         popDiv.hide(1);
     }
-    popDiv.on("click","input[name='exit']",hideDialog.bind(this));
+    popDiv.on("click","div[name='exit']",hideDialog.bind(this));
     //给所有的a标签绑定事件
     //将点击的每条事件详细内容填充到div中
     $("div[data-index]").click(function (event) {
@@ -53,12 +53,12 @@ $(function(){
         var month=date.getMonth()+1;
         var day=date.getDate();
         var tempForm=$('<form method="post"><input type="hidden" name="id" value="'+data.participant["id"]+'"></form>');
-        var tempDate=$('<h3>'+month+'月'+day+'日</h3><hr>');
+        var tempDate=$('<span style="color: #8e959b">'+month+'月'+day+'日</span><hr>');
         var tempUl=$('<ul style="list-style:none"><li><span name="thistime" id="thistime">'+arr[index]["duration"]+'</span><span name="thisevent" id="thisevent">'+arr[index]["event"]+'</span></li><li>' +
         arr[index]["address"]+'</li><li>'+arr[index]["detail"]+'</li></ul>');
-        var tempSign=$('<span>已签到<strong>'+3+'</strong>次</span><br>');
+        var tempSign=$('<span style="color:rgba(169,169,169,0.83)">已签到<strong>'+3+'</strong>次</span><br>');
         var tempSubmit=$('<input type="submit" class="btn btn-primary btn-lg btn-block"  id="sub" value="签到" />');
-        var tempExit=$('<input type="button"  name="exit" value="X" >');
+        var tempExit=$('<div id="exit" name="exit"><span>X</span></div>');
         var timeLeft=$('<span style="color:darkgrey">距本日程剩余'+leftDay+'天'+leftHours+'小时'+leftMinutes+'分钟</span><br>');
 
         tempForm.append(tempDate).append(tempUl).append(tempSign).append(timeLeft).append(tempSubmit);
@@ -108,7 +108,7 @@ $(function(){
            }
           //var str='<li><a href="javascript:void(0)" data-index="'+index+'"><span data-index="'+index+'" name="time">'+arr[i]["duration"]+'</span><span data-index="'+index+'"  name="event">'+
            //    arr[i]["event"]+'</span><span data-index="'+index+'" name="finger">></span></a></li>';
-          var str='<li><div><div data-index="'+index+'" name="time">'+arr[i]["duration"]+'</div><div data-index="\'+index+\'" name="finger">></div><div data-index="'+index+'"  name="event">'+
+          var str='<li><div><div data-index="'+index+'" name="time">'+arr[i]["duration"]+'</div><div data-index="'+index+'" name="finger">></div><div data-index="'+index+'"  name="event">'+
                arr[i]["event"]+'</div><div id="clear"></div></div></li>';
 
            index++;
