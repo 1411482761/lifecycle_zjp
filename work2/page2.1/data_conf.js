@@ -50,7 +50,7 @@ const data_json = {
             "detail": "二楼"
         },
         {
-            "date": "2018-04-27",
+            "date": "2018-04-28",
             "time": "08:00",
             "duration": "8:00~9:00",
             "event": "早餐",
@@ -58,7 +58,7 @@ const data_json = {
             "detail": "二楼"
         },
         {
-            "date": "2018-04-27",
+            "date": "2018-04-28",
             "time": "19:00",
             "duration": "19:00~19:30",
             "event": "晚餐",

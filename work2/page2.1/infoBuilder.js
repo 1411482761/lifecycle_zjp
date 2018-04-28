@@ -70,7 +70,7 @@ $(function(){
       var str='<img name="code" src="'+data.participant["url"]+'" /><br/>';
              /*    '姓名:<em>'+data.participant["name"]+'</em><br/>'+
                 '手机号:'+data.participant["phone"]+'<br/>';*/
-        str+='<span><img id="head" src="'+data.participant["pic"]+'"></span><div id="d"><strong>姓名:</strong><strong>'+data.participant["name"]
+        str+='<span><img id="head" src="'+data.participant["pic"]+'"></span><div id="personInfo"><strong>姓名:</strong><strong>'+data.participant["name"]
             +'</strong><br><span>手机:</span><span>'+data.participant["phone"]+'</span></div>';
        dom.append($(str));
        return dom;
@@ -100,10 +100,11 @@ $(function(){
                   $(dom.children("li")).append($('<span id="today">☚</span>'));
                }
            }
-           var str='<li><a href="javascript:void(0)" data-index="'+index+'"><span data-index="'+index+'" name="time">'+arr[i]["duration"]+'</span><span data-index="'+index+'"  name="event">'+
-               arr[i]["event"]+'</span><span data-index="'+index+'" name="finger">></span></a></li>';
-          /* var str='<li><div data-index="'+index+'"><div data-index="'+index+'" name="time">'+arr[i]["duration"]+'</div><div data-index="'+index+'"  name="event">'+
-               arr[i]["event"]+'</div><div data-index="'+index+'" name="finger">></div></div></li>';*/
+          //var str='<li><a href="javascript:void(0)" data-index="'+index+'"><span data-index="'+index+'" name="time">'+arr[i]["duration"]+'</span><span data-index="'+index+'"  name="event">'+
+           //    arr[i]["event"]+'</span><span data-index="'+index+'" name="finger">></span></a></li>';
+          var str='<li><div><div data-index="'+index+'" name="time">'+arr[i]["duration"]+'</div><div data-index="\'+index+\'" name="finger">></div><div data-index="'+index+'"  name="event">'+
+               arr[i]["event"]+'</div><div id="clear"></div></div></li>';
+
            index++;
            dom.children("ul:last-child").append($(str));
            scheduleDiv.append(dom);

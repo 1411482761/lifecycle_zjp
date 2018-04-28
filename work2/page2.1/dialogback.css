@@ -42,19 +42,14 @@ a:active {
 
 [name="time"] {
     padding-left: 25px;
-    float: left;
 }
 [name="event"] {
-     margin-right: 40px;
-    float: right;
+     margin-left: 50px;
  }
 [name="finger"] {
     margin-right: 10px;
     float: right;
    /* float: left;*/
-}
-#clear {
-    clear:both;
 }
 #theme {
 
@@ -81,7 +76,7 @@ a:active {
     margin-left: 100px;
 }
 /*个人信息*/
-#personInfo {
+#d {
     float: right;
     margin-right: 55px;
     margin-top:20px;
