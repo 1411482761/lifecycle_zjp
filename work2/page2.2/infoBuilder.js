@@ -59,7 +59,7 @@ $(function(){
         var tempSign=$('<span>已签到<strong>'+3+'</strong>次</span><br>');
         var tempSubmit=$('<input type="submit" class="btn btn-primary btn-lg btn-block"  id="sub" value="签到" />');
         var tempExit=$('<input type="button"  name="exit" value="X" >');
-        var timeLeft=$('<span>距本日程剩余'+leftDay+'天'+leftHours+'小时'+leftMinutes+'分钟</span><br>');
+        var timeLeft=$('<span style="color:darkgrey">距本日程剩余'+leftDay+'天'+leftHours+'小时'+leftMinutes+'分钟</span><br>');
 
         tempForm.append(tempDate).append(tempUl).append(tempSign).append(timeLeft).append(tempSubmit);
         popDiv.append(tempExit).append(tempForm);

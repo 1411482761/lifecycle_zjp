@@ -1,15 +1,5 @@
 var json = {
-    "wxuser": {
-        "_id": "4",
-        "openid": "oJdb50fP1ci-WG5tq1YVX5wKC8Os",
-        "nickname": "初见",
-        "sex": 2,
-        "language": "zh_CN",
-        "city": "杨浦",
-        "province": "上海",
-        "country": "中国",
-        "headimgurl": "http://thirdwx.qlogo.cn/mmopen/vi_32/Gre8V9MxtfhLlOQ0IdFhsicaP0ZiaqDklHkyYFnianueibBJs1ibONaAic1VMBA1Y4LHkHlfm1CWestdID9u9MiauQdQQ/132"
-    },
+    "wxuser": null,
     "meeting": {
         "_id": "1",
         "uuid": "3eda392c-3550-47f9-b405-3e2a53f4c1db",
