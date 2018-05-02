@@ -11,8 +11,8 @@
                 var tar=animal.target;
                 console.log(tar)
                 var aa=tar.dataset;
-                alert(aa["type"])
-
+                var map=aa["type"];
+                console.log(map["c"])
             }) ;
 
         })
@@ -26,8 +26,8 @@
 <p>点击某个物种来查看其类别：</p>
 
 <ul>
-    <li id="owl"  name="aa" data-type="鸟类">喜鹊</li>
-    <li  id="salmon" data-type="鱼类">金枪鱼</li>
+    <li id="owl"  name="aa" data-type='{"a":1,"b":2,"c":"ccc"}'>喜鹊</li>
+    <li  id="salmon" data-type='{"a":1,"b":2,"c":"ccc"}'>金枪鱼</li>
     <li  id="tarantula" data-type="蜘蛛">蝇虎</li>
 </ul>
 

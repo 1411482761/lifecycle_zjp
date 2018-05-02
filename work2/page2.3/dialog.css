@@ -47,7 +47,7 @@ a:active {
 }
 [name="event"] {
      margin-right: -25px;
-    width: 80px;
+    width: 60px;
     float: left;
     margin-left: 40px;
  }
@@ -72,16 +72,18 @@ a:active {
 }
 /*人物头像*/
 #head {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     padding-left: 0px;
-    margin-left: 40px;
+    margin-left: 30px;
+    border-radius: 100%;
 }
 /*二维码*/
 [name="code"] {
     width: 100px;
     height: 100px;
-    margin-left: 100px;
+    margin-left: 40%;
+
 }
 /*个人信息*/
 #personInfo {
@@ -125,13 +127,16 @@ div>li {
     background-color: #a1ffcd;
     border: none;
     color: #20c997;
-}/*
-#exit{
-    padding-right: 10px;
-    padding-letf: 10px;
-    margin-left: 70px;
-    background-color: #a1ffcd;
-    border: none;
-    color: #20c997;
-    font-width: 900;
-}*/
+}
+div[name="event"] {
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    overflow:hidden;
+}
+.detail {
+    font-size: 5px;
+    color: #8e959b;
+}
+.schedulelist {
+    margin-bottom: -20px;
+}

@@ -46,10 +46,10 @@ var json_data = {
         "uuid": "1ce1f41e-1c2e-4b04-9e0b-86554f97b880",
         "meeting_id": "3eda392c-3550-47f9-b405-3e2a53f4c1db",
         "category": "餐饮",
-        "subject": "晚餐",
+        "subject": "早餐",
         "content": "明德楼<br>二楼301室",
-        "date_begin": "2018-04-08 17:00:00",
-        "date_end": "2018-04-08 19:00:00"
+        "date_begin": "2018-04-09 07:00:00",
+        "date_end": "2018-04-09 09:00:00"
     }, {
         "_id": "5",
         "uuid": "6136a8cc-3696-4613-a9f9-fe5cc2e297e5",
