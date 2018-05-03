@@ -7,7 +7,7 @@ $(function(){
     scheduleDiv.append(scheduleUl);
     var popDiv=$("<div id='pop'></div>");//弹窗的div
     $("#body").append($("<h1 class='text-center'>参会证</h1><hr/>")).append(_buildTheme(data)).append(_buildInfo(data)).append($("<hr id='hr2'/><span id='scheduletitle'>日程安排</span>")).append(scheduleDiv).append(popDiv);
-    _buildSchedule();
+    _buildSchedule(data);
 
     //生成会议名称和logo
     function _buildTheme(data){
@@ -106,14 +106,32 @@ $(function(){
     //生成日程计划2.0
     function _buildSchedule(data){
         var dateArr=_getDateArray(data);
+        var dateMap=_packData(data,dateArr);
         var out_ul=$("<ul id='outer'></ul>");
         var len=dateArr.length;
         for (var i = 0; i < len; i++) {
-            let map=_caculateDateTime(dateArr[i]);
+            var map=_caculateDateTime(dateArr[i]);
+            var key=dateArr[i]+"";
+            var arr=dateMap[key];
+            var arr_length=arr.length;
             var md_str=map["month"]+"月"+map["date"]+"日";
-            var dom_div = $("<div></div>");
-            var dom_li=$('<li>'+md_str+'</li><hr>');
-
+            var dom_div = $("<div class='schedulelist'></div>");
+            var outer_li=$('<li>'+md_str+'</li><hr>');
+            var inner_ul=$("<ul></ul>");
+            for (var j = 0; j < arr_length; j++) {
+                var inner_li=$("<li></li>");
+                var base_div=$("<div></div>");
+                var duration = $('<div name="time">' +arr[j]["schedule"] + '</div>');
+                var subject = $('<div  name="event">' + arr[j]["subject"] + '</div>');
+                var sign = $('</div><div  name="finger">></div>');
+                var clear = $('<div id="clear"></div>');
+                base_div.append(duration).append(subject).append(sign).append(clear);
+                inner_li.append(base_div);
+                inner_ul.append(inner_li);
+            }
+            dom_div.append(outer_li).append(inner_ul);
+            out_ul.append(dom_div);
+            scheduleDiv.append(out_ul);
         }
     }
     //将日期中的每一天放入集合中
@@ -177,7 +195,7 @@ $(function(){
                 var timestamp=b_map["timestamp"]-b_map["hours"]*60*60*1000-b_map["minutes"]*60*1000-b_map["seconds"]*1000;//开始当天00:00时间戳
                 if(e_date.substring(0,10)==b_date.substring(0,10)){
                     //同一天内完成
-                    if(timestamp==plans[j]){
+                    if(timestamp==arr[i]){
                         let temp_map={};
                         temp_map["subject"]=plans[j]["subject"];
                         temp_map["content"]=plans[j]["content"];
@@ -195,7 +213,8 @@ $(function(){
                             let temp_map={};
                             temp_map["subject"]=plans[j]["subject"];
                             temp_map["content"]=plans[j]["content"];
-                            temp_map["schedule"]=_getHoursAndMinutes(b_map)+"~"+_getHoursAndMinutes(e_map);
+                            temp_map["schedule"]="全天";
+                            temp_map["detail"]=b_map["month"]+"月"+b_map["date"]+"日~"+e_map["month"]+"月"+e_map["date"]+"日";
                             obj_arr.push(temp_map);
                             obj_index.push(b_map["timestamp"]*10);
                         }
