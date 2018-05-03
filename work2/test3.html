@@ -5,18 +5,41 @@
     <script src="jquery-3.3.1.min.js"></script>
     <script>
         $(function () {
-            $("li").click(function(animal){
+            $("li").click(function (animal) {
                 //alert($(this))
                 console.log(animal)
-                var tar=animal.target;
+                var tar = animal.target;
                 console.log(tar)
-                var aa=tar.dataset;
-                var map=aa["type"];
+                var aa = tar.dataset;
+                var map = JSON.parse(aa["type"]);
                 console.log(map["c"])
-            }) ;
+            });
 
         })
 
+    </script>
+
+    <div id="pop" style="display: block;">
+        <div id="exit" name="exit" onclick="hidepopdiv"><span>X</span></div>
+        <form method="post"><input type="hidden" name="id" value="1"><span style="color: #8e959b">$riqi</span>
+            <hr>
+            <ul style="list-style:none">
+                <li><span>riqi</span></li>
+                <li><span>{{uuid}}</span></li>
+                <li><span name="thistime" id="thistime">shijian</span><span name="thisevent" id="thisevent">$subject</span></li>
+                <li>$content</li>
+            </ul>
+            <input type="text" name="extra[id]">
+            <input type="text" name="extra[text]">
+            <span style="color:rgba(169,169,169,0.83)">已签到<strong>$count</strong>次</span><br><span style="color:#17a913">$status</span>
+            <input type="submit" class="btn btn-primary btn-lg btn-block" id="sub" value="签到"></form>
+    </div>
+
+    <script info></script>
+    <script>
+        function hidepopdiv(this){
+            $(this).hide();
+        }
     </script>
 </head>
 <body>
@@ -26,9 +49,9 @@
 <p>点击某个物种来查看其类别：</p>
 
 <ul>
-    <li id="owl"  name="aa" data-type='{"a":1,"b":2,"c":"ccc"}'>喜鹊</li>
-    <li  id="salmon" data-type='{"a":1,"b":2,"c":"ccc"}'>金枪鱼</li>
-    <li  id="tarantula" data-type="蜘蛛">蝇虎</li>
+    <li id="owl" name="aa" data-type='{"a":1,"b":2,"c":"ccc"}'>喜鹊</li>
+    <li id="salmon" data-type='{"a":1,"b":2,"c":"ccc"}'>金枪鱼</li>
+    <li id="tarantula" data-type="蜘蛛">蝇虎</li>
 </ul>
 
 </body>

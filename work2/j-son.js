@@ -111,8 +111,8 @@ var json_data = {
         "category": "酒店",
         "subject": "香格里拉",
         "content": "酒店地址：<br>XXXXXXXXXXXX<br><br>房间：<br>双人标准间<br>双人大床房<br>豪华套房",
-        "date_begin": "2018-04-07 12:00:00",
-        "date_end": "2018-04-12 12:00:00"
+        "date_begin": "2018-04-30 12:00:00",
+        "date_end": "2018-05-01 12:00:00"
     }, {
         "_id": "14",
         "uuid": "c407318a-b517-4e62-9874-a82f6e521f5e",
@@ -121,7 +121,7 @@ var json_data = {
         "subject": "凯悦",
         "content": "酒店地址：<br>XXXXXXXXXXXX<br><br>房间：<br>双人标准间<br>双人大床房<br>豪华套房",
         "date_begin": "2018-05-01 09:00:00",
-        "date_end": "2018-05-03 12:00:00"
+        "date_end": "2018-05-05 12:00:00"
     }, {
         "_id": "15",
         "uuid": "3b890e83-a832-4fb8-acb9-5e304e8dbc6f",
@@ -129,8 +129,8 @@ var json_data = {
         "category": "酒店",
         "subject": "洲际",
         "content": "酒店地址：<br>XXXXXXXXXXXX<br><br>房间：<br>双人标准间<br>双人大床房<br>豪华套房",
-        "date_begin": "2019-04-07 12:00:00",
-        "date_end": "2019-04-12 12:00:00"
+        "date_begin": "2018-05-06 12:00:00",
+        "date_end": "2018-05-19 12:00:00"
     }],
     "checkin": [{
         "_id": "1",
