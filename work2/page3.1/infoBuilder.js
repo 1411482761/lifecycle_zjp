@@ -1,9 +1,10 @@
 $(function(){
     var data=json_data;
    // $("body").append($("<h1 class='text-center'>参会证</h1><hr/>")).append(_buildInfo());
+    $("body").append($("<div id='body'></div>"));
     var scheduleDiv=$("<div></div>");
     var popDiv=$("<div id='pop'></div>");//弹窗的div
-    $("body").append($("<h1 class='text-center'>参会证</h1><hr/>")).append(_buildTheme(data)).append(_buildInfo(data)).append($("<hr id='hr2'/><span id='scheduletitle'>日程安排</span>")).append(scheduleDiv).append(popDiv);
+    $("#body").append($("<h1 class='text-center'>参会证</h1><hr/>")).append(_buildTheme(data)).append(_buildInfo(data)).append($("<hr id='hr2'/><span id='scheduletitle'>日程安排</span>")).append(scheduleDiv).append(popDiv);
     _buildSchedule();
 
     //生成会议名称和logo
@@ -92,12 +93,12 @@ $(function(){
     //生成参与者个人信息展示
    function _buildInfo(data) {
        var sex=_formateSex(data.wxuser["sex"]);
-       var dom=$("<div><span>个人信息</span><br></div>");
-      var str='<div id="code"><img name="code" src="'+data.participant["url"]+'" /></div>';
+       var dom=$("<div><span>个人信息</span></div>");
+      var str='<div><div id="code"><img name="code" src="'+data.participant["url"]+'" /></div>';
              /*    '姓名:<em>'+data.participant["name"]+'</em><br/>'+
                 '手机号:'+data.participant["phone"]+'<br/>';*/
         str+='<span><img id="head" class="img-circle" src="'+data.wxuser["headimgurl"]+'"></span><div id="personInfo"><strong>'+data.participant["name"]
-            +'</strong><br><span class="detail">'+sex+'|</span><span class="detail">'+data.wxuser["country"]+'|</span><span class="detail">'+data.wxuser["province"]+'|</span><span class="detail">'+data.participant["mobilephone"]+'</span></div>';
+            +'</strong><br><span class="detail">'+sex+'|</span><span class="detail">'+data.wxuser["country"]+'|</span><span class="detail">'+data.wxuser["province"]+'|</span><span class="detail">'+data.participant["mobilephone"]+'</span></div></div>';
        dom.append($(str));
        return dom;
    }
@@ -355,11 +356,11 @@ $(function(){
 
 
     }
-
+/*
     function render(templatestring,dataobject){
        for (dataobject key){
            templatestirng=templatestring.replace('$'+key,dataobject[key])
         }
         return templatestring;
-    }
+    }*/
 })

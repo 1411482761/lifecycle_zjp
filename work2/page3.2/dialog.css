@@ -1,7 +1,13 @@
 div{margin: 5px}
+html,body{height:100%;overflow:hidden;}
+#body {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
 #pop {
     background-color: white; /* #ffffff*/
-    border: solid 1px #ccc;
+    border: solid 2px #ccc;
     position: absolute;
     display: none;
     width: 100%;
@@ -10,6 +16,7 @@ div{margin: 5px}
     margin-left: 0px;
     margin-right: 0px;
     margin-bottom: 0px;
+    overflow: auto;
     bottom: 0px;
     left: 0px;
 }
@@ -47,7 +54,7 @@ a:active {
 }
 [name="event"] {
      margin-right: -25px;
-    width: 60px;
+    width: 30%;
     float: left;
     margin-left: 40px;
  }
@@ -96,6 +103,12 @@ a:active {
     margin-right: 55px;
     margin-top:20px;
 }
+#persondiv {
+    width: 300px;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
 ul >li {
     color: #1b1e21;
     list-style-type: none;
@@ -114,8 +127,8 @@ div>li {
 
 }
 [name="exit"] {
-   /* position: relative;*/
-    margin-left: 96%;
+    position: fixed;
+    right: 0px;
     margin-top: -27px;
     width: 25px;
     height: 25px;
@@ -128,10 +141,12 @@ div>li {
     margin-right: 3%;
 /*padding-left: 175px;*/
 }
+/*签到按钮样式*/
 #sub{
     background-color: #a1ffcd;
     border: none;
     color: #20c997;
+    margin-top: 15px;
 }
 div[name="event"] {
     text-overflow:ellipsis;

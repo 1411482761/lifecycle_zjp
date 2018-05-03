@@ -3,6 +3,8 @@ $(function(){
    // $("body").append($("<h1 class='text-center'>参会证</h1><hr/>")).append(_buildInfo());
     $("body").append($("<div id='body'></div>"));
     var scheduleDiv=$("<div></div>");
+    var scheduleUl=$("<ul></ul>");
+    scheduleDiv.append(scheduleUl);
     var popDiv=$("<div id='pop'></div>");//弹窗的div
     $("#body").append($("<h1 class='text-center'>参会证</h1><hr/>")).append(_buildTheme(data)).append(_buildInfo(data)).append($("<hr id='hr2'/><span id='scheduletitle'>日程安排</span>")).append(scheduleDiv).append(popDiv);
     _buildSchedule();
@@ -17,7 +19,18 @@ $(function(){
         $(div).append('<hr id="hr1"/>');
         return div;
     }
-
+    //生成参与者个人信息展示
+    function _buildInfo(data) {
+        var sex=_formateSex(data.wxuser["sex"]);
+        var dom=$("<div><span>个人信息</span></div>");
+        var str='<div id="persondiv"><div id="code"><img name="code" src="'+data.participant["url"]+'" /></div>';
+        /*    '姓名:<em>'+data.participant["name"]+'</em><br/>'+
+           '手机号:'+data.participant["phone"]+'<br/>';*/
+        str+='<span><img id="head" class="img-circle" src="'+data.wxuser["headimgurl"]+'"></span><div id="personInfo"><strong>'+data.participant["name"]
+            +'</strong><br><span class="detail">'+sex+'|</span><span class="detail">'+data.wxuser["country"]+'|</span><span class="detail">'+data.wxuser["province"]+'|</span><span class="detail">'+data.participant["mobilephone"]+'</span></div></div>';
+        dom.append($(str));
+        return dom;
+    }
     //隐藏层
     function hideDialog(event) {
         popDiv.hide(1);
@@ -90,20 +103,126 @@ $(function(){
         }
         popDiv.show(300);
     });
-    //生成参与者个人信息展示
-   function _buildInfo(data) {
-       var sex=_formateSex(data.wxuser["sex"]);
-       var dom=$("<div><span>个人信息</span></div>");
-      var str='<div><div id="code"><img name="code" src="'+data.participant["url"]+'" /></div>';
-             /*    '姓名:<em>'+data.participant["name"]+'</em><br/>'+
-                '手机号:'+data.participant["phone"]+'<br/>';*/
-        str+='<span><img id="head" class="img-circle" src="'+data.wxuser["headimgurl"]+'"></span><div id="personInfo"><strong>'+data.participant["name"]
-            +'</strong><br><span class="detail">'+sex+'|</span><span class="detail">'+data.wxuser["country"]+'|</span><span class="detail">'+data.wxuser["province"]+'|</span><span class="detail">'+data.participant["mobilephone"]+'</span></div></div>';
-       dom.append($(str));
-       return dom;
-   }
+    //生成日程计划2.0
+    function _buildSchedule(data){
+        var dateArr=_getDateArray(data);
+        var out_ul=$("<ul id='outer'></ul>");
+        var len=dateArr.length;
+        for (var i = 0; i < len; i++) {
+            let map=_caculateDateTime(dateArr[i]);
+            var md_str=map["month"]+"月"+map["date"]+"日";
+            var dom_div = $("<div></div>");
+            var dom_li=$('<li>'+md_str+'</li><hr>');
+
+        }
+    }
+    //将日期中的每一天放入集合中
+    function _getDateArray(data){
+        var plans=data.plans;
+        var plans_len=plans.length;
+        var datearr=[];
+        for (var i = 0; i < plans_len; i++) {
+            var b_map=_caculateDateTime(plans[i]["date_begin"]);
+            var e_map=_caculateDateTime(plans[i]["date_end"]);
+            if(b_map["date"]==e_map["date"]&&b_map["date"]==e_map["date"]&&b_map["year"]==e_map["year"]){
+                //同一天结束
+                var timestamp=b_map["timestamp"]-b_map["hours"]*60*60*1000-b_map["minutes"]*60*1000-b_map["seconds"]*1000;//当天开始时间戳
+                if(datearr.indexOf(timestamp)>=0){
+                    //已存在
+                }else{
+                    datearr.push(timestamp);
+                }
+            }else {
+                //日程跨天结束
+                var timestamp=b_map["timestamp"]-b_map["hours"]*60*60*1000-b_map["minutes"]*60*1000-b_map["seconds"]*1000;//当天开始时间戳
+                for (var j = timestamp; j < e_map["timestamp"]; j+=86400000) {
+                    //将日程期间每天开始的时间戳放入数组
+                    if(datearr.indexOf(timestamp)==-1){
+                        //不存在
+                        datearr.push(timestamp);
+                    }else{
+                    }
+                }
+
+            }
+        }
+        //将datearr排序
+        var len=datearr.length;
+        for (var i = 0; i < len; i++) {
+            for (var j = 0; j < len-i-1; j++) {
+                        if(datearr[j]>datearr[j+1]){
+                            var temp=datearr[j];
+                            datearr[j]=datearr[j+1];
+                            datearr[j+1]=temp;
+                        }
+                    }
+        }
+        return datearr;
+    }
+
+    //创建{timestamp:[{subject:xxx,time:xxx,content:xxx},{subject:xxx,time:xxx,content:xxx}]...}形式数据
+    function _packData(data,arr) {
+        var final_map={};
+        var plans=data.plans;
+        var p_len=plans.length;
+        var a_len=arr.length;
+        for (var i = 0; i < a_len; i++) {
+            var obj_arr=[];
+            var obj_index=[];
+            for (var j = 0; j < p_len; j++) {
+                var b_date=plans[j]["date_begin"];
+                var e_date=plans[j]["date_end"];
+                var b_map=_caculateDateTime(b_date);
+                var e_map=_caculateDateTime(e_date);
+                var timestamp=b_map["timestamp"]-b_map["hours"]*60*60*1000-b_map["minutes"]*60*1000-b_map["seconds"]*1000;//开始当天00:00时间戳
+                if(e_date.substring(0,10)==b_date.substring(0,10)){
+                    //同一天内完成
+                    if(timestamp==plans[j]){
+                        let temp_map={};
+                        temp_map["subject"]=plans[j]["subject"];
+                        temp_map["content"]=plans[j]["content"];
+                        temp_map["schedule"]=_getHoursAndMinutes(b_map)+"~"+_getHoursAndMinutes(e_map);
+                        obj_arr.push(temp_map);
+                        obj_index.push(b_map["timestamp"]);
+                    }
+                }else{
+                    //日程跨天
+                    var b_timestamp=b_map["timestamp"]-b_map["hours"]*60*60*1000-b_map["minutes"]*60*1000+86400000;
+                    var e_timestamp=e_map["timestamp"];
+                    //将期间的每一天放入数组中
+                    for (var k = b_timestamp; k <=e_timestamp ; k+=86400000) {
+                        if(k==arr[i]){
+                            let temp_map={};
+                            temp_map["subject"]=plans[j]["subject"];
+                            temp_map["content"]=plans[j]["content"];
+                            temp_map["schedule"]=_getHoursAndMinutes(b_map)+"~"+_getHoursAndMinutes(e_map);
+                            obj_arr.push(temp_map);
+                            obj_index.push(b_map["timestamp"]*10);
+                        }
+                    }
+                }
+            }
+            //将生成的obj_arr按时间排序
+            var templen=obj_index.length;
+            for (var j = 0; j < templen; j++) {
+                for (var k = 0; k < templen-1-j; k++) {
+                    if(obj_index[k]>obj_index[k+1])
+                    var temp1=obj_index[k];
+                    obj_index[k]=obj_index[k+1];
+                    obj_index[k+1]=temp1;
+                    var temp2=obj_arr[k];
+                    obj_arr[k]=obj_arr[k+1];
+                    obj_arr[k+1]=temp2;
+                }
+            }
+            var  key=arr[i]+"";
+            final_map[key]=obj_arr;
+        }
+        return final_map;
+    }
+
    //生成日程安排计划
-   function _buildSchedule() {
+   function _buildSchedule1() {
         var arr=data.plans;
         var len=arr.length;
         var flag="";
