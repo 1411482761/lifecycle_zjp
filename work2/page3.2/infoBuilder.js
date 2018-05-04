@@ -36,84 +36,58 @@ $(function(){
     function hideDialog(event) {
         popDiv.hide(1);
     }
+
     popDiv.on("click","div[name='exit']",hideDialog.bind(this));
     //给所有的a标签绑定事件
     //将点击的每条事件详细内容填充到div中
     $("div[class='blockli']").click(function (event) {
         //假如有其他的弹窗,先把原来的清了
-        popDiv.empty();
-        hideDialog();
-        var target=event.target;
-        var dataset=target.dataset;
-        var dmap=target["name"];
-        console.log(target)
-        console.log(dmap)
-        var map=JSON.parse(dmap);
-        var schedule=map["schedule"];
-        var date=map["date"];
-        var content=map["content"];
-        var count=map["count"];
-        var subject=map["subject"];
-        /*var timestamp=dataset["timestamp"];
-        var arr=data.plans;
-        var beginDate=arr[index]["date_begin"];
-        var b_map=_caculateDateTime(beginDate);
-        var endDate=arr[index]["date_end"];
-        var e_map=_caculateDateTime(endDate);
-        var beginTimestamp=b_map["timestamp"];
-        var nowDate=new Date();
-        var nowTimestamp=Date.parse(new Date());
-        if(duration==null){
-            duration=_getHoursAndMinutes(b_map)+'&nbsp~&nbsp'+_getHoursAndMinutes(e_map);
-        }
-        if(date==null){
-            date=b_map["month"]+'月'+b_map["date"]+'日';
-        }
-        if(timestamp==null){
-            timestamp=beginTimestamp;
-        }
-        var leftDay=Math.floor((timestamp-nowTimestamp)/1000/60/60/24);
-        var leftHours=Math.floor((timestamp-nowTimestamp)/1000/60/60-24*leftDay);
-        var leftMinutes=Math.floor((timestamp-nowTimestamp)/1000/60-24*leftDay*60-leftHours*60);
+       /* if(event.target==this) {*/
+            popDiv.empty();
+            hideDialog();
+            var target = event.currentTarget;
+            console.log(event)
+            var dataset = target.dataset;
+            console.log(target)
+            var map_data = dataset["map"];
+            var map = JSON.parse(map_data);
+            var schedule = map["schedule"];
+            var date = map["date"];
+            var content = map["content"];
+            var count = map["count"];
+            var subject = map["subject"];
+            var isToday =map["isToday"];
+            var detail=map["detail"];
+            var tempForm = $('<form method="post"></form>');
+            var  dateDiv=$("<div></div>");
+            var tempDate = $('<span style="color: #8e959b">' + date + '</span>');
+            dateDiv.append(tempDate).append($("<hr>"));
+            var eventDiv=$("<div></div>");
+            var tempevent=$('<span name="thistime" id="thistime">' + schedule + '</span><span name="thisevent" id="thisevent">' + subject + '</span>');
+            eventDiv.append(tempevent);
+            var contentDiv=$("<div></div>");
+            var tempcontent=$("<span>"+content+"</span>");
+            contentDiv.append(tempcontent);
+            var signDiv=$("<div></div>");
+            var tempSign = $('<span style="color: #8e959b">已签到<strong>' + count + '</strong>次</span><br>');
+            signDiv.append(tempSign);
+            var subDiv=$("<div></div>");
+            var tempSubmit = $('<input type="submit" class="btn btn-primary btn-lg btn-block"  id="sub" value="签到" />');
+            subDiv.append(tempSubmit);
+            var tempExit = $('<div id="exit" name="exit"><span>X</span></div>');
+            tempForm.append(dateDiv).append(eventDiv).append(contentDiv).append(signDiv).append(subDiv);
+            if (schedule == "全天") {
+                var hide = $("<span style='color: #8e959b'>("+detail+")</span>");
+                tempDate.after(hide);
+            }
+            if(isToday){
+                tempDate.attr("style","color: #0dc938");
+                tempevent.attr("style","color: #0dc938");
+            }
 
-*/
-    /*    if(timestamp<nowTimestamp){
-            leftDay=0;
-            leftHours=0;
-            leftMinutes=0;
-        }*/
-
-        var tempForm=$('<form method="post"><input type="hidden" name="id" value="'+data.participant["_id"]+'"></form>');
-        var tempDate=$('<span style="color: #8e959b">'+date+'</span><hr>');
-
-        var tempUl=$('<ul style="list-style:none"><li><span name="thistime" id="thistime">'+schedule+'</span><span name="thisevent" id="thisevent">'+subject+'</span></li><li>' +
-        content+'</li></ul>');
-        var tempSign=$('<span style="color:rgba(169,169,169,0.83)">已签到<strong>'+count+'</strong>次</span><br>');
-        var tempSubmit=$('<input type="submit" class="btn btn-primary btn-lg btn-block"  id="sub" value="签到" />');
-        var tempExit=$('<div id="exit" name="exit"><span>X</span></div>');
-        /*var timeLeft=$('<span style="color:darkgrey">距本日程剩余'+leftDay+'天'+leftHours+'小时'+leftMinutes+'分钟</span><br>');*/
-        /*var leftstr="";
-        if(status==-1){
-            leftstr='<span style="color:darkgrey">距本日程剩余'+leftDay+'天'+leftHours+'小时'+leftMinutes+'分钟</span><br>';
-        }else if(status==0){
-            leftstr='<span style="color:#17a913">正在进行中...</span>';
-        }else{
-            leftstr='<span style="color:darkgrey">该日程已结束!!</span>';
-        }
-        var timeLeft=$(leftstr);
-        tempForm.append(tempDate).append(tempUl).append(tempSign).append(timeLeft).append(tempSubmit);
-        popDiv.append(tempExit).append(tempForm);
-        //如果是当天的日程改变颜色
-        if(nowDate.getFullYear()==b_map["year"]&&nowDate.getMonth()==b_map["month"]&&nowDate.getDate()==b_map["date"]){
-            $("#thistime").attr("style","color: #0dc938");
-            $("#thisevent").attr("style","color: #0dc938");
-        }*/
-        tempForm.append(tempDate).append(tempUl).append(tempSign).append(timeLeft).append(tempSubmit);
-        if(schedule=="全天"){
-            var hide=$("<div>detail</div>")
-        }
-        popDiv.append(tempExit).append(tempForm);
-        popDiv.show(300);
+            popDiv.append(tempExit).append(tempForm);
+            popDiv.show(300);
+        /*}*/
     });
     //生成日程计划2.0
     function _buildSchedule(data){
@@ -134,13 +108,17 @@ $(function(){
                 //将需要传递的数据封装到集合
                 var data_map=arr[j];
                 data_map["isToday"]=map["isToday"];
+                data_map["date"]=md_str;
+                var mapstr=JSON.stringify(data_map);
                 var inner_li=$("<li></li>");
-                var base_div=$("<div class='blockli' name='"+map["isToday"]+" data-status='222'></div>");
-                var duration = $('<div name="time">' +arr[j]["schedule"] + '</div>');
-                var subject = $('<div  name="event">' + arr[j]["subject"] + '</div>');
-                var sign = $('</div><div  name="finger">></div>');
+                var base_div=$("<div class='blockli' data-map='"+mapstr+"'></div>");
+                var duration = $('<div name="time"  >' +arr[j]["schedule"] + '</div>');
+                var right_div=$('<div name="right" ></div>');
+                var subject = $('<div  name="event" >' + arr[j]["subject"] + '</div>');
+                var sign = $('<div name="finger" >></div>');
                 var clear = $('<div id="clear"></div>');
-                base_div.append(duration).append(subject).append(sign).append(clear);
+                right_div.append(sign).append(subject);
+                base_div.append(duration).append(right_div).append(clear);
                 inner_li.append(base_div);
                 inner_ul.append(inner_li);
 
@@ -233,7 +211,7 @@ $(function(){
                     //日程跨天
                     var b_timestamp=b_map["timestamp"]-b_map["hours"]*60*60*1000-b_map["minutes"]*60*1000;
                     var e_timestamp=e_map["timestamp"];
-                    var dayToDay=b_map["month"]+"月"+b_map["date"]+"日-"+e_map["month"]+"月"+e_map["date"]+"日";
+                   // var dayToDay=b_map["month"]+"月"+b_map["date"]+"日-"+e_map["month"]+"月"+e_map["date"]+"日";
                     //将期间的每一天放入数组中
                     for (var k = b_timestamp; k <=e_timestamp ; k+=86400000) {
                         if(k==arr[i]){
@@ -243,7 +221,6 @@ $(function(){
                             temp_map["subject"]=plans[j]["subject"];
                             temp_map["content"]=plans[j]["content"];
                             temp_map["schedule"]="全天";
-                            temp_map["dayToDay"]=dayToDay;
                             temp_map["count"]=6;
                             temp_map["detail"]=b_map["month"]+"月"+b_map["date"]+"日~"+e_map["month"]+"月"+e_map["date"]+"日";
                             obj_arr.push(temp_map);

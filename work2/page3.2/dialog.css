@@ -26,6 +26,7 @@ html,body{height:100%;overflow:hidden;}
 hr {
     margin-top: 0px;
     margin-bottom: 1px;
+    width: 100%;
 }
 #hr2{
     margin-top: 0px;
@@ -34,35 +35,28 @@ hr {
 h5 {
     margin-left: 20px;
 }
-/*a标签去掉下划线*/
-a {
-    text-decoration: none;
-    color: #656565;
-}
-a:hover {
-    color: #00FF00; /*鼠标经过的颜色变化*/
-}
-a:active {
-    text-decoration: none;
-    color:  #656565; /*鼠标按下的颜色变化*/
-}
-
 [name="time"] {
     padding-left: 20px;
     float: left;
     width: 120px;
+
 }
+div[name="right"] {
+    overflow: hidden;
+
+ }
 [name="event"] {
-     margin-right: -25px;
-    width: 30%;
-    float: left;
+     margin-right: 35px;
+overflow: hidden;
     margin-left: 10px;
  }
 [name="finger"] {
+    width: 20px;
     margin-right: 10px;
     float: right;
    /* float: left;*/
 }
+
 #clear {
     clear:both;
 }
@@ -79,11 +73,11 @@ a:active {
 }
 /*人物头像*/
 #head {
-    width: 60px;
-    height: 60px;
-    padding-left: 0px;
-    margin-left: 30px;
+    width: 50px;
+    height: 50px;
+    margin-left: 60px;
     border-radius: 100%;
+    margin-top: 15px;
 }
 /*二维码*/
 #code {
@@ -100,7 +94,7 @@ a:active {
 /*个人信息*/
 #personInfo {
     float: right;
-    margin-right: 55px;
+    margin-right: 35px;
     margin-top:20px;
 }
 #persondiv {
@@ -112,7 +106,7 @@ a:active {
 ul >li {
     color: #1b1e21;
     list-style-type: none;
-    margin-left: -50px;
+    margin-left: -65px;
     padding-left: 25px;
 }
 div>li {
@@ -121,10 +115,10 @@ div>li {
 }
 [name="thistime"] {
     padding-right: 30px;
-margin-left: -10px;
+    /*margin-left: -10px;*/
 }
 [name="thisevent"] {
-
+    margin-left: 55px;
 }
 [name="exit"] {
     position: fixed;

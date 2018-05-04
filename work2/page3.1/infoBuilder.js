@@ -31,7 +31,7 @@ $(function(){
         hideDialog();
         var target=event.target;
         var dataset=target.dataset;//数组下标
-        console.log(dataset)
+        console.log(event)
         var index=dataset["index"];
         var status=dataset["status"];
         var duration=dataset["duration"];
