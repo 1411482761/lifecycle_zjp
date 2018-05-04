@@ -3,10 +3,11 @@ $(function(){
    // $("body").append($("<h1 class='text-center'>参会证</h1><hr/>")).append(_buildInfo());
     $("body").append($("<div id='body'></div>"));
     var scheduleDiv=$("<div></div>");
-    var scheduleUl=$("<ul></ul>");
-    scheduleDiv.append(scheduleUl);
+ /*   var scheduleUl=$("<ul></ul>");
+    scheduleDiv.append(scheduleUl);*/
     var popDiv=$("<div id='pop'></div>");//弹窗的div
-    $("#body").append($("<h1 class='text-center'>参会证</h1><hr/>")).append(_buildTheme(data)).append(_buildInfo(data)).append($("<hr id='hr2'/><span id='scheduletitle'>日程安排</span>")).append(scheduleDiv).append(popDiv);
+    $("#body").append($("<h1 class='text-center'>参会证</h1><hr/>")).append(_buildTheme(data)).append(_buildInfo(data)).append($("<hr id='hr2'/><span id='scheduletitle'>日程安排</span>")).append(scheduleDiv);
+    $("#body").after(popDiv);
     _buildSchedule(data);
 
     //生成会议名称和logo
@@ -27,7 +28,7 @@ $(function(){
         /*    '姓名:<em>'+data.participant["name"]+'</em><br/>'+
            '手机号:'+data.participant["phone"]+'<br/>';*/
         str+='<span><img id="head" class="img-circle" src="'+data.wxuser["headimgurl"]+'"></span><div id="personInfo"><strong>'+data.participant["name"]
-            +'</strong><br><span class="detail">'+sex+'|</span><span class="detail">'+data.wxuser["country"]+'|</span><span class="detail">'+data.wxuser["province"]+'|</span><span class="detail">'+data.participant["mobilephone"]+'</span></div></div>';
+            +'</strong><br><span class="detail">'+sex+'</span><span class="detail">|</span><span class="detail">'+data.wxuser["country"]+'</span><span class="detail">|</span><span class="detail">'+data.wxuser["province"]+'</span><span class="detail">|</span><span class="detail">'+data.participant["mobilephone"]+'</span></div></div>';
         dom.append($(str));
         return dom;
     }
@@ -38,24 +39,28 @@ $(function(){
     popDiv.on("click","div[name='exit']",hideDialog.bind(this));
     //给所有的a标签绑定事件
     //将点击的每条事件详细内容填充到div中
-    $("div[data-index]").click(function (event) {
+    $("div[class='blockli']").click(function (event) {
         //假如有其他的弹窗,先把原来的清了
         popDiv.empty();
         hideDialog();
         var target=event.target;
-        var dataset=target.dataset;//数组下标
-        var index=dataset["index"];
-        var status=dataset["status"];
-        var duration=dataset["duration"];
-        var date=dataset["date"];
-        var timestamp=dataset["timestamp"];
+        var dataset=target.dataset;
+        var dmap=target["name"];
+        console.log(target)
+        console.log(dmap)
+        var map=JSON.parse(dmap);
+        var schedule=map["schedule"];
+        var date=map["date"];
+        var content=map["content"];
+        var count=map["count"];
+        var subject=map["subject"];
+        /*var timestamp=dataset["timestamp"];
         var arr=data.plans;
         var beginDate=arr[index]["date_begin"];
         var b_map=_caculateDateTime(beginDate);
         var endDate=arr[index]["date_end"];
         var e_map=_caculateDateTime(endDate);
         var beginTimestamp=b_map["timestamp"];
-       // var date=new Date(scheduleDate);
         var nowDate=new Date();
         var nowTimestamp=Date.parse(new Date());
         if(duration==null){
@@ -71,21 +76,23 @@ $(function(){
         var leftHours=Math.floor((timestamp-nowTimestamp)/1000/60/60-24*leftDay);
         var leftMinutes=Math.floor((timestamp-nowTimestamp)/1000/60-24*leftDay*60-leftHours*60);
 
-
+*/
     /*    if(timestamp<nowTimestamp){
             leftDay=0;
             leftHours=0;
             leftMinutes=0;
         }*/
+
         var tempForm=$('<form method="post"><input type="hidden" name="id" value="'+data.participant["_id"]+'"></form>');
         var tempDate=$('<span style="color: #8e959b">'+date+'</span><hr>');
-        var tempUl=$('<ul style="list-style:none"><li><span name="thistime" id="thistime">'+duration+'</span><span name="thisevent" id="thisevent">'+arr[index]["subject"]+'</span></li><li>' +
-        arr[index]["content"]+'</li></ul>');
-        var tempSign=$('<span style="color:rgba(169,169,169,0.83)">已签到<strong>'+3+'</strong>次</span><br>');
+
+        var tempUl=$('<ul style="list-style:none"><li><span name="thistime" id="thistime">'+schedule+'</span><span name="thisevent" id="thisevent">'+subject+'</span></li><li>' +
+        content+'</li></ul>');
+        var tempSign=$('<span style="color:rgba(169,169,169,0.83)">已签到<strong>'+count+'</strong>次</span><br>');
         var tempSubmit=$('<input type="submit" class="btn btn-primary btn-lg btn-block"  id="sub" value="签到" />');
         var tempExit=$('<div id="exit" name="exit"><span>X</span></div>');
         /*var timeLeft=$('<span style="color:darkgrey">距本日程剩余'+leftDay+'天'+leftHours+'小时'+leftMinutes+'分钟</span><br>');*/
-        var leftstr="";
+        /*var leftstr="";
         if(status==-1){
             leftstr='<span style="color:darkgrey">距本日程剩余'+leftDay+'天'+leftHours+'小时'+leftMinutes+'分钟</span><br>';
         }else if(status==0){
@@ -100,7 +107,12 @@ $(function(){
         if(nowDate.getFullYear()==b_map["year"]&&nowDate.getMonth()==b_map["month"]&&nowDate.getDate()==b_map["date"]){
             $("#thistime").attr("style","color: #0dc938");
             $("#thisevent").attr("style","color: #0dc938");
+        }*/
+        tempForm.append(tempDate).append(tempUl).append(tempSign).append(timeLeft).append(tempSubmit);
+        if(schedule=="全天"){
+            var hide=$("<div>detail</div>")
         }
+        popDiv.append(tempExit).append(tempForm);
         popDiv.show(300);
     });
     //生成日程计划2.0
@@ -116,11 +128,14 @@ $(function(){
             var arr_length=arr.length;
             var md_str=map["month"]+"月"+map["date"]+"日";
             var dom_div = $("<div class='schedulelist'></div>");
-            var outer_li=$('<li>'+md_str+'</li><hr>');
+            var outer_li=$('<li>'+md_str+'</li>');
             var inner_ul=$("<ul></ul>");
-            for (var j = 0; j < arr_length; j++) {
+            for (var j = arr_length-1; j >= 0; j--) {
+                //将需要传递的数据封装到集合
+                var data_map=arr[j];
+                data_map["isToday"]=map["isToday"];
                 var inner_li=$("<li></li>");
-                var base_div=$("<div></div>");
+                var base_div=$("<div class='blockli' name='"+map["isToday"]+" data-status='222'></div>");
                 var duration = $('<div name="time">' +arr[j]["schedule"] + '</div>');
                 var subject = $('<div  name="event">' + arr[j]["subject"] + '</div>');
                 var sign = $('</div><div  name="finger">></div>');
@@ -128,10 +143,18 @@ $(function(){
                 base_div.append(duration).append(subject).append(sign).append(clear);
                 inner_li.append(base_div);
                 inner_ul.append(inner_li);
+
             }
+            if(map["isToday"]){
+                outer_li.attr("style", "color: #0dc938");
+                outer_li.append($('<span id="today">☚</span>'));
+            }
+
             dom_div.append(outer_li).append(inner_ul);
             out_ul.append(dom_div);
             scheduleDiv.append(out_ul);
+            outer_li.after($("<hr>"));
+            inner_ul.after($("<hr>"));
         }
     }
     //将日期中的每一天放入集合中
@@ -155,9 +178,9 @@ $(function(){
                 var timestamp=b_map["timestamp"]-b_map["hours"]*60*60*1000-b_map["minutes"]*60*1000-b_map["seconds"]*1000;//当天开始时间戳
                 for (var j = timestamp; j < e_map["timestamp"]; j+=86400000) {
                     //将日程期间每天开始的时间戳放入数组
-                    if(datearr.indexOf(timestamp)==-1){
+                    if(datearr.indexOf(j)==-1){
                         //不存在
-                        datearr.push(timestamp);
+                        datearr.push(j);
                     }else{
                     }
                 }
@@ -175,6 +198,7 @@ $(function(){
                         }
                     }
         }
+
         return datearr;
     }
 
@@ -197,23 +221,30 @@ $(function(){
                     //同一天内完成
                     if(timestamp==arr[i]){
                         let temp_map={};
+                        temp_map["date"]=b_map["month"]+"月"+b_map["date"]+"日";
                         temp_map["subject"]=plans[j]["subject"];
                         temp_map["content"]=plans[j]["content"];
                         temp_map["schedule"]=_getHoursAndMinutes(b_map)+"~"+_getHoursAndMinutes(e_map);
+                        temp_map["count"]=3;
                         obj_arr.push(temp_map);
                         obj_index.push(b_map["timestamp"]);
                     }
                 }else{
                     //日程跨天
-                    var b_timestamp=b_map["timestamp"]-b_map["hours"]*60*60*1000-b_map["minutes"]*60*1000+86400000;
+                    var b_timestamp=b_map["timestamp"]-b_map["hours"]*60*60*1000-b_map["minutes"]*60*1000;
                     var e_timestamp=e_map["timestamp"];
+                    var dayToDay=b_map["month"]+"月"+b_map["date"]+"日-"+e_map["month"]+"月"+e_map["date"]+"日";
                     //将期间的每一天放入数组中
                     for (var k = b_timestamp; k <=e_timestamp ; k+=86400000) {
                         if(k==arr[i]){
+                            let t_map=_caculateDateTime(j);
                             let temp_map={};
+                            temp_map["date"]=t_map["month"]+"月"+t_map["date"]+"日";
                             temp_map["subject"]=plans[j]["subject"];
                             temp_map["content"]=plans[j]["content"];
                             temp_map["schedule"]="全天";
+                            temp_map["dayToDay"]=dayToDay;
+                            temp_map["count"]=6;
                             temp_map["detail"]=b_map["month"]+"月"+b_map["date"]+"日~"+e_map["month"]+"月"+e_map["date"]+"日";
                             obj_arr.push(temp_map);
                             obj_index.push(b_map["timestamp"]*10);
@@ -239,6 +270,8 @@ $(function(){
         }
         return final_map;
     }
+
+    //
 
    //生成日程安排计划
    function _buildSchedule1() {
@@ -439,6 +472,12 @@ $(function(){
        var minutes=myDateTime.getMinutes();
        var seconds=myDateTime.getSeconds();
        var timestamp=Date.parse(myDateTime);
+       var nowtime=new Date();
+       var isToday=false;
+       if(nowtime.getDate()==date&&nowtime.getMonth()==month-1&&nowtime.getFullYear()==year){
+           isToday=true;
+       }
+       timeMap["isToday"]=isToday;
        timeMap["year"]=year;
        timeMap["month"]=month;
        timeMap["date"]=date;

@@ -82,7 +82,7 @@ var json_data = {
         "uuid": "be774c15-4f12-4205-be5f-2404b89fb254",
         "meeting_id": "3eda392c-3550-47f9-b405-3e2a53f4c1db",
         "category": "批次",
-        "subject": "圆桌会议",
+        "subject": "圆桌会议拉开坚实的法律萨科技工行卡就是赶快拉上看到回复卡萨开发建设科技",
         "content": "环球会议厅<br>3F",
         "date_begin": "2018-04-08 08:00:00",
         "date_end": "2018-04-11 21:00:00"
@@ -121,7 +121,7 @@ var json_data = {
         "subject": "凯悦",
         "content": "酒店地址：<br>XXXXXXXXXXXX<br><br>房间：<br>双人标准间<br>双人大床房<br>豪华套房",
         "date_begin": "2018-05-01 09:00:00",
-        "date_end": "2018-05-05 12:00:00"
+        "date_end": "2018-05-06 12:00:00"
     }, {
         "_id": "15",
         "uuid": "3b890e83-a832-4fb8-acb9-5e304e8dbc6f",
