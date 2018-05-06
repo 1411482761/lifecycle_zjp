@@ -6,7 +6,7 @@ $(function(){
  /*   var scheduleUl=$("<ul></ul>");
     scheduleDiv.append(scheduleUl);*/
     var popDiv=$("<div id='pop'></div>");//弹窗的div
-    $("#body").append($("<h1 class='text-center'>参会证</h1><hr/>")).append(_buildTheme(data)).append(_buildInfo(data)).append($("<hr id='hr2'/><span id='scheduletitle'>日程安排</span>")).append(scheduleDiv);
+    $("#body").append($("<h1 class='text-center' id='size18'>参会证</h1><hr/>")).append(_buildTheme(data)).append(_buildInfo(data)).append($("<hr id='hr2'/><span id='scheduletitle' class='size15'>日程安排</span>")).append(scheduleDiv);
     $("#body").after(popDiv);
     _buildSchedule(data);
 
@@ -14,7 +14,7 @@ $(function(){
     function _buildTheme(data){
         var div=$("<div id='theme'></div>");
         var logo=$('<span><img name="logo" src="../picture/logo.png"></span>');
-        var subject=$('<span><strong>'+data.meeting["subject"]+'</strong></span>');
+        var subject=$('<span class="size15"><strong>'+data.meeting["subject"]+'</strong></span>');
         $(div).append(logo);
         $(div).append(subject);
         $(div).append('<hr id="hr1"/>');
@@ -23,11 +23,11 @@ $(function(){
     //生成参与者个人信息展示
     function _buildInfo(data) {
         var sex=_formateSex(data.wxuser["sex"]);
-        var dom=$("<div><span>个人信息</span></div>");
+        var dom=$("<div><span class='size15'>个人信息</span></div>");
         var str='<div id="persondiv"><div id="code"><img name="code" src="'+data.participant["url"]+'" /></div>';
         /*    '姓名:<em>'+data.participant["name"]+'</em><br/>'+
            '手机号:'+data.participant["phone"]+'<br/>';*/
-        str+='<span><img id="head" class="img-circle" src="'+data.wxuser["headimgurl"]+'"></span><div id="personInfo"><strong>'+data.participant["name"]
+        str+='<span><img id="head" class="img-circle" src="'+data.wxuser["headimgurl"]+'"></span><div id="personInfo"><strong class="size13">'+data.participant["name"]
             +'</strong><br><span class="detail">'+sex+'</span><span class="detail">|</span><span class="detail">'+data.wxuser["country"]+'</span><span class="detail">|</span><span class="detail">'+data.wxuser["province"]+'</span><span class="detail">|</span><span class="detail">'+data.participant["mobilephone"]+'</span></div></div>';
         dom.append($(str));
         return dom;
@@ -110,7 +110,7 @@ $(function(){
                 data_map["isToday"]=map["isToday"];
                 data_map["date"]=md_str;
                 var mapstr=JSON.stringify(data_map);
-                var inner_li=$("<li></li>");
+                var inner_li=$("<li class='size13'></li>");
                 var base_div=$("<div class='blockli' data-map='"+mapstr+"'></div>");
                 var duration = $('<div name="time"  >' +arr[j]["schedule"] + '</div>');
                 var right_div=$('<div name="right" ></div>');
@@ -125,7 +125,7 @@ $(function(){
             }
             if(map["isToday"]){
                 outer_li.attr("style", "color: #0dc938");
-                outer_li.append($('<span id="today">☚</span>'));
+                /*outer_li.append($('<span id="today">☚</span>'));*/
             }
 
             dom_div.append(outer_li).append(inner_ul);
