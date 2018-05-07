@@ -78,7 +78,7 @@ function _addCssStyle() {
      //设置标题样式
      $("h1").attr("class","text-center");
      //设置照片上传按钮
-    $("input[type='file']").before($('<label for="'+$("input[type='file']").attr("id")+'" class="btn btn-lg btn-block"><img src="../picture/1.jpg" class="img-circle"></label>'));
+    $("input[type='file']").before($('<label for="'+$("input[type='file']").attr("id")+'" class="btn btn-lg btn-block"><img src="../project/picture/1.jpg" class="img-circle"></label>'));
      //设置提交按钮样式
     $("input[type='submit']").attr("class","btn btn-lg btn-block");
     //设置属性名字(姓名,年龄)等字体样式

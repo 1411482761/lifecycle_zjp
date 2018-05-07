@@ -11,22 +11,24 @@ html,body{height:100%;overflow:hidden;}
     position: absolute;
     display: none;
     width: 100%;
-    height: 300px;
+    min-height: 250px;
+    max-height: 300px;
     padding: 30px;
     margin-left: 0px;
     margin-right: 0px;
     margin-bottom: 0px;
-    overflow: auto;
+  /*  overflow: auto;*/
     bottom: 0px;
     left: 0px;
 }
-#scheduletitle{
-    margin-left: 5px;
-}
+/*#scheduletitle{
+    margin-left: 15px;
+}*/
 hr {
     margin-top: 0px;
     margin-bottom: 1px;
     width: 100%;
+    margin-left:-15px;
 }
 #hr2{
     margin-top: 0px;
@@ -69,7 +71,7 @@ overflow: hidden;
 */
 }
 [name="logo"] {
-    padding-left: -5px;
+    margin-left: 15px;
 }
 /*人物头像*/
 #head {
@@ -99,23 +101,23 @@ overflow: hidden;
 }
 #persondiv {
     width: 300px;
-    height: 200px;
+    height: 180px;
     margin-left: auto;
     margin-right: auto;
 }
 ul >li {
     color: #1b1e21;
     list-style-type: none;
-    margin-left: -65px;
+    margin-left: -75px;
     padding-left: 25px;
 }
 div>li {
-    margin-left: -15px;
+    margin-left: 5px;
     color: darkgrey;
 }
 [name="thistime"] {
     padding-right: 30px;
-    /*margin-left: -10px;*/
+    margin-left: 30px;
 }
 [name="thisevent"] {
     margin-left: 55px;
@@ -156,9 +158,10 @@ div[name="event"] {
     margin-bottom: -20px;
 }*/
 .blockli {
-    margin-left: -25px;
+    margin-left: -5px;
     width: 100%;
     height: 35px;
+    margin-bottom: -10px;
 }
 
 /*设置字号
@@ -170,10 +173,13 @@ div[name="event"] {
 日程  15
 日期时间 13
 */
-#size18 {
+.size18 {
+    margin-top: 10px;
     font-size: 18px;
+    text-align: center;
 }
 .size15 {
+    margin-left: 15px;
     font-size: 15px;
 }
 .size13 {
@@ -181,4 +187,13 @@ div[name="event"] {
 }
 .size11 {
     font-size: 11px;
+}
+#content {
+    max-height: 100px;
+    min-height: 50px;
+    overflow: auto;
+    margin-left: 30px;
+}
+#event {
+    color: #0dc938;
 }

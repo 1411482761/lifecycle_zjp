@@ -10,7 +10,7 @@ $(function(){
     //生成会议名称和logo
     function _buildTheme(data){
         var div=$("<div id='theme'></div>");
-        var logo=$('<span><img name="logo" src="../picture/logo.png"></span>');
+        var logo=$('<span><img name="logo" src="../project/picture/logo.png"></span>');
         var subject=$('<span><strong>'+data.meeting["subject"]+'</strong></span>');
         $(div).append(logo);
         $(div).append(subject);

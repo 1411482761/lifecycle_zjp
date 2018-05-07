@@ -170,7 +170,7 @@ function _buildSubmitButton(form) {
 function _addPhoto(form){
     var input=form.children("div").children("input[type='file']")[0];
     $(input).attr("id",$(input).attr("name"));
-    var str ='<label for="'+$(input).attr("id")+'"  class="btn btn-lg"><img align="center" src="../picture/1.jpg" class="img-circle"></label>';
+    var str ='<label for="'+$(input).attr("id")+'"  class="btn btn-lg"><img align="center" src="../project/picture/1.jpg" class="img-circle"></label>';
     $(input).before($(str));
 }
 

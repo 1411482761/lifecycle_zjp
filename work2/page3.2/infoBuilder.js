@@ -1,19 +1,19 @@
 $(function(){
-    var data=json_data;
-   // $("body").append($("<h1 class='text-center'>参会证</h1><hr/>")).append(_buildInfo());
+    var data=_parseData(json);
     $("body").append($("<div id='body'></div>"));
     var scheduleDiv=$("<div></div>");
- /*   var scheduleUl=$("<ul></ul>");
-    scheduleDiv.append(scheduleUl);*/
     var popDiv=$("<div id='pop'></div>");//弹窗的div
-    $("#body").append($("<h1 class='text-center' id='size18'>参会证</h1><hr/>")).append(_buildTheme(data)).append(_buildInfo(data)).append($("<hr id='hr2'/><span id='scheduletitle' class='size15'>日程安排</span>")).append(scheduleDiv);
+    $("#body").append($("<div class='size18'><span >参会证</span><hr/></div>"));
+    $("#body").append(_buildTheme(data));
+    $("#body").append(_buildInfo(data));
+    $("#body").append(scheduleDiv);
     $("#body").after(popDiv);
     _buildSchedule(data);
 
     //生成会议名称和logo
     function _buildTheme(data){
         var div=$("<div id='theme'></div>");
-        var logo=$('<span><img name="logo" src="../picture/logo.png"></span>');
+        var logo=$('<span><img name="logo" src="../project/picture/logo.png"></span>');
         var subject=$('<span class="size15"><strong>'+data.meeting["subject"]+'</strong></span>');
         $(div).append(logo);
         $(div).append(subject);
@@ -34,12 +34,11 @@ $(function(){
     }
     //隐藏层
     function hideDialog(event) {
-        popDiv.hide(1);
+        popDiv.hide();
     }
 
     popDiv.on("click","div[name='exit']",hideDialog.bind(this));
-    //给所有的a标签绑定事件
-    //将点击的每条事件详细内容填充到div中
+    //弹窗模块
     $("div[class='blockli']").click(function (event) {
         //假如有其他的弹窗,先把原来的清了
        /* if(event.target==this) {*/
@@ -54,28 +53,37 @@ $(function(){
             var schedule = map["schedule"];
             var date = map["date"];
             var content = map["content"];
-            var count = map["count"];
+            var check_count = map["check_count"];
             var subject = map["subject"];
             var isToday =map["isToday"];
             var detail=map["detail"];
+            var openid=map["openid"];
+            var uuid=map["uuid"];
+            var meeting_id=map["meeting_id"];
             var tempForm = $('<form method="post"></form>');
             var  dateDiv=$("<div></div>");
             var tempDate = $('<span style="color: #8e959b">' + date + '</span>');
             dateDiv.append(tempDate).append($("<hr>"));
-            var eventDiv=$("<div></div>");
+            var eventDiv=$("<div id='event'></div>");
             var tempevent=$('<span name="thistime" id="thistime">' + schedule + '</span><span name="thisevent" id="thisevent">' + subject + '</span>');
             eventDiv.append(tempevent);
-            var contentDiv=$("<div></div>");
+            var contentDiv=$("<div id='content'></div>");
             var tempcontent=$("<span>"+content+"</span>");
             contentDiv.append(tempcontent);
             var signDiv=$("<div></div>");
-            var tempSign = $('<span style="color: #8e959b">已签到<strong>' + count + '</strong>次</span><br>');
+            var tempSign = $('<span style="color: #8e959b">已签到<strong>' + check_count + '</strong>次</span><br>');
             signDiv.append(tempSign);
             var subDiv=$("<div></div>");
             var tempSubmit = $('<input type="submit" class="btn btn-primary btn-lg btn-block"  id="sub" value="签到" />');
             subDiv.append(tempSubmit);
             var tempExit = $('<div id="exit" name="exit"><span>X</span></div>');
             tempForm.append(dateDiv).append(eventDiv).append(contentDiv).append(signDiv).append(subDiv);
+            var hideDiv=$('<div></div>');
+            var temp_openid=$('<input type="hidden" name="openid" value="'+openid+'">');
+            var temp_uuid=$('<input type="hidden" name="uuid" value="'+uuid+'">');
+            var temp_meetingId=$('<input type="hidden" name="meeting_id" value="'+meeting_id+'">');
+            hideDiv.append(temp_openid).append(temp_uuid).append(temp_meetingId);
+            tempForm.append(hideDiv);
             if (schedule == "全天") {
                 var hide = $("<span style='color: #8e959b'>("+detail+")</span>");
                 tempDate.after(hide);
@@ -84,9 +92,8 @@ $(function(){
                 tempDate.attr("style","color: #0dc938");
                 tempevent.attr("style","color: #0dc938");
             }
-
             popDiv.append(tempExit).append(tempForm);
-            popDiv.show(300);
+            popDiv.show();
         /*}*/
     });
     //生成日程计划2.0
@@ -94,6 +101,7 @@ $(function(){
         var dateArr=_getDateArray(data);
         var dateMap=_packData(data,dateArr);
         var out_ul=$("<ul id='outer'></ul>");
+        scheduleDiv.append($("<hr id='hr2'/><span id='scheduletitle' class='size15'>日程安排</span>"));
         var len=dateArr.length;
         for (var i = 0; i < len; i++) {
             var map=_caculateDateTime(dateArr[i]);
@@ -186,6 +194,7 @@ $(function(){
         var plans=data.plans;
         var p_len=plans.length;
         var a_len=arr.length;
+        var openid=data.wxuser["openid"];
         for (var i = 0; i < a_len; i++) {
             var obj_arr=[];
             var obj_index=[];
@@ -202,8 +211,12 @@ $(function(){
                         temp_map["date"]=b_map["month"]+"月"+b_map["date"]+"日";
                         temp_map["subject"]=plans[j]["subject"];
                         temp_map["content"]=plans[j]["content"];
+                        temp_map["openid"]=openid;
+                        temp_map["uuid"]=plans[j]["uuid"];
+                        temp_map["meeting_id"]=plans[j]["meeting_id"];
+                        temp_map["check_count"]=_checkCount(plans[j]["uuid"]);
+                        console.log(temp_map["check_count"]);
                         temp_map["schedule"]=_getHoursAndMinutes(b_map)+"~"+_getHoursAndMinutes(e_map);
-                        temp_map["count"]=3;
                         obj_arr.push(temp_map);
                         obj_index.push(b_map["timestamp"]);
                     }
@@ -220,8 +233,11 @@ $(function(){
                             temp_map["date"]=t_map["month"]+"月"+t_map["date"]+"日";
                             temp_map["subject"]=plans[j]["subject"];
                             temp_map["content"]=plans[j]["content"];
+                            temp_map["openid"]=openid;
+                            temp_map["uuid"]=plans[j]["uuid"];
+                            temp_map["meeting_id"]=plans[j]["meeting_id"];
+                            temp_map["check_count"]=_checkCount(plans[j]["uuid"]);
                             temp_map["schedule"]="全天";
-                            temp_map["count"]=6;
                             temp_map["detail"]=b_map["month"]+"月"+b_map["date"]+"日~"+e_map["month"]+"月"+e_map["date"]+"日";
                             obj_arr.push(temp_map);
                             obj_index.push(b_map["timestamp"]*10);
@@ -247,198 +263,6 @@ $(function(){
         }
         return final_map;
     }
-
-    //
-
-   //生成日程安排计划
-   function _buildSchedule1() {
-        var arr=data.plans;
-        var len=arr.length;
-        var flag="";
-        var index=0;
-        var status=0;
-        var is_today=false;
-        var thisDateTime=new Date();
-        var thisYear=thisDateTime.getFullYear();
-        var thisMonth=thisDateTime.getMonth()+1;
-        var thisDate=thisDateTime.getDate();
-       for (var i = 0; i < len; i++) {
-           var inOneDay=_isInOneDay(arr[i]);
-           if(inOneDay) {
-               //日程在同一天
-               var beginMap = _caculateDateTime(arr[i]["date_begin"]);
-               var endMap = _caculateDateTime(arr[i]["date_end"]);
-               if (flag != (beginMap["month"] + " " + beginMap["date"])) {
-                   is_today = false;
-                   var dom = $("<div class='schedulelist'></div>");
-                   flag = beginMap["month"] + " " + beginMap["date"];
-                   var begin_year = beginMap["year"];
-                   var begin_month = beginMap["month"];
-                   var begin_date = beginMap["date"];
-                   dom.append($('<li>' + begin_month + '月' + begin_date + '日</li><hr>'));
-                   dom.append($('<ul></ul>'));
-                   if (begin_year == thisYear && begin_month == thisMonth && begin_date == thisDate) {
-                       is_today = true;
-                       $(dom.children("li")).attr("style", "color: #0dc938");
-                       $(dom.children("li")).append($('<span id="today">☚</span>'));
-                   }
-               }
-               if (Date.parse(thisDateTime) < beginMap["timestamp"]) {
-                   //未开始
-                   status = -1;
-               } else if (Date.parse(thisDateTime) > endMap["timestamp"]) {
-                   //已结束
-                   status = 1;
-               } else {
-                   //正在进行
-                   status = 0;
-               }
-               var li = $("<li></li>");
-               var div = $("<div></div>");
-               var duration = $('<div data-index="' + index + '" data-status="' + status + '" name="time">' + beginMap["hours"] + ':' + _formatMinutes(beginMap["minutes"]) + ' ~ ' + endMap["hours"] + ':' + _formatMinutes(endMap["minutes"]) + '</div>');
-               var subject = $('<div data-index="' + index + '" data-status="' + status + '" name="event">' + arr[i]["subject"] + '</div>');
-               var sign = $('</div><div data-index="' + index + '" data-status="' + status + '" name="finger">></div>');
-               var clear = $('<div id="clear"></div>');
-               div.append(duration).append(sign).append(subject).append(clear);
-               li.append(div);
-               index++;
-               if (is_today) {
-                   if (Date.parse(thisDateTime) > beginMap["timestamp"] && Date.parse(thisDateTime) < endMap["timestamp"]) {
-                       li.attr("style", "color: #0dc938");
-                   }
-               }
-               dom.children("ul:last-child").append(li);
-               scheduleDiv.append(dom);
-           }else{
-               //日程不在同一天的
-               var beginMap = _caculateDateTime(arr[i]["date_begin"]);
-               var endMap = _caculateDateTime(arr[i]["date_end"]);
-               var dateArr=[];
-               var timestampArr=[];
-               var month_day=beginMap["month"]+"月"+beginMap["date"]+"日";
-               dateArr.push(month_day);
-               timestampArr.push(beginMap["timestamp"]);
-               var b_timestamp=beginMap["timestamp"]-beginMap["hours"]*60*60*1000-beginMap["minutes"]*60*1000+86400000;
-               var e_timestamp=endMap["timestamp"];
-               //将期间的每一天放入数组中
-               for (var j = b_timestamp; j <=e_timestamp ; j+=86400000) {
-                   var temp=_caculateDateTime(j);
-                   var md=temp["month"]+"月"+temp["date"]+"日";
-                   dateArr.push(md);
-                   timestampArr.push(j);
-               }
-
-               var dateArrLength=dateArr.length;
-
-               for (var j = 0; j < dateArrLength; j++) {
-
-                   var temp=_caculateDateTime(timestampArr[j]);
-                   var todayMap=_caculateDateTime(new Date());
-                   if(temp["month"]==todayMap["month"]&&temp["date"]==todayMap["date"]){
-                       //如果是当天日期
-                       is_today=true;
-                   }else{
-                       is_today=false;
-                   }
-
-                   var dom=$("<div class='schedulelist'></div>");
-                   if(j==0){//日程第一天
-                       if (Date.parse(new Date()) < beginMap["timestamp"]) {
-                           //未开始
-                           status = -1;
-                       } else if (Date.parse(new Date()) > temp["timestamp"]+86400000) {
-                           //已结束
-                           status = 1;
-                       } else {
-                           //正在进行
-                           status = 0;
-                       }
-                       dom.append($('<li>'+month_day+'</li><hr>'));
-                       var tempul=$('<ul></ul>');
-                       var templi=$('<li></li>');
-                       var duration = $('<div data-timestamp="'+timestampArr[j]+'" data-date="'+dateArr[j]+'" data-duration="'+_getHoursAndMinutes(beginMap)+'&nbsp~&nbsp--:--" data-index="' + index + '" data-status="' + status + '" name="time">' + beginMap["hours"] + ':' + _formatMinutes(beginMap["minutes"]) + ' ~&nbsp' + '</div>');
-                       var subject = $('<div data-timestamp="'+timestampArr[j]+'" data-date="'+dateArr[j]+'" data-duration="'+_getHoursAndMinutes(beginMap)+'&nbsp~&nbsp--:--" data-index="' + index + '" data-status="' + status + '" name="event">' + arr[i]["subject"] + '</div>');
-                       var sign = $('</div><div data-timestamp="'+timestampArr[j]+'" data-date="'+dateArr[j]+'" data-duration="'+_getHoursAndMinutes(beginMap)+'&nbsp~&nbsp--:--" data-index="' + index + '" data-status="' + status + '" name="finger">></div>');
-                       var clear = $('<div id="clear"></div>');
-                       templi.append(duration).append(subject).append(sign).append(clear);
-                       tempul.append(templi);
-                       dom.append(tempul);
-                       if(is_today){
-                           $(dom.children("li")).attr("style", "color: #0dc938");
-                           $(dom.children("li")).append($('<span id="today">☚</span>'));
-                           if(beginMap["timestamp"]<Date.parse(new Date())){
-                               templi.attr("style", "color: #0dc938");
-                           }
-                       }else{
-                       }
-                   }else if(j==dateArrLength-1){//日程最后一天
-                       //var  tempDiv=$("<div></div>");
-                       if (Date.parse(new Date()) < temp["timestamp"]) {
-                           //未开始
-                           status = -1;
-                       } else if (Date.parse(new Date()) > endMap["timestamp"]) {
-                           //已结束
-                           status = 1;
-                       } else {
-                           //正在进行
-                           status = 0;
-                       }
-                       dom.append($("<li>"+endMap["month"]+"月"+endMap["date"]+"日</li><hr>"));
-                       var tempul=$('<ul></ul>');
-                       var templi=$('<li></li>');
-                       var duration = $('<div data-timestamp="'+timestampArr[j]+'" data-date="'+dateArr[j]+'"  data-duration="--:--&nbsp~&nbsp'+_getHoursAndMinutes(endMap)+'"  data-index="' + index + '" data-status="' + status + '" name="time">' +'&nbsp~'+ _getHoursAndMinutes(endMap) + '</div>');
-                       var subject = $('<div data-timestamp="'+timestampArr[j]+'" data-date="'+dateArr[j]+'" data-duration="--:--&nbsp~&nbsp'+_getHoursAndMinutes(endMap)+'" data-index="' + index + '" data-status="' + status + '" name="event">' + arr[i]["subject"] + '</div>');
-                       var sign = $('</div><div data-timestamp="'+timestampArr[j]+'" data-date="'+dateArr[j]+'" data-duration="--:--&nbsp~&nbsp'+_getHoursAndMinutes(endMap)+'" data-index="' + index + '" data-status="' + status + '" name="finger">></div>');
-                       var clear = $('<div id="clear"></div>');
-                       templi.append(duration).append(subject).append(sign).append(clear);
-                       tempul.append(templi);
-                       dom.append(tempul);
-                       if(is_today){
-                           $(dom.children("li")).attr("style", "color: #0dc938");
-                           $(dom.children("li")).append($('<span id="today">☚</span>'));
-                           if(endMap["timestamp"]>Date.parse(new Date())){
-                               templi.attr("style", "color: #0dc938");
-                           }
-                       }else{
-                       }
-                   }else {
-                       //中间日期  全天
-                       if (Date.parse(new Date()) < temp["timestamp"]) {
-                           //未开始
-                           status = -1;
-                       } else if (Date.parse(new Date()) > temp["timestamp"]+86400000) {
-                           //已结束
-                           status = 1;
-                       } else {
-                           //正在进行
-                           status = 0;
-                       }
-                       var li=$("<li>"+ dateArr[j] +"</li>");
-                       dom.append(li).append($("<hr>"));
-                       var tempul=$('<ul></ul>');
-                       var templi=$('<li></li>');
-                       var duration = $('<div data-timestamp="'+timestampArr[j]+'" data-date="'+dateArr[j]+'" data-duration="全天" data-index="' + index + '" data-status="' + status + '" name="time">全天</div>');
-                       var subject = $('<div data-timestamp="'+timestampArr[j]+'" data-date="'+dateArr[j]+'" data-duration="全天" data-index="' + index + '" data-status="' + status + '" name="event">' + arr[i]["subject"] + '</div>');
-                       var sign = $('</div><div data-timestamp="'+timestampArr[j]+'" data-date="'+dateArr[j]+'" data-duration="全天" data-index="' + index + '" data-status="' + status + '" name="finger">></div>');
-                       var clear = $('<div id="clear"></div>');
-                       if(is_today){
-                           $(dom.children("li")).attr("style", "color: #0dc938");
-                           templi.attr("style", "color: #0dc938");
-                           $(dom.children("li")).append($('<span id="today">☚</span>'));
-                       }else{
-                       }
-                       templi.append(duration).append(subject).append(sign).append(clear);
-                       tempul.append(templi);
-                       dom.append(tempul);
-                   }
-
-                   scheduleDiv.append(dom);
-               }
-                index++;
-           }
-       }
-
-   }
    function _caculateDateTime(dateTime){
        var timeMap={};
        var myDateTime=new Date(dateTime);
@@ -509,6 +333,25 @@ $(function(){
         }
 
 
+    }
+    //将获取的json中的/r/n替换成<br>
+    function _parseData (data){
+        var str=JSON.stringify(data);
+        str=str.replace(/\\r\\n/gi,"<br>");
+        var json=JSON.parse(str);
+        return json;
+    }
+    //计算签到次数
+    function _checkCount(uuid){
+        var checkins=data.checkin;
+        var len=checkins.length;
+        var count=0;
+        for (var i = 0; i < len; i++) {
+            if (checkins[i]["plan_id"]==uuid){
+                count++;
+            }
+        }
+        return count;
     }
 /*
     function render(templatestring,dataobject){

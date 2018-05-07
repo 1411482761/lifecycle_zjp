@@ -170,7 +170,7 @@ function _buildSubmitButton(form) {
 function _addPhoto(form){
     var input=form.children("div").children("input[type='file']")[0];
     $(input).attr("id",$(input).attr("name"));
-    var str ='<label for="'+$(input).attr("id")+'"  class="btn btn-lg"><img align="center" src="../picture/1.jpg" class="img-circle"></label>';
+    var str ='<label for="'+$(input).attr("id")+'"  class="btn btn-lg"><img align="center" src="../project/picture/1.jpg" class="img-circle"></label>';
     $(input).before($(str));
 }
 
@@ -220,7 +220,7 @@ function _submitCheck(){
 function _addSign(){
     $($("input[type='text']").parent("div")).attr("class","input-group");
     $($("input[type='text']")).attr("class","form-control");
-    $($("input[type='text']").parent("div")).before($('<div class="input-group-addon"><img src="../picture/tb.png"></div>'));
+    $($("input[type='text']").parent("div")).before($('<div class="input-group-addon"><img src="../project/picture/tb.png"></div>'));
 
 
 

@@ -3,7 +3,7 @@
 }
 
 #div4 select {
-    background-image:url('../picture/tb2.png');
+    background-image:url('../project/picture/tb2.png');
     background-repeat:no-repeat;
     text-align: center;
     padding: 0 0 0 40px;
@@ -23,7 +23,7 @@ input[type="text"]  {
     padding-left: 40px;
 }
 input[type="text"] {
-    background-image: url("../picture/tb.png") ;
+    background-image: url("../project/picture/tb.png") ;
     background-repeat:no-repeat;
 }
 img {
