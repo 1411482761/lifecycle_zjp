@@ -1,0 +1,85 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+}
+
+#body {
+    height: 100%;
+    width: 100%;
+}
+#top {
+    background-repeat: no-repeat;
+    font-size: 0px;
+    background-size: cover;
+    height: 55%;
+    width: 100%;
+}
+#circle {
+    margin: auto;
+    width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 80px;
+
+}
+
+#circle > img {
+    margin-left: auto;
+    margin-right: auto;
+    height: 90px;
+}
+#body >div {
+    text-align: center;
+
+}
+#info {
+    background-color: #FFF4F1;
+    width: 100%;
+    height: 45%;
+}
+#wave >img{
+    width: 105%;
+    height: 20%;
+    margin-bottom: 50%;
+}
+#wave {
+    overflow: hidden;
+    width: 100%;
+    position: absolute;
+    top: 35%;
+    bottom: 45%;
+    left: 0px;
+}
+#info>div {
+    text-align: center;
+    margin-top: 0px;
+}
+#msg1>span {
+    font-size: 14px;
+}
+#msg2>span {
+    font-size: 13px;color:grey;
+}
+#msg3 {
+    padding-top: 30px;
+    padding-bottom: 25px;
+}
+#msg3 span:first-child  {
+    font-size: 36px;
+}
+#msg3 span:last-child  {
+    font-size: 18px;
+}
+button {
+    font-size: 18px;
+    width: 80%;
+    height: 50px;
+    background-color: #4FD5D8;
+    border:0px;
+    border-radius: 25px;
+}

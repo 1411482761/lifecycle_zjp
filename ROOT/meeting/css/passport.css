@@ -1,0 +1,174 @@
+div{margin: 5px}
+html,body{height:100%;overflow:hidden;}
+#body {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+#pop {
+    background-color: white;
+    border: solid 2px #ccc;
+    position: absolute;
+    display: none;
+    width: 100%;
+    min-height: 250px;
+    max-height: 300px;
+    padding: 30px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    bottom: 0px;
+    left: 0px;
+}
+hr {
+    margin-top: 0px;
+    margin-bottom: 1px;
+    width: 100%;
+    margin-left:-15px;
+}
+#hr2{
+    margin-top: 0px;
+    margin-bottom: 1px;
+}
+h5 {
+    margin-left: 20px;
+}
+[name="time"] {
+    padding-left: 20px;
+    float: left;
+    width: 120px;
+
+}
+div[name="right"] {
+    overflow: hidden;
+
+ }
+[name="event"] {
+     margin-right: 35px;
+overflow: hidden;
+    margin-left: 10px;
+ }
+[name="finger"] {
+    width: 20px;
+    margin-right: 10px;
+    float: right;
+   /* float: left;*/
+}
+
+#clear {
+    clear:both;
+}
+[name="logo"] {
+    margin-left: 15px;
+}
+/*人物头像*/
+#head {
+    width: 50px;
+    height: 50px;
+    margin-left: 60px;
+    border-radius: 100%;
+    margin-top: 15px;
+}
+/*二维码*/
+#code {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+    height: 100px;
+}
+[name="code"] {
+    width: 100px;
+    height: 100px;
+
+}
+/*个人信息*/
+#personInfo {
+    float: right;
+    margin-right: 35px;
+    margin-top:20px;
+}
+#persondiv {
+    width: 300px;
+    height: 180px;
+    margin-left: auto;
+    margin-right: auto;
+}
+ul >li {
+    color: #1b1e21;
+    list-style-type: none;
+    margin-left: -75px;
+    padding-left: 25px;
+}
+div>li {
+    margin-left: 5px;
+    color: darkgrey;
+}
+[name="thistime"] {
+    padding-right: 30px;
+    margin-left: 30px;
+}
+[name="thisevent"] {
+    margin-left: 55px;
+}
+[name="exit"] {
+    position: fixed;
+    right: 0px;
+    margin-top: -27px;
+    width: 25px;
+    height: 25px;
+    border: none;
+    text-align: center;
+    align-self: right;
+}
+#today {
+    float: right;
+    margin-right: 3%;
+}
+/*签到按钮样式*/
+#sub{
+    background-color: #a1ffcd;
+    border: none;
+    color: #20c997;
+    margin-top: 15px;
+}
+div[name="event"] {
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    overflow:hidden;
+}
+.detail {
+    font-size: 11px;
+    color: #8e959b;
+
+}
+.blockli {
+    margin-left: -5px;
+    width: 100%;
+    height: 35px;
+    margin-bottom: -10px;
+}
+.size18 {
+    margin-top: 10px;
+    font-size: 18px;
+    text-align: center;
+}
+.size15 {
+    margin-left: 15px;
+    font-size: 15px;
+}
+.size13 {
+    font-size: 13px;
+}
+.size11 {
+    font-size: 11px;
+}
+#content {
+    max-height: 100px;
+    min-height: 50px;
+    overflow: auto;
+    margin-left: 30px;
+}
+#event {
+    margin-left: 0px;
+    color: #0dc938;
+}
