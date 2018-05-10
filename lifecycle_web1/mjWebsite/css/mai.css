@@ -1,0 +1,309 @@
+#main{
+  font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu
+}
+.ios-phone>a{
+  text-decoration:none !important;
+  opacity:1 !important;
+  color:white !important;
+}
+/*--------header--------------*/
+#intro-wrap{
+  font-family: intro-wrap;
+}
+.menu-item:hover{
+  background-color:#060d15;
+
+}
+.menu-item:hover >span>a{
+     color:white;
+}
+/*.transparent:hover{
+    background-color:#96bd0f;
+}*/
+header>.row{
+    background-color:white;
+    margin-top:-8px;
+    margin-bottom:-8px;
+}
+.reset>a{
+  background-image:url('../img/mai-logo.png');
+  background-size:contain;;
+  background-repeat:no-repeat;
+  background-position:right center;
+}
+.section-title>h3{
+  color:#96bd0f;
+}
+.header-phone-icon>span{
+  padding-left:30px;
+}
+.section-background{
+  background-color:white;
+  min-height:500px;
+  overflow-y:hidden;
+}
+nav > ul > li > span {
+    line-height: 3rem;
+}
+header.fixed-header.transparent.light #brand a,
+header.fixed-header.transparent.light nav > ul > li > span {
+    color: #333;
+    text-shadow: none;
+}
+header.transparent.light #brand a, header.transparent.light nav > ul > li > span {
+    color: #fff;
+}
+.no-parallax header.transparent.light #brand a, .no-parallax header.transparent.light nav > ul > li > span{
+    color:#333;
+}
+.mai-home-word{
+  background-image: url("../img/maihome.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position:25% center;
+}
+.hidden-font{
+   visibility:hidden;
+}
+/*-----------------适配手机-----------------------------*/
+@media screen and (max-width: 960px) {
+    .mai-home-word{
+      position: relative;
+      top:5.5em;
+    }
+}
+/*---------------------header-end-------------------------------------*/
+/*---------------------about-mai-----------------------------------------*/
+#about-mai{
+  overflow-y:hidden;
+  min-height:600px;
+  background-color:#ed6942;
+}
+.about-mai-h3{
+  color:white;
+  text-align:right;
+  font-size:2.4em;
+  padding-top:1.2em;
+}
+.download-btn{
+  position: relative;
+  left:10em;
+  top:1em;
+  margin-right: 1em;
+  margin-bottom: 1.34em;
+  padding: .667em 2em;
+}
+@media screen and (max-width: 960px) {
+  #about-mai>div>div>img{
+    display:none;
+  }
+  .about-mai-h3{
+    color:white;
+    text-align:right;
+    font-size:2.4em;
+    padding-top:0em;
+  }
+  .download-btn{
+    position: relative;
+    left:8em;
+    top:1em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    padding: .667em 2em;
+  }
+}
+/*---end---*/
+/*----------------mai-three-func-------------------------*/
+.manage-sync{
+   background-image: url("../img/syncline.png");
+   background-position:center 40%;
+   background-repeat: no-repeat;
+}
+.manage-sync-pic-first{
+  height:600px;
+  background-image: url("../img/first.png");
+  background-position:center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.manage-sync-pic-second{
+  height:600px;
+  background-image: url("../img/second.png");
+  background-position:center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.manage-sync-pic-three{
+  height:600px;
+  background-image: url("../img/three.png");
+  background-position:center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+@media screen and (max-width: 960px) {
+  .manage-sync{
+     background-image: url("../img/syncline.png");
+     background-position:center 40%;
+     background-repeat: no-repeat;
+     background-size: 80% auto;;
+  }
+  .manage-sync-pic-first{
+    height:280px;
+  }
+  .manage-sync-pic-second{
+    height:280px;
+  }
+  .manage-sync-pic-three{
+    height:280px;
+  }
+}
+/*--------------mai-three-func end----------------------*/
+/*---------------------mai-nine-pic----------------------------------*/
+ #mai-nine-pic>.row-content>div{
+   height:800px;
+   margin-top:2.5em;
+   margin-bottom:2.5em;
+   background-image: url("../img/nine.png");
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size:contain;
+ }
+ @media screen and (max-width: 960px) {
+   #mai-nine-pic>.row-content>div{
+     height:400px;
+     margin-top:0em;
+     margin-bottom:0em;
+   }
+ }
+ /*---------------------mai-nine-pic end----------------------------------*/
+/*--------------about-gx---------------*/
+.about-gx-span{
+  padding-bottom:0.4em;
+  border-bottom:white 1px solid;
+  color:white;
+  font-size: 2.8em;
+  font-weight: 400;
+}
+.about-gx-p1{
+  font-size:1.4em;
+  text-align:center;
+  font-weight:300;
+  padding-top:0.8em;
+  padding-bottom:1em;
+}
+.about-gx-p2{
+  display:none;
+}
+@media screen and (max-width: 960px) {
+  .about-gx-span{
+    padding-bottom:0.4em;
+    border-bottom:white 1px solid;
+    color:white;
+    font-size: 2em;
+    font-weight: 400;
+  }
+  .about-gx-p1{
+    display:none;
+  }
+  .about-gx-p2{
+    display:block;
+    font-size:1em;
+    text-align:center;
+    font-weight:300;
+    padding-top:0.8em;
+    padding-bottom:1em;
+  }
+}
+/*---------------------mai-about-us----------------------------------*/
+#mai-about-us{
+  height:1650px;
+  background-image: url("../img/wall.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+/*#mai-about-us>.row-content>div{
+   height:25%;
+   outline:red thick solid;
+}*/
+@media screen and (max-width: 1024px) and (min-width:960px){
+  #mai-about-us{
+    height:950px;
+    background-size:contain 100%;
+  }
+}
+@media screen and (max-width: 960px) and (min-width:760px){
+  #mai-about-us{
+    height:750px;
+    background-size:contain 100%;
+  }
+}
+@media screen and (max-width: 760px) and (min-width:325px){
+  #mai-about-us{
+    height:550px;
+    background-size:contain 100%;
+  }
+}
+@media screen and (max-width: 325px) {
+  #mai-about-us{
+    height:400px;
+    background-size:contain 100%;
+  }
+}
+/*---------------------mai-about-us end ----------------------------------*/
+/*---------------------mai-contact-us---------------------------*/
+#mai-contact-us>div>h2{
+  text-align:center;
+  color:white;
+  font-size:2.4em;
+}
+#mai-contact-us>div>div{
+  /*text-align:center;
+  color:white;
+  font-size:2.4em;*/
+}
+#mai-contact-us>div>div>img{
+  position: relative;
+  left:27%;
+  /*text-align:center;
+  color:white;
+  font-size:2.4em;*/
+}
+#mai-contact-us>div>div>div>p{
+  font-weight: 300;
+  text-align:center;
+  color:white;
+  /*text-align:center;
+  color:white;
+  font-size:2.4em;*/
+}
+.big-dhh-img{
+  /*padding-left:23%;*/
+  /*width:70%;*/
+  /*height:auto;*/
+}
+/*---------------------mai-contact-us end---------------------------*/
+/*---------------------mai-join-us----------------------------------*/
+.recruit-box{
+  padding-left: 2.5em;
+  padding-right:2.5em;
+  /*padding-bottom:1.5em;
+  padding-top:1.5em;*/
+}
+.recruit-box > p{
+  padding-left:1em;
+  padding-top:1em;
+  padding-right:1em;
+  /*outline:#7a6f31 thick solid;*/
+  border:5px solid #7a6f31;
+  font-size:16px;
+  height:16em;
+  /*font-weight:bolder;*/
+}
+.recruit-box > h4{
+  font-size:2.1em;
+}
+/*---------------------mai-join-us end----------------------------------*/
+ .mai-home{
+   background-image:url("../img/homepic.jpg");
+ }

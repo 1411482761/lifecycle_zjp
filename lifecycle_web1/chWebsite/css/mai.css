@@ -1,0 +1,284 @@
+#main {
+    font-family: "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", 华文细黑, STHeiti, MingLiu !important;
+}
+
+.ios-phone > a {
+    text-decoration: none !important;
+    opacity: 1 !important;
+    color: white !important;
+}
+
+/*--------header--------------*/
+#intro-wrap {
+    font-family: intro-wrap;
+}
+
+.menu-item {
+    padding: 0 20px !important;
+}
+
+.menu-item:hover {
+    background-color: #dcb491;
+}
+
+.menu-item:hover > span > a {
+    color: white;
+}
+
+/*.transparent:hover{
+    background-color:#96bd0f;
+}*/
+header > .row {
+    background-color: white;
+    margin-top: -8px;
+    margin-bottom: -8px;
+}
+
+.reset > a {
+    background-image: url('../img/LOGO.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
+.section-title > h3 {
+    color: #96bd0f;
+}
+
+.header-phone-icon > span {
+    padding-left: 30px;
+}
+
+.section-background {
+    background-color: white;
+    min-height: 500px;
+    overflow-y: hidden;
+}
+
+nav > ul > li > span {
+    line-height: 3rem;
+}
+
+header.fixed-header.transparent.light #brand a,
+header.fixed-header.transparent.light nav > ul > li > span {
+    color: #333;
+    text-shadow: none;
+}
+
+header.transparent.light #brand a, header.transparent.light nav > ul > li > span {
+    color: #fff;
+}
+
+.no-parallax header.transparent.light #brand a, .no-parallax header.transparent.light nav > ul > li > span {
+    color: #333;
+}
+
+.hidden-font {
+    visibility: hidden;
+}
+.about-mai-h3 {
+    color: white;
+    text-align: right;
+    font-size: 2.4em;
+    padding-top: 1.2em;
+}
+#mai-contact-us .ch_6_icon {
+    width: 30px;
+}
+.top_banner{}
+.top_banner1{
+    display: none;
+}
+
+/*-------------------ch------------------*/
+.ch_2_content {
+    height: 400px;
+}
+
+.ch_2_content img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.ch_module_title {
+    text-align: center;
+    font-size: 20px;
+    color: #000;
+    letter-spacing: 5px;
+    padding: 40px 0;
+}
+
+.ch_module_title span {
+    border-bottom: 5px solid #d8d8d8;
+    padding-bottom: 5px;
+}
+
+.ch_module_title div {
+    padding-top: 5px;
+}
+
+.ch_3_item {
+    text-align: center;
+}
+
+
+.ch_3_item img {
+    width: 100%;
+}
+
+.ch_5_item {
+    background-color: #F5F5F5;
+    height: 550px;
+    overflow: auto;
+    padding: 20px 10px;
+}
+.ch_6_item{
+    font-family: "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", 华文细黑, STHeiti, MingLiu;
+}
+.ch_6_item .us_content{
+    display: inline-flex;
+}
+.ch_6_item .us_title{
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    font-family: "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", 华文细黑, STHeiti, MingLiu;
+}
+.ch_6_item .us_img{
+    margin-right: 5px;
+}
+.ch_6_item .us_text {
+    font-size: 14px;
+    color: #4f4f4f;
+    font-family: "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", 华文细黑, STHeiti, MingLiu;
+}
+
+/*.row-content.buffer, .row-content.buffer-top {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}*/
+
+#mai-join-us .portfolio ul.cats li.active {
+    color: #d8b85a;
+    /*background-color: rgba(0,0,0,0.1);*/
+}
+#mai-join-us .portfolio ul.cats li{
+    /*padding: 15px 35px;*/
+    /*margin-right: 0;*/
+    /*font-size: 18px;*/
+    font-weight: bold;
+    color: #000000;
+}
+#mai-join-us .portfolio ul.cats{
+    line-height: 60px;
+}
+#mai-join-us .portfolio ul.cats li:hover{
+    /*background-color: rgba(0,0,0,0.1);*/
+    /*border-radius: 5%;*/
+    border-color: #dcb491;
+}
+.ch_4_img{
+    display:block;
+}
+.ch_4_img_sj{
+    display:none;
+}
+.ch_buffer{
+    padding-left:1em;
+    padding-right:1em;
+}
+@media screen and (max-width: 960px) {
+    .about-gx-span {
+        padding-bottom: 0.4em;
+        border-bottom: white 1px solid;
+        color: white;
+        font-size: 2em;
+        font-weight: 400;
+    }
+    .about-gx-p1 {
+        display: none;
+    }
+
+    .about-gx-p2 {
+        display: block;
+        font-size: 1em;
+        text-align: center;
+        font-weight: 300;
+        padding-top: 0.8em;
+        padding-bottom: 1em;
+    }
+    #about-mai > div > div > img {
+        display: none;
+    }
+
+    .ch_module_title {
+        padding: 0;
+    }
+    .top_banner {
+        display: none !important;
+    }
+    .top_banner1{
+        display: block !important;
+    }
+    .ch_2_content {
+        margin-top:-8em;
+    }
+    .ch_headline{
+        display: none;
+    }
+    .ch_3_item{
+        padding:10px;
+    }
+    .ch_3_item img{
+        margin:0px;
+    }
+    .ch_module_title > div{
+        padding-top:5px;
+        padding-bottom:10px;
+    }
+    .ch_1_item_img{
+        display:none;
+    }
+    .ch_4_img{
+        display:none;
+    }
+    .ch_4_img_sj{
+        display:block;
+    }
+    /*#mai-three-func{*/
+        /*height:380px;*/
+    /*}*/
+
+}
+#mai-nine-pic > .row-content > .column {
+    margin-right: 0.8%;
+}
+#mai-nine-pic > .row-content > .three {
+    width: 24.05%;
+}
+@media screen and (max-width: 1024px) and (min-width: 960px) {
+    #mai-about-us {
+        height: 950px;
+        background-size: contain;
+    }
+    #mai-join-us .portfolio ul.cats li{
+        padding: 15px 35px;
+        margin-right: 0;
+        font-size: 18px;
+        font-weight: bold;
+        color: #000000;
+    }
+}
+@media screen and (min-width: 785px) {
+    #mai-join-us .portfolio ul.cats li{
+        padding: 15px 35px;
+        margin-right: 0;
+        font-size: 18px;
+        font-weight: bold;
+        color: #000000;
+    }
+}
+@media screen and (max-width: 785px){
+
+}

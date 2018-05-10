@@ -1,0 +1,323 @@
+#main {
+    font-family: "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", 华文细黑, STHeiti, MingLiu !important;
+}
+
+.ios-phone > a {
+    text-decoration: none !important;
+    opacity: 1 !important;
+    color: white !important;
+}
+
+/*--------header--------------*/
+nav > ul > li {
+    padding: 0 1em;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size:14px;
+    font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    cursor: pointer;
+}
+header.fixed-header.transparent.light #brand a,
+header.fixed-header.transparent.light nav > ul > li > a:hover{
+    text-decoration:none;
+    color: #007876;
+}
+#intro-wrap {
+    font-family: intro-wrap;
+}
+.reset > a {
+    background-image: url('../img/LOGO.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+.intro-item{
+    background-image: url("../img/banner.png");
+}
+.ch-m-first-h{
+    font-size: 18px;font-weight:600;letter-spacing:0.2em;
+}
+.ch-m-first-h>span{
+    border-bottom: 2px solid black;
+    padding-bottom: 0.7em;
+}
+.ch-m-first-p{
+    padding-top:2em;
+    color:#3E3E3E;
+    font-size: 16px;
+    /*letter-spacing:0.5em;*/
+    text-indent:2em;
+}
+.ch-m-first-button>a{
+    text-decoration: none;
+}
+.ch-m-first-button>a:hover{
+    text-decoration: none;
+}
+.ch-m-first-button>a>div{
+    margin-top:2em;
+    border:1px #007876 solid;
+    width:200px;
+    height:45px;
+    text-align:center;
+    line-height:45px;
+    color:#007876;
+}
+/*-------header end----*/
+.hidden-font {
+    visibility: hidden;
+}
+#mai-contact-us .ch_6_icon {
+    width: 30px;
+}
+/*-------------------ch------------------*/
+/*#ch-m-second{*/
+    /*height:660px;*/
+    /*background-image: url("../img/ch-m-2.png");*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: center;*/
+    /*background-size:cover;*/
+/*}*/
+
+#ch-m-third> .row-content > .column {
+    margin-right: 0.8%;
+}
+#ch-m-third > .row-content > .three {
+    width: 24.05%;
+}
+.ch-head-decorate{
+    color:#007876;
+    font-size:16px;
+    background-image: url("../img/ch-head-decorate.png");
+    background-repeat: no-repeat;
+    background-position:center;
+
+}
+.ch_2_content {
+    height: 400px;
+}
+
+.ch_2_content img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.ch_module_title {
+    text-align: center;
+    font-size: 20px;
+    color: #000;
+    letter-spacing: 5px;
+    padding: 40px 0;
+}
+
+.ch_module_title span {
+    border-bottom: 5px solid #d8d8d8;
+    padding-bottom: 5px;
+}
+
+.ch_module_title div {
+    padding-top: 5px;
+}
+
+.ch_3_item {
+    text-align: center;
+}
+
+
+.ch_3_item img {
+    width: 100%;
+}
+
+.ch_5_item {
+    background-color: #F5F5F5;
+    height: 550px;
+    overflow: auto;
+    padding: 20px 10px;
+}
+.ch_6_item{
+    font-family: "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", 华文细黑, STHeiti, MingLiu;
+    padding-top:2em;;
+}
+.ch_6_item .us_content{
+    display: inline-flex;
+}
+.ch_6_item .us_title{
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    font-family: "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", 华文细黑, STHeiti, MingLiu;
+}
+.ch_6_item .us_img{
+    margin-right: 5px;
+}
+.ch_6_item .us_text {
+    padding-left:0.5em;
+    padding-right:0.5em;
+    font-size: 14px;
+    color: white;
+    font-family: "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", 华文细黑, STHeiti, MingLiu;
+}
+
+/*.row-content.buffer, .row-content.buffer-top {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}*/
+
+#ch-m-fourth .portfolio ul.cats li.active {
+    color: #007876;
+    text-decoration: none;
+    /*background-color: rgba(0,0,0,0.1);*/
+}
+#ch-m-fourth .portfolio ul.cats li{
+    /*padding: 15px 35px;*/
+    /*margin-right: 0;*/
+    /*font-size: 18px;*/
+    font-weight: bold;
+    color: #000000;
+}
+#ch-m-fourth .portfolio ul.cats{
+    line-height: 60px;
+}
+#ch-m-fourth .portfolio ul.cats li:hover{
+    /*background-color: rgba(0,0,0,0.1);*/
+    /*border-radius: 5%;*/
+    border-color: #007876;
+    text-decoration: none;
+}
+.ch_4_img{
+    display:block;
+}
+.ch_4_img_sj{
+    display:none;
+}
+.ch_buffer{
+    padding-left:1em;
+    padding-right:1em;
+}
+.ch-footer-sj{
+    display: none;
+}
+@media screen and (max-width: 960px) {
+    .intro-item{
+        background-image: url("../img/banner-sj.jpg");
+    }
+    #intro-wrap{
+        height:15em;
+    }
+    .ch-m-first-p{
+        padding-top:0.5em;
+        color:#3E3E3E;
+        font-size: 16px;
+        letter-spacing:0em;
+    }
+    .reset > a {
+        background-position: left center;
+    }
+    .ch-m-first-button>div{
+        margin-top:0;
+    }
+    .ch-m-first-button{
+        padding-left:20%;
+    }
+    .about-gx-span {
+        padding-bottom: 0.4em;
+        border-bottom: white 1px solid;
+        color: white;
+        font-size: 2em;
+        font-weight: 400;
+    }
+    .about-gx-p1 {
+        display: none;
+    }
+
+    .about-gx-p2 {
+        display: block;
+        font-size: 1em;
+        text-align: center;
+        font-weight: 300;
+        padding-top: 0.8em;
+        padding-bottom: 1em;
+    }
+    #about-mai > div > div > img {
+        display: none;
+    }
+
+    .ch_module_title {
+        padding: 0;
+    }
+    .top_banner {
+        display: none !important;
+    }
+    .top_banner1{
+        display: block !important;
+    }
+    .ch_2_content {
+        margin-top:-8em;
+    }
+    .ch_headline{
+        display: none;
+    }
+    .ch_3_item{
+        padding:10px;
+    }
+    .ch_3_item img{
+        margin:0px;
+    }
+    .ch_module_title > div{
+        padding-top:5px;
+        padding-bottom:10px;
+    }
+    .ch_1_item_img{
+        display:none;
+    }
+    .ch_4_img{
+        display:none;
+    }
+    .ch_4_img_sj{
+        display:block;
+    }
+    .ch-footer-sj{
+        display: block;
+    }
+    .us_title{
+        display: none;
+    }
+    .centertxt {
+        text-align: left;
+        padding-left:1em;
+    }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 960px) {
+    #mai-about-us {
+        height: 950px;
+        background-size: contain;
+    }
+    #ch-m-fourth .portfolio ul.cats li{
+        padding: 15px 35px;
+        margin-right: 0;
+        font-size: 18px;
+        font-weight: bold;
+        color: #000000;
+    }
+}
+@media screen and (min-width: 785px) {
+    #ch-m-fourth .portfolio ul.cats li{
+        padding-top: 2em;
+        padding-bottom:2em;
+        margin-right: 0;
+        font-weight: 400;
+        font-size: 18px;
+        color: #000000;
+    }
+    .ch-m-4-channel{
+        padding-right:20em;
+    }
+    .ch-m-4-goods{
+
+    }
+    .ch-m-4-operation{
+        padding-left:20em;
+    }
+}

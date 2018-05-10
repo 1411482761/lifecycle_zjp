@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<style type="text/css">
+		@-ms-viewport {
+			width: device-width;
+		}
+	</style>
+	<title>上海贯信—IPAD订货系统_档口管理云市场_移动店务管理</title>
+	<meta name="keywords" content="iPad订货会,麦加,手机portal,上海贯信信息技术有限公司">
+	<meta name="description" content="上海贯信是专业的移动管理解决方案提供商,为服装、家纺企业提供订货会系统;帮助服装档口进销存管理、寻找卖家;手机上完成线下终端门店管理">
+
+	<link rel="stylesheet" href="css/layers.min.css" media="screen">
+	<link rel="stylesheet" href="css/font-awesome.min.css" media="screen">
+	<link rel="stylesheet" href="style.css" media="screen">
+	<link rel="stylesheet" href="css/main.css" media="screen">
+	<script type="text/javascript" src="http://7xrrei.com1.z0.glb.clouddn.com/gw/js/jquery-1.11.3.js"></script>
+	<script type="text/javascript" src="./js/main.js"></script>
+	<link rel="icon" href="favicon.ico">
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+	<![endif]-->
+	<link rel="apple-touch-icon" href="http://7xrrei.com1.z0.glb.clouddn.com/gw/img/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="http://7xrrei.com1.z0.glb.clouddn.com/gw/img/apple-touch-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="http://7xrrei.com1.z0.glb.clouddn.com/gw/img/apple-touch-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="http://7xrrei.com1.z0.glb.clouddn.com/gw/img/apple-touch-icon-152x152.png">
+
+</head>
+<body class="page">
+	<div class="side-bar">
+		<a onclick="openWIn();" title="在线客服" style="background-image:url('./img/side-bar1.png');top:0;">在线客服</a>
+		<a id="link-phone" onmousemove="showLinkPhone();" onmouseout="hideLinkPhone();" href="#" style="background-image:url('./img/side-bar2.png');top:80px;">联系电话</a>
+		<a href="#intro-wrap" title="返回顶部" style="background-image:url('./img/side-bar3.png');top:160px;">回到顶部</a>
+		<div id="side-bar-triangle"></div>
+		<div id="side-bar-div">400-920-0918</div>
+	</div>
+	<header role="banner" class="transparent" style="background-color:white;padding:0;">
+		<div class="row">
+			<div class="nav-inner row-content even clear-after">
+				<div id="brand">
+					<h1 class="reset"><a href="index.html"><img src="img/logo.png" style="width:2.1em;" alt="logo"></a></h1>
+				</div><!-- brand -->
+				<a id="menu-toggle" href="#"><i class="fa fa-bars fa-lg"></i></a>
+				<nav>
+					<ul class="reset" role="navigation">
+						<li class="menu-item">
+							<a style="border:0;" href="index.html">首页</a>
+						</li>
+						<li class="menu-item">
+							<a style="border:0;" href="aboutus.html">关于我们</a>
+						</li>
+						<li class="menu-item">
+							<a  style="border:0;" href="b2b.html">核心业务</a>
+							<ul class="sub-menu">
+								<li><a href="b2b.html">B2B</a></li>
+								<li><a href="fair.html">订货会</a></li>
+								<li><a href="portal7.html">Admin panel</a></li>
+							</ul>
+						</li>
+						<li class="menu-item"><a style="border:0;" href="case.html">案例应用</a></li>
+						<li class="menu-item"><a style="border:0;" href="cooperate.html">生态合作</a></li>
+						<li class="menu-item"><a style="border:0;" href="joinus.html">加入我们</a></li>
+						<li></li>
+					</ul>
+				</nav>
+			</div><!-- row-content -->
+		</div><!-- row -->
+	</header>
+	<main role="main">
+		<div id="intro-wrap">
+						<div id="intro" class="preload" data-autoplay="5000" data-navigation="true" data-pagination="true" data-transition="fadeUp">
+							<div class="intro-item joinus-intro-wrap">
+							</div>
+						</div><!-- intro -->
+					</div><!-- intro-wrap -->
+
+		<div id="main">
+				<!--招聘  -->
+				<section id="joinus-first" class="row section" style="background-color:white;">
+							<div class="row-content joinus-first-row">
+								<div class="column twelve">
+									<div class="clear-after">
+										<h4 class="joinus-first-h4">所有岗位</h4>
+
+										<div class="joinus-first-div">
+											<button class="joinus-first-button" onclick="changeRecruit('java')" type="button">Java</button>
+											<button class="joinus-first-button" onclick="changeRecruit('sale')" type="button">销售</button>
+											<button class="joinus-first-button" onclick="changeRecruit('test')" type="button">测试</button>
+											<button class="joinus-first-button" onclick="changeRecruit('manager')" type="button">项目管理</button>
+											<button class="joinus-first-button" onclick="changeRecruit('db')" type="button">数据库</button>
+											<select class="joinus-first-select" onchange="selectRecruit();">
+												<option value="java">Java</option>
+												<option value="sale">销售</option>
+												<option value="test">测试</option>
+												<option value="manager">项目管理</option>
+												<option value="db">数据库</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div id="joinus-recruit" class="column buffer twelve">
+										<article>
+											<div id="joinus-java" class="job">
+												<h4>Java高级开发工程师</h4>
+												<h5>岗位职责</h5>
+												<p>
+													1. 参与电商类SAAS平台的产品研发和管理工作;<br>
+													2. 为公司服务团队和客户提供产品实施的技术顾问服务;<br>
+													3. 领导技术团队完成项目任务，参与关键客户的产品实施，确保实施方案的正确和成功。
+
+												</p>
+												<h5>职位要求</h5>
+												<p>
+													1. 大专及本科以上学历，计算机专业；具备至少3年以上软件开发开发工作经验，至少1年以上技术团队管理经验;<br>
+													2. 有领导或参与大中型软件项目开发的经验，能独立或指导他人完成软件系统分析及设计工作;<br>
+													3. 熟悉Java应用主流前后端开发技术，有丰富的开发经验;<br>
+													4. 精通Java语言编程，熟练使用Java开发工具，熟悉J2EE架构和开发模式，熟悉Oracle、MySQL等数据库系统;<br>
+													5. 熟悉以下技术优先：Redis、Memcached等缓存技术；ElasticSearch、Solr、Lucene等搜索技术；AngularJS、Ionic等JavaScript框架；发起或参与过Java或JavaScript开源项目;<br>
+													6. 熟悉项目实施从售前、需求、设计、开发、测试、部署到运维的全流程，有互联网商务项目经验优先;<br>
+													7. 较好的沟通能力、协调能力、书面表达能力，具备良好的团队协作能力，能承受一定工作压力;思路清晰，善于思考，能独立分析和解决问题；具有创新思维，能不断推陈置新。
+												</p>
+											</div>
+											<div id="joinus-sale" class="job">
+												<h4>软件销售</h4>
+												<h5>岗位职责</h5>
+												<p>
+													1. 利用电话、上门拜访等多元化的方式挖掘潜在客户;<br>
+													2. 根据客户的不同需求，有针对性的为客户设计及推销合适的产品和服务;<br>
+													3. 每月完成既定的销售指标（包括客户开发与维护、销售回款等）;<br>
+													4. 协助经理完成销售部其他相关事宜
+
+												</p>
+												<h5>职位要求</h5>
+												<p>
+												1. 大专以上学历，有商务谈判、电话销售、网络销售及面销等销售经验优先录取;<br>
+												2. 热爱销售岗位，富有挑战精神，善用网络资源与各种人脉渠道;<br>
+												3. 有良好的团队精神，能承受工作压力;有良好的沟通能力和亲和力;具有较强竞争意识，思维敏捷，善于开拓创新。
+												</p>
+											</div>
+
+											<div id="joinus-test" class="job">
+												<h4>测试工程师</h4>
+												<h5>岗位职责</h5>
+												<p>
+													1. 根据测试标准和规范进行软件测试，能够保质保量按时完成测试任务;<br>
+													2. 执行功能测试、回归测试;<br>
+													3. 软件可靠性和安全性设计检查;<br>
+													4. 设计测试用例，对测试中发现的问题进行及时跟踪和反馈，分析和解决问题;<br>
+													5. 协助主管完善测试标准和规范。
+
+												</p>
+												<h5>职位要求</h5>
+												<p>
+													1. 大专以上学历，计算机类专业;<br>
+													2. 二年软件测试经验，有APP软件测试经验，熟悉黑盒或白盒测试；了解Oracle数据库，熟练使用SQL语句进行增删改查等;<br>
+													3. 熟悉一门以上的编程语言；熟悉相关测试工具(QTP、VS、LR等)；掌握计算机操作系统、网络知识;<br>
+													4. 具备良好的逻辑思维能力和自学能力，富有责任心和团队合作精神；工作细致耐心;<br>
+													5. 具有计算机软件维护能力，具有较强的解决问题能力。
+												</p>
+											</div>
+
+											<div id="joinus-manager" class="job">
+												<h4>项目管理</h4>
+												<h5>岗位职责</h5>
+												<p>
+													1. 协调短周期项目进度和需求计划;<br>
+													2. 参与项目进度、范围和质量的跟踪和服务实施，确保项目现场的系统稳定运行;<br>
+													3. 协调客户和项目组开发人员的沟通;<br>
+													4. 帮助提供解决方案建议，将公司产品进行组装和配置调整，适应不同客户需求。
+
+												</p>
+												<h5>职位要求</h5>
+												<p>
+												1. 大专以上，计算机、软件工程、电子信息、网络工程等相关专业;<br>
+												2．一年以上软件实施，技术支持工作经验，时尚服饰行业经验优先;<br>
+												3．具备一定的ms-sql/mysql ，了解project、visio管理工具，了解oracle数据库优先;<br>
+												4．熟悉网络设备CISCO、H3C、JUNIPER、HUAWEI路由器、交换机、AP等设备的调试;<br>
+												5．熟悉服务器搭建、配置、优化，包括WINDOWS、LINUX系统操作;<br>
+												6．具有团队精神，乐于合作；性格外向，乐于沟通，积极肯干，能适当出差。
+												</p>
+											</div>
+
+											<div id="joinus-db" class="job">
+												<h4>高级数据库开发工程师</h4>
+												<h5>岗位职责</h5>
+												<p>
+													1. 参与电商类SAAS平台数据库架构设计，完成业务模型的分析以及设计工作;<br>
+													2. 承担项目关键开发和部署工作;<br>
+													3. 配合其他技术部门以及测试部门完成项目的交付。
+
+												</p>
+												<h5>职位要求</h5>
+												<p>
+													1. 大专及本科以及上学历，计算机专业;<br>
+													2. 具备二年以上数据库相关工作经验，有大数据、互联网公司工作经验优先;<br>
+													3. 精通Oracle、Mysql数据库开发，精通plsql等开发工具的使用，优秀的分析设计和编码能力，熟悉一种以上的Nosql技术;<br>
+													4. 良好的sql优化能力，监控数据库并能定位、解决运行中发现的各种异常;<br>
+													5. 优秀的沟通能力、理解能力、书面表达能力，具备良好的团队协作精神，善于思考，具有创新思维;<br>
+													6. 熟悉以下技术优先：java,groovy,Redis,mongodb,Hbase，ketle，lua，elasticsearch。
+												</p>
+											</div>
+											<h5 >投递邮箱</h5>
+											<div style="position:relative;" class="joinus-recruit-div">
+												<p style="font-size:14px;color:#525252;">qian.zhen@lifecycle.cn</p>
+												<a style="" class="button transparent " style="" href="mailto:qian.zhen@lifecycle.cn">立即申请</a>
+											</div>
+										</article>
+								</div>
+							</div>
+						</section>
+
+	</div>
+	</main>
+	<footer role="contentinfo" style="border-top:1px solid rgba(0, 0, 0, 0.1);">
+		<div class="row">
+			<div class="row-content clear-after">
+				<section id="top-footer">
+					<div class="widget column four">
+						<h4>菜单</h4>
+						<ul class="plain">
+							<li><a href="index.html">首页</a></li>
+							<li><a href="aboutus.html">关于我们</a></li>
+							<li><a href="b2b.html">B2B</a></li>
+							<li><a href="fair.html">订货会</a></li>
+							<li><a href="portal7.html">Admin panel</a></li>
+							<li><a href="case.html">案例应用</a></li>
+							<li><a href="cooperate.html">生态合作</a></li>
+							<li><a href="joinus.html">加入我们</a></li>
+						</ul>
+					</div>
+					<div class="widget column four">
+						<h4>上海贯信信息技术有限公司</h4>
+						<ul class="plain">
+							<li>
+								<p>地址：上海市国定路335号三号9楼B区</p>
+							</li>
+							<li>
+								<p>电话：400-920-0918</p>
+							</li>
+							<li>
+								<p>订货会专线：(8621)3255 2526*8050</p>
+							</li>
+							<li>
+								<p>传真：(8621)3255 2526*8088</p>
+							</li>
+							<li>
+								<p>邮箱：sales@lifecycle.cn</p>
+							</li>
+						</ul>
+					</div>
+					<div class="widget column four last">
+						<article style="text-align:center;">
+							<p style="font-size:14px;color:#ccc;margin-top:3em;">关注我们</p>
+							<img style="display:inline;" src="./img/index/qr.png"></img>
+						</article>
+					</div>
+				</section>
+
+			</section>
+				<section id="bottom-footer">
+					<p class="keep-left">版权所有©2017 Lifecycle <a href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action">沪ICP备12032222号-8</a> 隐私保护</p>
+				</section>
+			</div>
+		</div>
+	</footer>
+	<script type="text/javascript" src="http://7xrrei.com1.z0.glb.clouddn.com/gw/js/plugins.js"></script>
+	<script type="text/javascript" src="http://7xrrei.com1.z0.glb.clouddn.com/gw/js/beetle.js"></script>
+	<script>
+		function mOver(obj, image) {obj.src = image;}
+		function mOut(obj, image) {obj.src = image;}
+	</script>
+</body>
+</html>
