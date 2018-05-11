@@ -341,16 +341,17 @@ nav>ul>.menu-item:hover{
   font-weight: 100;color: rgba(0,0,0,0.5);
 }
 .index-ipad-article > h5:first-child{
-  font-size:33px;color:#929292;
+  font-size:22px;color:#999999;
+  margin-top: 60px;
 }
 .index-ipad-article > h5:nth-child(2){
   font-size:14px;color:#636363;margin-top:50px;
 }
 .index-ipad-article > h4 {
   font-weight: 100;
-  font-size:40px;
-  color:#1a1a1a;
-  margin-top:20px;
+  font-size:44px;
+  color:#333333;
+  margin-top:40px;
 }
 .index-ipad-article > table {
   margin-top:30px;
@@ -774,7 +775,7 @@ nav>ul>.menu-item:hover{
 .b2b-first-figure p {
   font-weight: 100;
   font-size:14px;
-  color:rgba(0,0,0,0.5);
+  color:#252525;
   letter-spacing:0;
   text-align:left;
 }
@@ -916,13 +917,13 @@ nav>ul>.menu-item:hover{
     width: 24.05%;
 }
 #fiar-second{
-  background-image:url('../img/fair/fair.jpg');background-position:center;min-height:580px;
+  background-image:url('../img/fair/fair2.jpg');background-position:center;min-height:580px;
 }
 #fiar-second > div > h4 {
-  color:white;text-align:center;margin-top:3.6%;font-size:33px;font-weight:200;
+  color:#333333;text-align:center;margin-top:3.6%;font-size:33px;font-weight:500;
 }
 #fiar-second > div > p {
-color:white;text-align:center;font-size:14px;
+color:#333333;text-align:center;font-size:18px;
 }
 @media screen and (max-width: 736px) {
   #fiar-second{
