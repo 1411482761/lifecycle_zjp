@@ -55,11 +55,12 @@
 							<a style="border:0;" href="../aboutus.html">关于我们</a>
 						</li>
 						<li class="menu-item">
-							<a  style="border:0;" href="../b2b.html">核心业务</a>
+							<a style="border:0;" href="../plan.html">核心业务</a>
 							<ul class="sub-menu">
-								<li><a href="../b2b.html">B2B</a></li>
-								<li><a href="../fair.html">订货会</a></li>
-								<li><a href="../portal7.html">Portal7</a></li>
+								<li><a href="../plan.html">商品计划</a></li>
+								<li><a href="../fair.html">订货会+</a></li>
+								<li><a href="../supply.html">在线补货</a></li>
+								<li><a href="../transfers.html">智能调拨</a></li>
 							</ul>
 						</li>
 						<li class="menu-item"><a style="border:0;" href="../case.html">案例应用</a></li>
@@ -80,26 +81,27 @@
 					<div class="column four">
 						<div id="intro-wrap" style="position:static;height:350px;">
 							 <div id="intro" style="position:static;width:100%;" class="preload" data-autoplay="5000" data-navigation="true" data-pagination="true" data-transition="fadeUp">
-								 <div class="intro-item" style="background-image: url('../img/casedetail/1-1.jpg');"></div>
-								 <div class="intro-item" style="background-image: url('../img/casedetail/1-2.jpg');"></div>
+								 <!--<div class="intro-item" style="background-image: url('../img/casedetail/1-1.jpg');"></div>
+								 <div class="intro-item" style="background-image: url('../img/casedetail/1-2.jpg');"></div>-->
 								 <div class="intro-item" style="background-image: url('../img/casedetail/1-3.jpg');"></div>
+								 <div class="intro-item" style="background-image: url('../img/casedetail/1-4.jpg');"></div>
 							 </div><!-- intro -->
 						 </div>
 					</div>
 					<div class="column eight last">
 						<article class="casedeatail-first-article">
 							<h4>项目背景</h4>
-							<h4>童泰订货会:完善的服务品质,显著提高订货效率</h4>
+							<h4>adidas订货会:完善的服务品质,显著提高订货效率</h4>
 							<p class="casedetail-p">
-								本次是童泰的第三场订货会，三场订货会共经历了两次开发：第一场按按箱和手订货，第二场变更为按色码订货，第三次则延续了色码订货模式
+								特步成立于2001年，是一家大型运动时尚体育用品企业。特步采用差异化营销战略，首创偶像艺人代言体育用品并取得了空前成功。
 							</p>
 							<table>
 								<tr>
-									<td class="casedetail-td">委托方:童泰</td>
+									<td class="casedetail-td">委托方:adidas</td>
 									<td class="casedetail-td">实施团队:贯信实施部门</td>
 								</tr>
 								<tr>
-									<td class="casedetail-td">订货日期：2017-01-06</td>
+									<td class="casedetail-td">订货日期：2018-03-10</td>
 									<!--<td class="casedetail-td">订货规模：3000人次</td>-->
 								</tr>
 							</table>
@@ -115,20 +117,16 @@
 					<h4>项目详情<a href="../case.html">更多</a></h4>
 					<figure class="casedetail-second-info-figure">
 							<p>
-								下单模式:童泰在使用我们产品之前并没使用过ipad订货，他们it负责人是在巴拉巴拉看到了我们公司的产品才和我们联系上的。第一次订货会时延续了他们以往的订货模式，即按箱和手订货，不能挑色和码（童泰发货是按箱发给代理商，代理商再拆成手发给终端店），此处存在一个问题就是手数不能换算成箱数，只能得到一个大约数（1箱的颜色尺码配比会存在不均分的情况）；第二场修改了下单模式：代理商大部分是按照箱单位下量，部分商品会挑色挑码下量；终端店有部分地域只能按整手下量，另外一部分则没做限制；所以从第二场开始要实现既能按箱手订货，也能按色码订货。
+								adidas不仅有经销商体系，也有直营体系。目前直营门店300间，直营订单通过assortment planning system生成， APS系统完成品类结构规划。由于直营模式更加规范，现在从经销商那里协议了1400多间店铺搞联营模式，货品统一由Adidas团队来管理，大概40多人，底层商品人员按区域、品类分工，上层按区域、门店总控。
 							</p>
-							<p>
-								解决方案:将尺码配比按箱配比维护，商品添加装箱数字段，分配量改为输入值*装箱数，此种方案好处在于开发量少，缺点在于维护量大，容易出错（童泰的商品订货分为三个维度：尺码，颜色和月份，由于矩阵下单只能存在两个维度，维护资料时将尺码和颜色合并成条码尺码，由此造成了每个商品的尺码很难相同，几乎每个商品都需要维护一套尺码配比和尺寸组）。
-							</p>
-							<img src="../img/casedetail/1-4.jpg" alt=""/>
+							<img src="../img/casedetail/1-11.jpg" alt=""/>
 					</figure>
 					<figure class="casedetail-second-info-figure">
-							<p>多价格汇总模式:终端店、代理商、电商分别取不同的价格1，价格2，价格3；模式一：终端店汇总到汇总账号后会取价格2（汇总后从价格1变成了价格2），模式二：代理商(价格2)+终端店汇总（价格2）+电商（价格3）=全国汇总（汇总后价格没有发生变化），前者要取汇总账号维护的价格，后者要取下级的价格相加。
-							</p>
+
 							<p>
-								解决方案:采用了两套存储过程，在用户资料里面更新汇总订单时触发模式二的存储逻辑，在其余的汇总动作中调用模式一的存储逻辑。
+								每次订货会大概2000-4000人，sku数在5000左右，一次订货会，在系统上会开启多个trade meeting（TM）, 每个tm 指定部分买手和部分商品（圈款，Range Management）, 一个tm对应一个买手有一份（或多份，看收货地址，和斯凯奇类似）订单，tm 设定有效时间段，结束后不能再调整订单。tm的开启由业务决定，1次订货会开出来的tm多达几十个，给买手造成很大困扰（在每个tm里为每个门店独立下单，有些tm里就2个新增商品，也需要上传对应excel文件）。tm 的用途：正式订货前的early-buy,  订货会临时加款，加买手，都是通过开设tm来完成。
 							</p>
-							<img src="../img/casedetail/1-5.jpg" alt=""/>
+							<img src="../img/casedetail/1-12.jpg" alt=""/>
 					</figure>
 
 				</div>
@@ -154,17 +152,17 @@
 							<a href="./casedetail3.html">
 							<figure class="case-first-figure case-other">
 								<img src="../img/case/3.jpg"/>
-								<p>朗浩订货会</p>
+								<p>ANTA订货会</p>
 								<a href="./casedetail3.html">查看详情</a>
 							</figure>
 							</a>
 						</div>
 						<div class="column twelve">
-							<a href="./casedetail4.html">
+							<a href="casedetail4.html">
 							<figure class="case-first-figure case-other">
 								<img src="../img/case/4.jpg"/>
-								<p>罗莱订货会</p>
-								<a href="./casedetail4.html">查看详情</a>
+								<p>森马订货会</p>
+								<a href="casedetail4.html">查看详情</a>
 							</figure>
 							</a>
 						</div>
@@ -172,59 +170,63 @@
 			</div>
 			</div>
 		</section>
+		</div>
 	</main>
-	<footer role="contentinfo" style="border-top:1px solid rgba(0, 0, 0, 0.1);">
+	<footer role="contentinfo" style="border-top:1px solid rgba(0, 0, 0, 0.1);background-color: white">
 		<div class="row">
-			<div class="row-content clear-after">
+			<div class="clear-after">
 				<section id="top-footer">
-					<div class="widget column four">
-						<h4>菜单</h4>
-            <ul class="plain">
-              <li><a href="../index.html">首页</a></li>
-							<li><a href="../aboutus.html">关于我们</a></li>
-							<li><a href="../b2b.html">B2B</a></li>
-              <li><a href="../fair.html">订货会</a></li>
-              <li><a href="../portal7.html">Portal7</a></li>
-							<li><a href="../case.html">案例应用</a></li>
-							<li><a href="../cooperate.html">生态合作</a></li>
-              <li><a href="../joinus.html">加入我们</a></li>
-            </ul>
+					<div class="widget column four one">
+						<div><img style="width: 77px;height: 62px;margin-top: 3em;margin-bottom: 5em" src="../img/logo.png"></div>
+						<div><span style="font-size: 14px;color: #9e9e9e;text-align: left">版权所有©2017 Lifecycle 沪ICP备12032222号-8 隐私保护</span></div>
 					</div>
-					<div class="widget column four">
-						<h4>上海贯信信息技术有限公司</h4>
+					<div class="widget column four two">
+						<h4 style="color: #ffffff">菜单</h4>
+						<ul class="plain" style="color: #a6a6a6">
+							<li><a href="../index.html" style="color: #a6a6a6">首页</a></li>
+							<li><a href="../aboutus.html" style="color: #a6a6a6">关于我们</a></li>
+							<li><a href="../plan.html" style="color: #a6a6a6">商品计划</a></li>
+							<li><a href="../fair.html" style="color: #a6a6a6">订货会+</a></li>
+							<li><a href="../supply.html" style="color: #a6a6a6">在线补货</a></li>
+							<li><a href="../transfers.html" style="color: #a6a6a6">智能调拨</a></li>
+							<li><a href="../case.html" style="color: #a6a6a6">案例应用</a></li>
+							<li><a href="../cooperate.html" style="color: #a6a6a6">生态合作</a></li>
+							<li><a href="../joinus.html" style="color: #a6a6a6">加入我们</a></li>
+						</ul>
+					</div>
+					<div class="widget column four three">
+						<h4 style="color: #ffffff">联系方式</h4>
 						<ul class="plain">
 							<li>
-								<p>地址：上海市国定路335号三号9楼B区</p>
+								<p style="color: #a6a6a6">地址：上海市国定路335号三号9楼B区</p>
 							</li>
 							<li>
-								<p>电话：400-920-0918</p>
+								<p style="color: #a6a6a6">电话：400-920-0918</p>
 							</li>
 							<li>
-								<p>订货会组安县：(8621)3255 2526*8050</p>
+								<p style="color: #a6a6a6">订货会专线：(8621)3255 2526*8050</p>
 							</li>
 							<li>
-								<p>传真：(8621)3255 2526*8088</p>
+								<p style="color: #a6a6a6">传真：(8621)3255 2526*8088</p>
 							</li>
 							<li>
-								<p>邮箱：sales@lifecycle.cn</p>
+								<p style="color: #a6a6a6">邮箱：sales@lifecycle.cn</p>
 							</li>
 						</ul>
 					</div>
 					<div class="widget column four last">
 						<article style="text-align:center;">
-							<p style="font-size:14px;color:#ccc;margin-top:1em;">关注我们</p>
+							<p style="font-size:14px;color:#ccc;margin-top:3em;">关注我们</p>
 							<img style="display:inline;" src="../img/index/qr.png"></img>
 						</article>
 					</div>
 				</section>
 
-			</section>
-				<section id="bottom-footer">
-					<p class="keep-left">版权所有©2015 Lifecycle <a href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action">沪ICP备12032222号-8</a> 隐私保护</p>
 				</section>
 			</div>
 		</div>
 	</footer>
+
 	<script type="text/javascript" src="http://7xrrei.com1.z0.glb.clouddn.com/gw/js/plugins.js"></script>
 	<script type="text/javascript" src="http://7xrrei.com1.z0.glb.clouddn.com/gw/js/beetle.js"></script>
 	<script>

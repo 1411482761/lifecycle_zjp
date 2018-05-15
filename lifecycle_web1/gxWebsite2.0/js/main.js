@@ -75,6 +75,15 @@ function changeCultureMind(type){
     $(".aboutus-second-mind").css("display","block");
   }
 }
+function caseTypeChange(type){
+  if(type==1){
+    $(".case-dhh").css("display","block");
+    $(".case-b2b").css("display","none");
+  }else if(type==2){
+    $(".case-dhh").css("display","none");
+    $(".case-b2b").css("display","block");
+  }
+}
 //申请合作
 function applyCooperation1(type){
   $("#cooperate-application-wrap").toggle();
