@@ -1,0 +1,14 @@
+com.agilecontrol.fair.FairGroupCalcProcess
+com.agilecontrol.fair.jco.SAPApi
+com.agilecontrol.fair.ifc.emax.SyncOrderToEmax65
+com.agilecontrol.fair.ifc.ImpPipe		 
+com.agilecontrol.fair.ifc.SyncOrders
+com.agilecontrol.fair.impl.joeone.ImpPipe
+com.agilecontrol.fair.wscg.APIimpl.WsGetConfirmOrder
+com.agilecontrol.fair.wscg.APIimpl.WsGetEndOrder
+com.agilecontrol.fair.wscg.APIimpl.WsSynClsCode
+com.agilecontrol.fair.wscg.APIimpl.WsSynCustomer
+com.agilecontrol.fair.wscg.APIimpl.WsSynPluInfo
+com.agilecontrol.fair.wscg.APIimpl.WsGetOrderResult
+com.agilecontrol.fair.ExportIpadRptProcess
+com.agilecontrol.fair.monitor.PasswordHashSync

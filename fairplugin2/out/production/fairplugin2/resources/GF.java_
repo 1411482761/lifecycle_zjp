@@ -1,0 +1,267 @@
+/*
+ * Agile Control Technologies Ltd,. CO.
+ * http://www.agileControl.com
+ */
+package com.agilecontrol.nea.core.control.web.binhandler;
+
+import java.io.PrintWriter;
+import java.net.URLDecoder;
+import java.text.SimpleDateFormat;
+import java.util.Iterator;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.agilecontrol.nea.core.control.event.DefaultEventContext;
+import com.agilecontrol.nea.core.control.util.AjaxUtils;
+import com.agilecontrol.nea.core.control.util.ValueHolder;
+import com.agilecontrol.nea.core.control.web.SecurityManagerWebImpl;
+import com.agilecontrol.nea.core.control.web.SessionInfo;
+import com.agilecontrol.nea.core.control.web.UserWebImpl;
+import com.agilecontrol.nea.core.control.web.WebUtils;
+import com.agilecontrol.nea.core.query.QueryEngine;
+import com.agilecontrol.nea.core.rest.SipStatus;
+import com.agilecontrol.nea.core.rest.TransactionResponse;
+import com.agilecontrol.nea.core.schema.TableManager;
+import com.agilecontrol.nea.core.util.Constants;
+import com.agilecontrol.nea.core.util.WebKeys;
+import com.agilecontrol.nea.util.Tools;
+import com.agilecontrol.nea.util.Validator;
+/**
+ * 处理Rest请求
+ * 从Rest.java复制而来。不用作transactions not found in request的处理。
+ * @author yfzhu@agilecontrol.com
+ */
+
+public class GF implements BinaryHandler{
+	  private Logger logger= LoggerFactory.getLogger(GF.class);	 
+
+	  private static long NETWORK_DELAY_SECONDS=1000*60*10;// 10 mininutes 
+	  
+	  public void init(ServletContext context){
+       		NETWORK_DELAY_SECONDS=(Tools.getInt(WebUtils.getProperty("rest.timewindow","10"), 10)) * 1000*60 ;
+	  }
+	  /**
+	   */
+      public void process(HttpServletRequest request,HttpServletResponse  response)  throws Exception{
+    	  //long startTime=System.currentTimeMillis();
+    	  String message=null;
+    	  SipStatus status=null;
+    	  SessionInfo si = null;
+    	  UserWebImpl usr=null;
+    	  boolean longSession=false; // should invalidate session or not
+    	  try{
+    		  String sessionkey = null;
+    		  Cookie[] cookies = request.getCookies();
+    		  if(null != cookies && cookies.length > 0){
+    			  for (Cookie cookie : cookies) {
+						if("sessionkey".equals(cookie.getName())){
+							sessionkey = URLDecoder.decode(cookie.getValue(), "UTF-8");
+							break;
+						}
+					}
+    		  }
+    		  
+    		  //is an exist session?
+    		  if(Validator.isNotNull(sessionkey)){
+  				//try load from registered sessions
+  				SecurityManagerWebImpl sm=(SecurityManagerWebImpl)WebUtils.getServletContextManager().getActor(WebKeys.SECURITY_MANAGER);
+  				si = sm.getSession(sessionkey);
+  				if(null != si){
+  					usr = si.getUserWebImpl();
+  				}
+  			  }
+    		  
+    		  if(si==null || usr==null || usr.isGuest()){
+    			  status= validateRequest(request);
+    			  message="no pemission.";
+    			  printErrorInfo(response, message);
+    			  return;
+    		  }else{
+    			  status=SipStatus.SUCCESS;
+    			  longSession=true;
+    		  }
+    		  /* plungin-fair.jar 中调用response的写流。 */
+	    	  if(status==SipStatus.SUCCESS ){
+	        	  // handle transctions
+	        	  String file = request.getParameter("file");
+	        	  if(null == file){
+	        		  message = "url define error.";
+	        		  printErrorInfo(response, message);
+	        		  return;
+	        	  }else{
+	        		  setResponseDefualtHeader(response);
+	        		  response.setHeader("sip_status", status.getCode());
+	        		  handleTransaction(request,response,usr,getTransactionObject(file));
+	        	  }
+	    	  }
+	    	  return;
+    	  }catch(Throwable t){
+    		  logger.error("Fail to process rest :",t);
+    		  message=t.getLocalizedMessage();
+    	  }finally{
+    		  if(!longSession)
+    			  request.getSession().invalidate();
+    	  }
+    	  if(!response.containsHeader("sip_status")){
+    		  message="Server error, could not set sip_status in response header";
+    	  }
+    	  logger.warn("sip_status="+status+", code="+status.getCode() + ", message=" + message);
+      }
+      
+      private void setResponseDefualtHeader(HttpServletResponse response) throws Exception{
+    	  response.setHeader("Pragma", "no-cache");
+    	  response.setHeader("Cache-Control", "no-cache,max-age=1"); //ios 6 will cache reponse if no this header
+    	  response.setHeader("Expires", "Thu, 01 Dec 1994 16:00:00 GMT");
+      }
+      
+      private void printErrorInfo(HttpServletResponse response, String message) throws Exception{
+    	  setResponseDefualtHeader(response);
+    	  response.setContentType(Constants.CONTENT_TYPE_JSON);
+    	  response.setHeader("sip_status", SipStatus.ERROR.getCode());
+    	  PrintWriter out = response.getWriter();
+    	  out.print(message);
+      }
+      
+      private JSONObject getTransactionObject(String file) throws Exception{
+    	  JSONObject jo = new JSONObject("{'id':1,'command':'com.agilecontrol.fair.FairCmd'}");
+    	  JSONObject params = new JSONObject();
+    	  params.put("cmd", "getFile");
+    	  params.put("file", file);
+    	  jo.put("params", params);
+    	  return jo;
+      }
+      
+      /**
+		校验必选参数, 并且根据用户参数，创建用户信息(UserWebImpl)
+		必选参数：
+		sip_appkey - 应用程序的编号
+		sip_timestamp - 服务请求时间戳(yyyy-mm-dd hh:mm:ss.xxx)，支持毫秒。
+		sip_sign - 签名，使用sip_appkey+sip_timestamp+appSecret进行MD5运算，转换为cod64得到的32位长字符串，服务器需要校验此值
+       * @param request
+       * @return
+       */
+      private SipStatus validateRequest(HttpServletRequest request) throws Exception{
+    	  String sip_appkey=request.getParameter("sip_appkey");
+    	  String sip_timestamp=request.getParameter("sip_timestamp");
+    	  String sip_sign=request.getParameter("sip_sign");
+    	  logger.debug("input sip_sign="+sip_sign+",sip_appkey="+sip_appkey+",sip_timestamp="+sip_timestamp);
+    	  
+    	  if(com.agilecontrol.nea.util.Validator.isNull(sip_appkey)) return  SipStatus.NEED_APPKEY;
+    	  if(com.agilecontrol.nea.util.Validator.isNull(sip_timestamp)) return  SipStatus.NEED_TIMESTAMP;
+    	  if(com.agilecontrol.nea.util.Validator.isNull(sip_sign)) return  SipStatus.NEED_SIGN;
+    	  
+    	  
+    	  // parse timestamp
+    	  SimpleDateFormat a=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+    	  a.setLenient(false);
+    	  long d=a.parse(sip_timestamp).getTime();
+    	  // range
+    	  if( System.currentTimeMillis()- d < -NETWORK_DELAY_SECONDS || System.currentTimeMillis()-d >NETWORK_DELAY_SECONDS){
+    		  logger.debug(" range test:"+(System.currentTimeMillis()- d));
+    		  return SipStatus.REQ_TIMEOUT;
+    	  }
+    	  /**
+    	   * password 实际上是明码，这里有安全问题，需要修复。
+    	   * 目前使用rest功能的客户端，需要在后端设置明码 password
+    	   */
+    	  String passwd=(String)QueryEngine.getInstance().doQueryOne("select u.password from users u where (email=? or name=?) and isactive='Y'"
+    			  , new Object[]{sip_appkey, sip_appkey});
+    	  //logger.debug("passwd="+ passwd);
+    	  if(com.agilecontrol.nea.util.Validator.isNotNull(passwd)){
+    		  String passwdmd5 =com.agilecontrol.nea.util.MD5Sum.toCheckSumStr(passwd);
+			  String sign=com.agilecontrol.nea.util.MD5Sum.toCheckSumStr(sip_appkey+sip_timestamp+passwdmd5);
+	    	  logger.debug("passwdsign="+ sign);
+			  if(!sip_sign.equalsIgnoreCase(sign)){
+				  return SipStatus.SIGNATURE_INVALID;
+			  }
+    	  }else{
+    		  return SipStatus.BINDUSER_FAILD;
+    	  }
+    	  //logger.debug("authentication passed.");
+    	  
+    	  WebUtils.getSessionContextManager(request.getSession(true));
+    	  request.getSession().setAttribute(org.apache.struts.Globals.LOCALE_KEY,TableManager.getInstance().getDefaultLocale());
+    	  request.getSession().setAttribute("USER_ID", sip_appkey);
+    	  //
+    	  return SipStatus.SUCCESS;
+      }
+      /**
+       * Should not throw exception
+       * Handle one transction
+       * @param request
+       * @param tra
+	id: <transaction-id> // 通过ID使得客户端能获取transaction的执行情况
+	command:"ObjectCreate"|"ObjectModify"|"ObjectDelete"|"ObjectSubmit"|"WebAction"|"ProcessOrder"|"Query"|"Import",//Transaction的操作命令
+	params:{ //操作命令的参数
+		<command-param>:<command-value>,
+		...
+	}
+       * @return
+       */
+      private TransactionResponse handleTransaction(HttpServletRequest request,HttpServletResponse  response,UserWebImpl usr, JSONObject tra){
+    	  long startTime=System.currentTimeMillis();
+    	  String traId= tra.optString("id","");
+    	  TransactionResponse trs=new TransactionResponse(traId);
+    	  String command=null;
+    	  try{
+    		  command=tra.getString("command");
+//    		  boolean isWebAction=command.equals("ExecuteWebAction");
+//    		  boolean isCompositeObjectProcessing=command.equals("ProcessOrder") || command.equals("GetObject");
+    		  boolean isQuery= command.equals("Query");
+    		  
+    		  boolean keepJSON= (command.equals("ProcessOrder") || command.equals("GetObject")||command.equals("ExecuteWebAction")); 
+    		  boolean singleTransaction= !command.equals("Import"); // all commands are single transaction except import command
+    		  
+    		  JSONObject jo=tra.getJSONObject("params");
+    		  jo.put("command",command);
+    		  if(!isQuery){
+
+        		  if(!keepJSON && (jo.opt("parsejson")==null)){
+        			  /*
+        			   * these commands should not add following name/value pair
+        			   *  ProcessOrder,GetObject,ExecuteWebAction
+        			   */
+       				  jo.put("parsejson","Y");  
+        		  }
+        		  if(singleTransaction &&  !jo.has("nds.control.ejb.UserTransaction")) 
+        			  jo.put("nds.control.ejb.UserTransaction","Y");
+        		  
+        		  DefaultEventContext context=new DefaultEventContext(request, response);
+    			  ValueHolder vh=AjaxUtils.process(jo,context);
+    			  
+	    		  trs.setCode(Tools.getInt( vh.get("code"), 0));
+	    		  trs.setMessage( com.agilecontrol.nea.core.util.MessagesHolder.getInstance().translateMessage((String)vh.get("message"), usr.getLocale()));
+	    		  JSONObject rr=(JSONObject)vh.get("restResult");
+	    		  if(rr!=null)for(Iterator it=rr.keys();it.hasNext();){
+	    			  String key= String.valueOf(it.next());
+	    			  trs.addData(key, rr.get(key));
+	    		  }
+    		  }else{
+    			  //query
+    			  JSONObject j=AjaxUtils.doRestQuery(jo, usr.getSession(),usr.getUserId(), usr.getLocale());
+	    		  trs.setCode(0);
+	    		  trs.setMessage( com.agilecontrol.nea.core.util.MessagesHolder.getInstance().translateMessage("@complete@:"+((System.currentTimeMillis()- startTime)/1000.0)+" seconds", usr.getLocale()));
+    			  trs.putJSONObject(j);
+    		  }
+    		  
+    	  }catch(Throwable t){
+    		  logger.error("fail to handle:"+ tra, t);
+    		  trs.setCode(-1);
+    		  trs.setMessage(WebUtils.getExceptionMessage(t, usr.getLocale()));
+    	  }
+    	  
+		  long duration=System.currentTimeMillis()- startTime;
+		  com.agilecontrol.nea.util.SysLogger.getInstance().debug("rest",command==null?"cmdfail":command,
+				  usr==null?"n/a":usr.getUserName(),
+				  request.getRemoteAddr(), String.valueOf(duration), usr==null?37:usr.getAdClientId());
+    	  
+    	  return trs;
+      }
+}

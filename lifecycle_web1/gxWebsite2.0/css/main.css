@@ -119,13 +119,16 @@ nav>ul>.menu-item:hover{
   background-image: url("../img/index/intro-wrap1.png");
 }
 .index-intro-wrap2{
-  background-image: url("../img/index/intro-wrap2.jpg");
+  background-image: url("../img/index/intro-wrap2.png");
 }
 .index-intro-wrap3{
-  background-image: url("../img/index/intro-wrap3.jpg");
+  background-image: url("../img/index/intro-wrap3.png");
 }
 .index-intro-wrap4{
-  background-image: url("../img/index/intro-wrap4.jpg");
+  background-image: url("../img/index/intro-wrap4.png");
+}
+.index-intro-wrap5{
+  background-image: url("../img/index/intro-wrap5.png");
 }
 .caption>p{
   margin-bottom:0;
@@ -227,7 +230,7 @@ nav>ul>.menu-item:hover{
     padding-bottom:6%;
   }
   .index-feature>article{
-    margin-left:8%;
+  /*  margin-left:8%;*/
     margin-right:8%;
     margin-top:6%;
   }
@@ -635,7 +638,7 @@ nav>ul>.menu-item:hover{
   color: #292929 !important;
 }
 #index-mail{
-  height:400px;
+  /*height:400px;*/
   background-image:url('../img/index/subscribe.jpg');
 }
 @media screen and (max-width: 736px) {
@@ -659,6 +662,12 @@ nav>ul>.menu-item:hover{
   #index-mail{
     height:300px;
     background-image:url('../img/index/subscribe.jpg');
+  }
+  #bottom-footer-sj{
+    display: block;
+  }
+  #bottom-footer-pc{
+    display: none;
   }
 }
 /*aboutus.html-----------------------------------------------------*/
@@ -907,7 +916,7 @@ nav>ul>.menu-item:hover{
 }
 /*fair.html#################### 订货会*/
 .fair-intro-wrap{
-    background-image: url("../img/fair/1.png");
+    background-image: url("../img/index/intro-wrap5.png");
 }
 .transfers-intro-wrap{
   background-image: url("../img/transfers/1.png");

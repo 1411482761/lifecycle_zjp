@@ -2327,7 +2327,8 @@ footer {
     position: relative;
     z-index: 10;
     background-color: #363842;
-    color: #545766
+    color: #545766;
+    margin-top: -6px;
 }
 
 footer h1, footer h2, footer h3, footer h4, footer h5, footer h6 {

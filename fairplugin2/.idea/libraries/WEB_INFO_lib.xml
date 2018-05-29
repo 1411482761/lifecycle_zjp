@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="WEB-INFO-lib">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../lib-jar/WEB-INFO-lib" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../lib-jar/WEB-INFO-lib" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/../lib-jar/WEB-INFO-lib" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../lib-jar/WEB-INFO-lib" recursive="false" type="SOURCES" />
+  </library>
+</component>

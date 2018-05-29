@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="common-lib">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../lib-jar/common-lib" />
+    </CLASSES>
+    <JAVADOC />
+    <NATIVE>
+      <root url="file://$PROJECT_DIR$/../lib-jar/common-lib" />
+    </NATIVE>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../lib-jar/common-lib" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/../lib-jar/common-lib" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../lib-jar/common-lib" recursive="false" type="SOURCES" />
+  </library>
+</component>

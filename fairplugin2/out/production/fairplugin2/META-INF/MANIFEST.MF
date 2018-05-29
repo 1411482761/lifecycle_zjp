@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Created-By: Lifecycle.cn
+Implementation-Title: Lifecycel Fair Server
+Implementation-Vendor: Lifecycle.cn
+Implementation-Version: 2.5
+url: http://www.lifecycle.cn/fair
+Bundle-SymbolicName: com.agilecontrol.fair
+Bundle-Version: 2.5
