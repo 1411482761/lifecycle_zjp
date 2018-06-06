@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="plugin-erdos">
+    <output-path>$PROJECT_DIR$/../</output-path>
+    <root id="archive" name="plugin-erdos.jar">
+      <element id="module-output" name="erdos-cxf" />
+    </root>
+  </artifact>
+</component>
