@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.3.1.min.js"></script>
+    <script src="test.js"></script>
+</head>
+<body>
+    <input type="button" id="bb" value="click"><br>
+    <textarea id="tt" cols="50" rows="30" ></textarea>
+<script>
+    $(function () {
+        $("#bb").click(function () {
+            var str='<soap:Envelope\n' +
+                '    xmlns:soap=""http://schemas.xmlsoap.org/soap/envelope/"">\n' +
+                '    <soap:Body>\n' +
+                '        <ns2:receiveResponse\n' +
+                '            xmlns:ns2=""http://www.example.org/receive/"">\n' +
+                '            <ESBDATAINFOS>\n' +
+                '                <ESBDATAINFO>\n' +
+                '                    <SAPCODE>WEQ1213</SAPCODE>\n' +
+                '                    <UUID>1231</UUID>\n' +
+                '                    <STATUS>S</STATUS>\n' +
+                '                    <TEXT>异步处理数据成功!</TEXT>\n' +
+                '                </ESBDATAINFO>\n' +
+                '            </ESBDATAINFOS>\n' +
+                '        </ns2:receiveResponse>\n' +
+                '    </soap:Body>\n' +
+                '</soap:Envelope>';
+           var reg = /^[A-Z]*$/g;
+
+           // var str2=str.replace(reg,function(m){ alert(m) ;return m.toLowerCase()});
+
+            //var str2 =  str.replace(/UUID|SAPCODE|STATUS|TEXT/g, function(ch) {return String.fromCharCode(ch.charCodeAt(0) | 32);});
+          /*  var str2 =  str.replace(/UUID|SAPCODE|STATUS|TEXT/g, function(s) {
+                switch (s){
+                    case "UUID" :return "uuid";break;
+                    case "SAPCODE" :return "sapcode";break;
+                    case "STATUS" :return "status";break;
+                    case "TEXT" :return "text";break;
+                }
+            });*/
+           /* var str2 =  str.replace(/<UUID>|<SAPCODE>|<STATUS>|<TEXT>|<\/UUID>|<\/SAPCODE>|<\/STATUS>|<\/TEXT>/g, function(s) {
+                switch (s){
+                    case "<UUID>" :return "<uuid>";break;
+                    case "<SAPCODE>" :return "<sapcode>";break;
+                    case "<STATUS>" :return "<status>";break;
+                    case "<TEXT>" :return "<text>";break;
+                    case "</UUID>" :return "</uuid>";break;
+                    case "</SAPCODE>" :return "</sapcode>";break;
+                    case "</STATUS>" :return "</status>";break;
+                    case "</TEXT>" :return "</text>";break;
+                }
+            });*/
+           var aa="aa";
+           var keys = ["UUID","TEXT"];
+           var newkeys = keys.map(function(aa){
+               return aa.toLowerCase();
+           })
+            $("#tt").html(newkeys);
+        })
+    })
+</script>
+</body>
+</html>

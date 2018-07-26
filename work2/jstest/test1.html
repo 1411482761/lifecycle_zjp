@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.3.1.min.js"></script>
+    <script src="test.js"></script>
+</head>
+<body>
+<input type="button" id="bb" value="click"><br>
+<textarea id="tt" cols="50" rows="30"></textarea>
+<script>
+    $(function () {
+        $("#bb").click(function () {
+            var str = '<soap:Envelope\n' +
+                '    xmlns:soap=""http://schemas.xmlsoap.org/soap/envelope/"">\n' +
+                '    <soap:Body>\n' +
+                '        <ns2:receiveResponse\n' +
+                '            xmlns:ns2=""http://www.example.org/receive/"">\n' +
+                '            <ESBDATAINFOS>\n' +
+                '                <ESBDATAINFO>\n' +
+                '                    <sapcode>WEQ1213<sapcode>\n' +
+                '                    <uuid>1231</uuid>\n' +
+                '                    <status>S</status>\n' +
+                '                    <text>异步处理数据成功!</text>\n' +
+                '                </ESBDATAINFO>\n' +
+                '            </ESBDATAINFOS>\n' +
+                '        </ns2:receiveResponse>\n' +
+                '    </soap:Body>\n' +
+                '</soap:Envelope>';
+            //var str1 = str.substring(str.indexOf(">")+1,str.length);
+            //**********************************************************************************************************************
+            var xmlDoc;
+            try {
+                //Internet Explorer 可以使用其原生方法加载 XML
+                xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+            } catch (e) {
+                try {
+                    //Firefox 也有标准方法,但可能造成其他浏览器报错,故省略
+                    //使用 XMLHttpRequest 替代,适用于大部分浏览器
+                    var xmlHttp = new XMLHttpRequest();
+                    xmlHttp.open("GET", xmlFile, false);
+                    xmlHttp.send(null);
+                    return xmlHttp.responseXML;
+                } catch (e) {
+                    return null;
+                }
+            }
+            xmlDoc.async = false;
+            xmlDoc.parseFromString(str,'text/xml');
+            return xmlDoc;
+        }
+//---- 解析 names.xml 的例子 ----
+        var xml = loadXMLDoc("names.xml");
+//获取 XML 文档
+        var domElems = xml.getElementsByTagName("name");
+//获取文档中"name"元素节点集合(数组)
+        var strNames = new Array(domElems.length);
+//创建"strNames"数组用于存储"用户名"
+        for (var i = 0; i < domElems.length; i++)
+            strNames[i] = domElems[i].childNodes[0].data;
+//取得"name"元素节点的子节点(文本节点)的数据,并存入"strNames"数组
+        alert(strNames.join())
+    //测试,输出"strNames"数组(预期结果:"张三,李四,王五")
+
+
+
+//************************************************************************************************************************
+$("#tt").html(str);
+})
+})
+</script>
+</body>
+</html>

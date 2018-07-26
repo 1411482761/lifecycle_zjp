@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="sapjco3(WINx64)">
+    <CLASSES>
+      <root url="file://D:/my-jar/sapjco-new/sapjco3(WINx64)/sapjco3(WINx64)" />
+    </CLASSES>
+    <JAVADOC />
+    <NATIVE>
+      <root url="file://D:/my-jar/sapjco-new/sapjco3(WINx64)/sapjco3(WINx64)" />
+    </NATIVE>
+    <SOURCES />
+    <jarDirectory url="file://D:/my-jar/sapjco-new/sapjco3(WINx64)/sapjco3(WINx64)" recursive="false" />
+  </library>
+</component>

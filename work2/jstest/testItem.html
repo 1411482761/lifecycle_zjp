@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.3.1.min.js"></script>
+    <script src="test.js"></script>
+</head>
+<body>
+    <input type="button" id="bb" value="click"><br>
+    <textarea id="tt" cols="50" rows="30" ></textarea>
+
+<script>
+    $(function () {
+        $("#bb").click(function () {
+            var str='<xxxxxxx><t_header><item>\n' +
+                '               <!--Optional:-->\n' +
+                '               <GX_XSYHDH></GX_XSYHDH>\n' +
+                '               <!--Optional:-->\n' +
+                '               <XSXQRQ></XSXQRQ>\n' +
+                '               <ZWERKS></ZWERKS>\n' +
+                '               <!--Optional:-->\n' +
+                '               <DHHBZ></DHHBZ>\n' +
+                '               <!--Optional:-->\n' +
+                '               <ZCHANGE_ID></ZCHANGE_ID>\n' +
+                '               <!--Optional:-->\n' +
+                '               <ZCHANGE_DATE></ZCHANGE_DATE>\n' +
+                '               <!--Optional:-->\n' +
+                '               <ZCHANGE_TIME></ZCHANGE_TIME>\n' +
+                '               <!--Optional:-->\n' +
+                '               <NOTE1></NOTE1>\n' +
+                '               <!--Optional:-->\n' +
+                '               <NOTE14></NOTE14>\n' +
+                '               <!--Optional:-->\n' +
+                '               <NOTE4_H></NOTE4_H>\n' +
+                '\t\t\t    <!--Optional:-->\n' +
+                '               <GX_XitemSYHDH></GX_XitemSYHDH>\n' +
+                '               <!--Optional:-->\n' +
+                '               <XSYDHH></XSYDHH>\n' +
+                '               <!--Optional:-->\n' +
+                '               <SATNR></SATNR>\n' +
+                '               <!--Optional:-->\n' +
+                '               <XTWPDM></XTWPDM>\n' +
+                '               <!--Optional:-->\n' +
+                '               <ZBDK></ZBDK>\n' +
+                '               <!--Optional:-->\n' +
+                '               <ZJTNW></ZJTNW>\n' +
+                '               <!--Optional:-->\n' +
+                '               <ZZRW></ZZRW>\n' +
+                '               <!--Optional:-->\n' +
+                '               <!--Optional:-->\n' +
+                '               <ZBACKUP_TIME></ZBACKUP_TIME>\n' +
+                '               <!--Optional:-->\n' +
+                '               <NOTE1></NOTE1>\n' +
+                '               <NOTE14></NOTE14>\n' +
+                '               <!--Optional:-->\n' +
+                '               <NOTE4-H></NOTE4-H>\n' +
+                '            </item>\n '+
+                '</t_header> ';
+            str = str.substring(str.indexOf("<item>"),str.lastIndexOf("<"));
+            //str = str.substring(str.indexOf(">")+1,str.length);
+
+            var headers = str.split("</item>");
+            var len = headers.length;
+            var t_header="";
+            var t_items="<T_ITEM>";
+
+            for (var i =0 ; i<len-1 ; i++){
+                if(str.indexOf("<NOTE4_H/>")!=-1){
+                    t_header =headers[0].substring(str.indexOf("<item>"),str.indexOf("<NOTE4_H/>")+10)+"</item>\n</T_HEADER>" ;
+                    t_items += "<item>" + headers[i].substring(headers[i].indexOf("<NOTE4_H/>")+10,headers[i].length)+"</item>\n </T_ITEM>";
+                }else{
+                    t_header =headers[0].substring(str.indexOf("<item>"),str.indexOf("</NOTE4_H>")+10)+"</item>\n</T_HEADER>" ;
+                    t_items += "<item>" + headers[i].substring(headers[i].indexOf("</NOTE4_H>")+10,headers[i].length)+"</item>\n </T_ITEM>";
+                }
+
+                if(i<len-2) {
+                    t_items += "<T_ITEM>";
+                }
+            }
+
+            var begin = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:rfc:functions">\n' +
+                '   <soapenv:Header/>\n' +
+                '   <soapenv:Body>\n' +
+                '      <urn:ZF_IF097_RECEIVER_ORDER_GX>\n' +
+                '         <!--You may enter the following 5 items in any order-->\n' +
+                '         <!--Optional:-->\n' +
+                '         <E_MSGID></E_MSGID>\n' +
+                '         <!--Optional:-->\n' +
+                '         <E_SENDR></E_SENDR>\n' +
+                '         <!--Optional:-->\n' +
+                '         <T_HEADER>\n' +
+                '            <!--Zero or more repetitions:-->';
+            var end = '         <!--Optional:-->\n' +
+                '         <T_RETURN>\n' +
+                '            <!--Zero or more repetitions:-->\n' +
+                '            <item>\n' +
+                '               <!--Optional:-->\n' +
+                '               <GX_XSYHDH></GX_XSYHDH>\n' +
+                '               <!--Optional:-->\n' +
+                '               <IFFLG></IFFLG>\n' +
+                '               <!--Optional:-->\n' +
+                '               <IFMSG></IFMSG>\n' +
+                '            </item>\n' +
+                '         </T_RETURN>\n' +
+                '      </urn:ZF_IF097_RECEIVER_ORDER_GX>\n' +
+                '   </soapenv:Body>\n' +
+                '</soapenv:Envelope>';
+            var xml=begin+t_header+t_items+end;
+            $("#tt").html(xml);
+
+        })
+    })
+</script>
+</body>
+</html>

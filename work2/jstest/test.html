@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.3.1.min.js"></script>
+    <script src="test.js"></script>
+</head>
+<body>
+    <input type="button" id="bb" value="click"><br>
+    <textarea id="tt" cols="50" rows="30" ></textarea>
+<script>
+    $(function () {
+        $("#bb").click(function () {
+            var str='<soap:Envelope\n' +
+                '    xmlns:soap=""http://schemas.xmlsoap.org/soap/envelope/"">\n' +
+                '    <soap:Body>\n' +
+                '        <ns2:receiveResponse\n' +
+                '            xmlns:ns2=""http://www.example.org/receive/"">\n' +
+                '            <ESBDATAINFOS>\n' +
+                '                <ESBDATAINFO>\n' +
+                '                    <sapcode>WEQ1213<sapcode>\n' +
+                '                    <uuid>1231</uuid>\n' +
+                '                    <status>S</status>\n' +
+                '                    <text>异步处理数据成功!</text>\n' +
+                '                </ESBDATAINFO>\n' +
+                '            </ESBDATAINFOS>\n' +
+                '        </ns2:receiveResponse>\n' +
+                '    </soap:Body>\n' +
+                '</soap:Envelope>';
+            //var str1 = str.substring(str.indexOf(">")+1,str.length);
+            var parser=new DOMParser();//创建文档对象
+
+            var xmldoc=parser.parseFromString(str,'text/xml');
+            console.log(xmldoc)
+            var sapcodes = xmldoc.getElementsByTagName('ESBDATAINFOS');
+
+            var arr=[];
+            var len =sapcodes.length;
+            alert("len==="+len);
+            for (var i = 0 ; i<sapcodes.length;i++){
+                alert("11111111111");
+                alert(sapcodes[0].textContent);
+                arr.push(sapcodes[i].textContent);
+            }
+            console.log(arr);
+
+            $("#tt").html(str);
+        })
+    })
+</script>
+</body>
+</html>

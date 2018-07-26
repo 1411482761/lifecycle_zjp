@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.3.1.min.js"></script>
+    <script src="test.js"></script>
+</head>
+<body>
+    <input type="button" id="bb" value="click"><br>
+    <textarea id="tt" cols="50" rows="30" ></textarea>
+<script>
+    $(function () {
+        $("#bb").click(function () {
+            var str="<SOAP:Envelope\n" +
+                "    xmlns:SOAP='http://schemas.xmlsoap.org/soap/envelope/'>\n" +
+                "    <SOAP:Header/>\n" +
+                "    <SOAP:Body>\n" +
+                "        <ns0:ZF_IF097_RECEIVER_ORDER_GX.Response\n" +
+                "            xmlns:ns0='urn:sap-com:document:sap:rfc:functions'>\n" +
+                "            <I_MSGID>d295205e84b811e8cba6000000179b8e</I_MSGID>\n" +
+                "            <T_RETURN>\n" +
+                "                <item>\n" +
+                "                    <GX_XSYHDH>Q201807090001</GX_XSYHDH>\n" +
+                "                    <IFFLG>E</IFFLG>\n" +
+                "                    <IFMSG>单据 Q201807090001 行号 000480 物料数据在SAP中不存在！</IFMSG>\n" +
+                "                </item>\n" +
+                "            </T_RETURN>\n" +
+                "        </ns0:ZF_IF097_RECEIVER_ORDER_GX.Response>\n" +
+                "    </SOAP:Body>\n" +
+                "</SOAP:Envelope>";
+            var GX_XSYHDH = str.substring(str.indexOf("<GX_XSYHDH>")+11,str.indexOf("</GX_XSYHDH>"));
+            var IFFLG = str.substring(str.indexOf("<IFFLG>")+7,str.indexOf("</IFFLG>"));
+            var IFMSG = str.substring(str.indexOf("<IFMSG>")+7,str.indexOf("</IFMSG>"));
+
+            $("#tt").html(GX_XSYHDH+"\n"+IFFLG+"\n"+IFMSG);
+        })
+    })
+</script>
+</body>
+</html>

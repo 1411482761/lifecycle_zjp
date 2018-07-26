@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.3.1.min.js"></script>
+    <script src="test.js"></script>
+</head>
+<body>
+    <input type="button" id="bb" value="click"><br>
+    <textarea id="tt" cols="50" rows="30" ></textarea>
+<script>
+    $(function () {
+        $("#bb").click(function () {
+            var str='<soap:Envelope\n' +
+                '    xmlns:soap=""http://schemas.xmlsoap.org/soap/envelope/"">\n' +
+                '    <soap:Body>\n' +
+                '        <ns2:receiveResponse\n' +
+                '            xmlns:ns2=""http://www.example.org/receive/"">\n' +
+                '            <ESBDATAINFOS>\n' +
+                '                <ESBDATAINFO>\n' +
+                '                    <sapcode>WEQ1213<sapcode>\n' +
+                '                    <uuid>1231</uuid>\n' +
+                '                    <status>S</status>\n' +
+                '                    <text>异步处理数据成功!</text>\n' +
+                '                </ESBDATAINFO>\n' +
+                '            </ESBDATAINFOS>\n' +
+                '        </ns2:receiveResponse>\n' +
+                '    </soap:Body>\n' +
+                '</soap:Envelope>';
+            value= value.substring(value.indexOf(">")+1,value.length);
+            var str1 = str.substring(str.indexOf("<ESBDATAINFOS>"),str.indexOf("</ESBDATAINFOS>")+15);
+            $("#tt").html(sr);
+        })
+    })
+</script>
+</body>
+</html>

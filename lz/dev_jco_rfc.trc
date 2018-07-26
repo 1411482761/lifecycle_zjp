@@ -1,0 +1,125 @@
+
+**** Error file opened at 20180724 134243 China Standard Time Rel 3.0.5 (2010-03-03) [720.63]
+Error:  >Tue Jul 24 13:42:43,744<    RfcException: [null]
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=ABAP_AS_POOL ASHOST=192.168.5.17 SYSNR=01 PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       partner '192.168.5.17:3301' not reached
+TIME        Tue Jul 24 13:42:43 2018
+RELEASE     720
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nixxi.cpp
+LINE        3271
+DETAIL      NiPConnect2: 192.168.5.17:3301
+SYSTEM CALL connect
+ERRNO       10060
+ERRNO TEXT  WSAETIMEDOUT: Connection timed out
+COUNTER     2
+
+    Return code: RFC_FAILURE(1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+
+
+**** Error file opened at 20180724 143359 China Standard Time Rel 3.0.5 (2010-03-03) [720.63]
+Error:  >Tue Jul 24 14:33:59,598<    RfcException: [null]
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=ABAP_AS_POOL ASHOST=192.168.5.17 SYSNR=01 PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       partner '192.168.5.17:3301' not reached
+TIME        Tue Jul 24 14:33:59 2018
+RELEASE     720
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nixxi.cpp
+LINE        3271
+DETAIL      NiPConnect2: 192.168.5.17:3301
+SYSTEM CALL connect
+ERRNO       10060
+ERRNO TEXT  WSAETIMEDOUT: Connection timed out
+COUNTER     2
+
+    Return code: RFC_FAILURE(1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+
+
+**** Error file opened at 20180724 145554 China Standard Time Rel 3.0.5 (2010-03-03) [720.63]
+Error:  >Tue Jul 24 14:55:54,696<    RfcException: [null]
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=ABAP_AS_POOL ASHOST=192.168.5.17 SYSNR=01 PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       partner '192.168.5.17:3301' not reached
+TIME        Tue Jul 24 14:55:54 2018
+RELEASE     720
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nixxi.cpp
+LINE        3271
+DETAIL      NiPConnect2: 192.168.5.17:3301
+SYSTEM CALL connect
+ERRNO       10060
+ERRNO TEXT  WSAETIMEDOUT: Connection timed out
+COUNTER     2
+
+    Return code: RFC_FAILURE(1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+
+
+**** Error file opened at 20180725 094515 China Standard Time Rel 3.0.5 (2010-03-03) [720.63]
+Error:  >Wed Jul 25 09:45:15,826<    RfcException: [null]
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=ABAP_AS_POOL ASHOST=192.168.5.17 SYSNR=01 PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       partner '192.168.5.17:3301' not reached
+TIME        Wed Jul 25 09:45:15 2018
+RELEASE     720
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nixxi.cpp
+LINE        3271
+DETAIL      NiPConnect2: 192.168.5.17:3301
+SYSTEM CALL connect
+ERRNO       10060
+ERRNO TEXT  WSAETIMEDOUT: Connection timed out
+COUNTER     2
+
+    Return code: RFC_FAILURE(1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+
+
+**** Error file opened at 20180725 103953 China Standard Time Rel 3.0.5 (2010-03-03) [720.63]
+Error:  >Wed Jul 25 10:39:53,496<    RfcException: [null]
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=ABAP_AS_POOL ASHOST=192.168.5.17 SYSNR=01 SAPROUTER=/H/router.lancygroup.net PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       connection to partner 'router.lancygroup.net:3299' broken
+TIME        Wed Jul 25 10:39:53 2018
+RELEASE     720
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -6
+MODULE      nixxi.cpp
+LINE        5072
+DETAIL      NiIRead: P=219.239.236.135:3299; L=192.168.130.152:60528
+SYSTEM CALL recv
+ERRNO       10054
+ERRNO TEXT  WSAECONNRESET: Connection reset by peer
+COUNTER     2
+
+    Return code: RFC_FAILURE(1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+
