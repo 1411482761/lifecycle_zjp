@@ -123,3 +123,38 @@ COUNTER     2
     error group: 102
     key: RFC_ERROR_COMMUNICATION
 
+
+**** Error file opened at 20180726 153622 China Standard Time Rel 3.0.5 (2010-03-03) [720.63]
+Error:  >Thu Jul 26 15:36:22,271<    >RfcGetException rc (7) message: 用户 MENGUANGPENG2 不在该周期内
+<RfcGetException
+
+
+**** Error file opened at 20180726 153654 China Standard Time Rel 3.0.5 (2010-03-03) [720.63]
+Error:  >Thu Jul 26 15:36:54,644<    >RfcGetException rc (7) message: 用户 MENGUANGPENG1 不在该周期内
+<RfcGetException
+
+
+**** Error file opened at 20180726 155153 China Standard Time Rel 3.0.5 (2010-03-03) [720.63]
+Error:  >Thu Jul 26 15:51:53,255<    RfcException: [null]
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=ABAP_AS_POOL ASHOST=192.168.5.17 SYSNR=01 SAPROUTER=/H/router.lancygroup.net PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       partner 'router.lancygroup.net:3299' not reached
+TIME        Thu Jul 26 15:51:53 2018
+RELEASE     720
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nixxi.cpp
+LINE        3271
+DETAIL      NiPConnect2: 219.239.236.135:3299
+SYSTEM CALL connect
+ERRNO       10060
+ERRNO TEXT  WSAETIMEDOUT: Connection timed out
+COUNTER     2
+
+    Return code: RFC_FAILURE(1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+

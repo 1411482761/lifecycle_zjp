@@ -22,14 +22,20 @@ public final class RfcManager {
     }    
     
     public static Properties loadProperties() {    
-        Properties props=new Properties();    
+     /*   Properties props=new Properties();
         props.setProperty("jco.client.user","sapjsf");    
         props.setProperty("jco.client.passwd","L@ncy2o12");    
         props.setProperty("jco.client.lang", "ZH");    
         props.setProperty("jco.client.client","500");    
         props.setProperty("jco.client.sysnr","01");    
+        props.setProperty("jco.client.ashost","/H/router.lancygroup.net/H/192.168.5.17");*/
+        Properties props=new Properties();
+        props.setProperty("jco.client.user","sapjsf");
+        props.setProperty("jco.client.passwd","L@ncy2o12");
+        props.setProperty("jco.client.lang", "ZH");
+        props.setProperty("jco.client.client","300");
+        props.setProperty("jco.client.sysnr","00");
         props.setProperty("jco.client.ashost","/H/router.lancygroup.net/H/192.168.5.17");
-        
         return props;    
     }    
     

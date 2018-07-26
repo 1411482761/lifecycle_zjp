@@ -12,7 +12,9 @@ public class CALL {
         JCoFunction function = RfcManager.getFunction("ZHRPT_USRID_INFO");
         // 设置import 参数  
         JCoParameterList importParam = function.getImportParameterList();
-        importParam.setValue("USER", "menguangpeng");
+       // importParam.setValue("USER", "menguangpeng");
+        importParam.setValue("USER", "menguangpeng1");
+
 
     /*    //3.JCoTable 主体参数，可为多个主体参数。。。
         JCoTable headerImportParam = function.getTableParameterList().getTable("_TABLE");//返回的值i个字段作为一个表
